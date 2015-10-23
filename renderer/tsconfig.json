@@ -10,6 +10,11 @@
     "jsx": "react"
   },
   "files": [
+    "components/app.tsx",
+    "neovim.ts",
+    "store.ts",
+    "reducers.ts",
+    "actions.ts",
     "main.tsx",
     "lib.d.ts"
   ]

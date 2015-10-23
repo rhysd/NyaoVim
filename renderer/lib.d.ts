@@ -1,4 +1,5 @@
 /// <reference path="../typings/tsd.d.ts" />
+/// <reference path="../node_modules/immutable/dist/immutable.d.ts" />
 
 // Temporary copy of 'react-dom' module type definitions
 // from https://github.com/borisyankov/DefinitelyTyped/pull/6205
