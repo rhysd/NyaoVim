@@ -2,6 +2,9 @@ import * as Immutable from 'immutable';
 import assign = require('object-assign');
 import * as Action from './actions';
 
+// TODO:
+// Split NeoVim state from others by splitting reducer
+
 export interface StateType {
     lines: Immutable.List<string>;
     fg_color: string;
@@ -89,6 +92,7 @@ function redraw(state: StateType, events: any[][]) {
 }
 
 export default function nyaovim(state: StateType = init, action: Action.Type) {
+    console.log(action.type);
     switch(action.type) {
         case Action.Kind.Redraw:
             return redraw(state, action.events);

@@ -1,0 +1,19 @@
+html, body {
+  width: 100%;
+  height: 100%;
+}
+
+body {
+  margin: 0px;
+  font-family: "Helvetica Neue", Helvetica, "Segoe UI", Arial, freesans, sans-serif;
+}
+
+.app, .root {
+  height: 100%;
+  width: 100%;
+}
+
+.neovim-screen {
+  height: 100%;
+  width: 100%;
+}
