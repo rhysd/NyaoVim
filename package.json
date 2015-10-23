@@ -24,6 +24,8 @@
   "homepage": "https://github.com/rhysd/NyaoVim#readme",
   "dependencies": {
     "immutable": "^3.7.5",
+    "mousetrap": "^1.5.3",
+    "promised-neovim-client": "^0.1.3",
     "react": "^0.14.0",
     "react-dom": "^0.14.0",
     "react-redux": "^4.0.0",
