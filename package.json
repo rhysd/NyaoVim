@@ -1,0 +1,37 @@
+{
+  "name": "nyaovim",
+  "version": "0.0.0",
+  "description": "Non-Yet Another Original Vim",
+  "main": "build/browser/main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rhysd/NyaoVim.git"
+  },
+  "keywords": [
+    "editor",
+    "neovim",
+    "electron",
+    "cat"
+  ],
+  "author": "rhysd",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/rhysd/NyaoVim/issues"
+  },
+  "homepage": "https://github.com/rhysd/NyaoVim#readme",
+  "dependencies": {
+    "immutable": "^3.7.5",
+    "react": "^0.14.0",
+    "react-dom": "^0.14.0",
+    "react-redux": "^4.0.0",
+    "redux": "^3.0.3"
+  },
+  "devDependencies": {
+    "browserify": "^11.2.0",
+    "electron-prebuilt": "^0.34.0",
+    "typescript": "^1.6.2"
+  }
+}

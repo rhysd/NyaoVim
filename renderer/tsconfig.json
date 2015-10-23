@@ -1,0 +1,16 @@
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "removeComments": true,
+    "preserveConstEnums": true,
+    "outDir": "../build/renderer",
+    "noImplicitAny": true,
+    "target": "es5",
+    "sourceMap": true,
+    "jsx": "react"
+  },
+  "files": [
+    "main.tsx",
+    "lib.d.ts"
+  ]
+}

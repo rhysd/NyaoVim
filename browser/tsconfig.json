@@ -1,0 +1,15 @@
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "removeComments": true,
+    "preserveConstEnums": true,
+    "outDir": "../build/browser",
+    "noImplicitAny": true,
+    "target": "es5",
+    "sourceMap": true
+  },
+  "files": [
+    "main.ts",
+    "lib.d.ts"
+  ]
+}
