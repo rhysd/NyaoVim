@@ -1,22 +1,27 @@
 import * as Immutable from 'immutable';
 import assign = require('object-assign');
 import * as Action from './actions';
+import {RPCValue} from './neovim';
 
 // TODO:
 // Split NeoVim state from others by splitting reducer
+
+interface SizeState {
+    lines: number;
+    columns: number;
+}
+
+interface CursorState {
+    line: number;
+    col: number;
+}
 
 export interface StateType {
     lines: Immutable.List<string>;
     fg_color: string;
     bg_color: string;
-    size: {
-        lines: number;
-        columns: number;
-    }
-    cursor: {
-        line: number;
-        col: number;
-    }
+    size: SizeState;
+    cursor: CursorState;
 }
 
 const init: StateType = {
@@ -53,18 +58,21 @@ function handlePut(lines: Immutable.List<string>, cursor_line: number, cursor_co
     return lines.set(cursor_line, modified);
 }
 
-function redraw(state: StateType, events: any[][]) {
+function redraw(state: StateType, events: RPCValue[][]) {
     const next_state: StateType = assign({}, state);
     for (const e of events) {
-        const name = e[0];
-        const args = e[1];
+        const name = e[0] as string;
+        const args = e[1] as RPCValue[];
         switch(name) {
             case 'put':
                 // Use next_state.cursor.{line,col} because previous 'cursor_goto' event changed next_state's cursor position.
-                next_state.lines = handlePut(state.lines, next_state.cursor.line, next_state.cursor.col, e);
+                next_state.lines = handlePut(state.lines, next_state.cursor.line, next_state.cursor.col, e as string[][]);
                 break;
             case 'cursor_goto':
-                next_state.cursor = {line: args[0], col: args[1]};
+                next_state.cursor = {
+                    line: args[0] as number,
+                    col: args[1] as number,
+                } as CursorState;
                 break;
             case 'highlight_set':
                 console.log('highlight_set is ignored', args);
@@ -74,14 +82,17 @@ function redraw(state: StateType, events: any[][]) {
                 next_state.cursor = {line: 0, col: 0};
                 break;
             case 'resize':
-                next_state.size = {columns: args[0], lines: args[1]};
+                next_state.size = {
+                    columns: args[0],
+                    lines: args[1],
+                } as SizeState;
                 // TODO: When cursor is out of field
                 break;
             case 'update_fg':
-                next_state.fg_color = colorOf(args[0], state.fg_color);
+                next_state.fg_color = colorOf(args[0] as number, state.fg_color);
                 break;
             case 'update_bg':
-                next_state.bg_color = colorOf(args[0], state.bg_color);
+                next_state.bg_color = colorOf(args[0] as number, state.bg_color);
                 break;
             default:
                 console.log('Unhandled event: ' + name, args);

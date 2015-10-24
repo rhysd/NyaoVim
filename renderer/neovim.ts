@@ -7,6 +7,18 @@ import Store from './store';
 import * as cp from 'child_process';
 const child_process: typeof cp = global.require('child_process');
 
+// Note:
+// TypeScript doesn't allow recursive definition
+export type RPCValue =
+        NvimClient.Buffer |
+        NvimClient.Window |
+        NvimClient.Tabpage |
+        number |
+        boolean |
+        string |
+        any[] |
+        {[key:string]: any};
+
 export class NeoVim {
     neovim_process: cp.ChildProcess;
     client: NvimClient.Nvim;
@@ -17,8 +29,8 @@ export class NeoVim {
     }
 
     start(argv: string[], cmd = 'nvim') {
-        argv.push('-u', 'NONE', '-N', '--embed');
-        this.neovim_process = child_process.spawn(cmd, argv);
+        argv.push('--embed');
+        this.neovim_process = child_process.spawn(cmd, argv, {});
         this.client = null;
         NvimClient.attach(this.neovim_process.stdin, this.neovim_process.stdout)
             .then(nvim => {
@@ -29,17 +41,17 @@ export class NeoVim {
                 nvim.subscribe('Gui');
                 nvim.uiAttach(80, 24, true);
                 this.started = true;
-            });
+            }).catch(err => console.log(err));
     }
 
-    onRequested(method: string, args: any[], response: any) {
+    onRequested(method: string, args: RPCValue[], response: RPCValue) {
         console.log('requested: ', method, args, response);
     }
 
-    onNotified(method: string, args: any[]) {
+    onNotified(method: string, args: RPCValue[]) {
         console.log('notified: ', method, args);
         if (method === 'redraw') {
-            Store.dispatch(Action.redraw(args));
+            Store.dispatch(Action.redraw(args as RPCValue[][]));
         } else {
             console.log('unknown method', method);
         }
@@ -52,5 +64,6 @@ export class NeoVim {
 }
 
 const NeoVimSinglton = new NeoVim();
+global.__neovim = NeoVimSinglton;
 
 export default NeoVimSinglton;
