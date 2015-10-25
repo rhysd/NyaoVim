@@ -1,11 +1,5 @@
 import * as NvimClient from 'promised-neovim-client';
-import * as Action from './actions';
-import Store from './store';
-
-// Note:
-// Use renderer's node.js integration to avoid using ipc for large data transfer
-import * as cp from 'child_process';
-const child_process: typeof cp = global.require('child_process');
+import {spawn, ChildProcess} from 'child_process';
 
 // Note:
 // TypeScript doesn't allow recursive definition
@@ -19,18 +13,19 @@ export type RPCValue =
         any[] |
         {[key:string]: any};
 
-export class NeoVim {
-    neovim_process: cp.ChildProcess;
+export default class NeoVim {
+    neovim_process: ChildProcess;
     client: NvimClient.Nvim;
     started: boolean;
-
-    constructor() {
+    constructor(public window: GitHubElectron.BrowserWindow, argv: string[], cmd = 'nvim') {
         this.started = false;
+        this.start(argv, cmd);
     }
 
     start(argv: string[], cmd = 'nvim') {
+        this.started = false;
         argv.push('--embed');
-        this.neovim_process = child_process.spawn(cmd, argv, {});
+        this.neovim_process = spawn(cmd, argv, {});
         this.client = null;
         NvimClient.attach(this.neovim_process.stdin, this.neovim_process.stdout)
             .then(nvim => {
@@ -45,16 +40,12 @@ export class NeoVim {
     }
 
     onRequested(method: string, args: RPCValue[], response: RPCValue) {
-        console.log('requested: ', method, args, response);
+        this.window.webContents.send('neovim:request', method, args, response);
     }
 
     onNotified(method: string, args: RPCValue[]) {
-        console.log('notified: ', method, args);
-        if (method === 'redraw') {
-            Store.dispatch(Action.redraw(args as RPCValue[][]));
-        } else {
-            console.log('unknown method', method);
-        }
+        console.log('[browser] Notification!', method);
+        this.window.webContents.send('neovim:notification', method, args);
     }
 
     onDisconnected() {
@@ -63,7 +54,3 @@ export class NeoVim {
     }
 }
 
-const NeoVimSinglton = new NeoVim();
-global.__neovim = NeoVimSinglton;
-
-export default NeoVimSinglton;
