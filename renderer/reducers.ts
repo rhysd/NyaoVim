@@ -1,7 +1,7 @@
 import * as Immutable from 'immutable';
 import assign = require('object-assign');
 import * as Action from './actions';
-import {RPCValue} from './neovim-handler';
+import {RPCValue} from './neovim';
 
 // TODO:
 // Split NeoVim state from others by splitting reducer

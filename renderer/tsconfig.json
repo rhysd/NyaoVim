@@ -11,7 +11,7 @@
   },
   "files": [
     "components/app.tsx",
-    "neovim-handler.ts",
+    "neovim.ts",
     "store.ts",
     "reducers.ts",
     "actions.ts",

@@ -1,4 +1,4 @@
-import {RPCValue} from './neovim-handler';
+import {RPCValue} from './neovim';
 
 export enum Kind {
     Redraw

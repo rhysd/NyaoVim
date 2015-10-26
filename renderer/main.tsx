@@ -3,8 +3,8 @@ import * as ReactDom from 'react-dom';
 import {Provider} from 'react-redux';
 import App from './components/app';
 import Store from './store';
-import NeoVimHandler from './neovim-handler';
-const neovim_handler = new NeoVimHandler();
+import NeoVim from './neovim';
+NeoVim.start([]);
 
 ReactDom.render(
     <Provider store={Store}>
