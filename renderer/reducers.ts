@@ -46,16 +46,15 @@ function colorOf(new_color: number, fallback: string) {
 }
 
 function handlePut(lines: Immutable.List<string>, cursor_line: number, cursor_col: number, event: string[][]) {
-    event.shift();
-    const modified = lines.get(cursor_line);
-    let next_line = modified.substring(cursor_col);
-    for (const c in event) {
+    const prev_line = lines.get(cursor_line) || '';
+    let next_line = prev_line.substring(cursor_col);
+    for (const c of event) {
         if (c.length !== 1) {
             console.log('Invalid character: ', c);
         }
         next_line += c[0];
     }
-    return lines.set(cursor_line, modified);
+    return lines.set(cursor_line, next_line);
 }
 
 function redraw(state: StateType, events: RPCValue[][]) {
@@ -65,8 +64,9 @@ function redraw(state: StateType, events: RPCValue[][]) {
         const args = e[1] as RPCValue[];
         switch(name) {
             case 'put':
+                e.shift();
                 // Use next_state.cursor.{line,col} because previous 'cursor_goto' event changed next_state's cursor position.
-                next_state.lines = handlePut(state.lines, next_state.cursor.line, next_state.cursor.col, e as string[][]);
+                next_state.lines = handlePut(next_state.lines, next_state.cursor.line, next_state.cursor.col, e as string[][]);
                 break;
             case 'cursor_goto':
                 next_state.cursor = {
@@ -99,7 +99,7 @@ function redraw(state: StateType, events: RPCValue[][]) {
                 break;
         }
     }
-    return state;
+    return next_state;
 }
 
 export default function nyaovim(state: StateType = init, action: Action.Type) {

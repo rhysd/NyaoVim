@@ -34,11 +34,9 @@ export class NeoVim {
         argv.push('--embed');
         this.neovim_process = child_process.spawn(cmd, argv, {stdio: ['pipe', 'pipe', process.stderr]});
         this.client = null;
-        console.log('attach start', this.neovim_process);
         attach(this.neovim_process.stdin, this.neovim_process.stdout)
             .then(nvim => {
                 this.client = nvim;
-                console.log('attach complete', nvim);
                 nvim.on('request', this.onRequested.bind(this));
                 nvim.on('notification', this.onNotified.bind(this));
                 nvim.on('disconnect', this.onDisconnected.bind(this));
@@ -53,11 +51,11 @@ export class NeoVim {
 
     onNotified(method: string, args: RPCValue[]) {
         console.log('notified: ', method, args);
-        // if (method === 'redraw') {
-        //     Store.dispatch(Action.redraw(args as RPCValue[][]));
-        // } else {
-        //     console.log('unknown method', method);
-        // }
+        if (method === 'redraw') {
+            Store.dispatch(Action.redraw(args as RPCValue[][]));
+        } else {
+            console.log('unknown method', method);
+        }
     }
 
     onDisconnected() {

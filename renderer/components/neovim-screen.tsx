@@ -15,6 +15,11 @@ interface Props {
 }
 
 export default class NeovimScreen extends React.Component<Props, {}> {
+    renderContents(lines: Immutable.List<string>) {
+        // TODO: Consider highlight sets
+        return lines.toArray().map((l: string, i: number) => <div key={i}>{l}</div>);
+    }
+
     render() {
         const style = {
             color: this.props.fg_color,
@@ -23,7 +28,7 @@ export default class NeovimScreen extends React.Component<Props, {}> {
         return (
             <div className="neovim-screen" style={style}>
                 <code>
-                    Hello, world!
+                    {this.renderContents(this.props.lines)}
                 </code>
             </div>
         );
