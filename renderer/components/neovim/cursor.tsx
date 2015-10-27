@@ -46,7 +46,7 @@ export default class NeoVimCursor extends React.Component<Props, {}> {
             return;
         }
 
-        console.log('Input to neovim: ', t.value);
+        console.log('Input to neovim: "' + t.value + '"');
         NeoVim.client.input(t.value);
     }
 
@@ -111,7 +111,7 @@ export default class NeoVimCursor extends React.Component<Props, {}> {
         return <input
             className="neovim-cursor"
             autoFocus
-            value={this.props.charUnderCursor}
+            placeholder={this.props.charUnderCursor}
             ref="body"
         />;
     }

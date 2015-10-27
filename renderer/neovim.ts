@@ -50,11 +50,10 @@ export class NeoVim {
     }
 
     onNotified(method: string, args: RPCValue[]) {
-        console.log('notified: ', method, args);
         if (method === 'redraw') {
             Store.dispatch(Action.redraw(args as RPCValue[][]));
         } else {
-            console.log('unknown method', method);
+            console.log('unknown method', method, args);
         }
     }
 

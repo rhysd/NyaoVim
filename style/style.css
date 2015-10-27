@@ -18,6 +18,10 @@ body {
   width: 100%;
 }
 
+.neovim-screen pre {
+  margin: 0px;
+}
+
 .neovim-cursor {
   width: 0.5em;
   color: black;

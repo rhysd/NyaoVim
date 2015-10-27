@@ -22,6 +22,7 @@ export interface StateType {
     bg_color: string;
     size: SizeState;
     cursor: CursorState;
+    mode: string;
 }
 
 const init: StateType = {
@@ -36,6 +37,7 @@ const init: StateType = {
         line: 0,
         col: 0,
     },
+    mode: null,
 };
 
 function colorOf(new_color: number, fallback: string) {
@@ -45,10 +47,10 @@ function colorOf(new_color: number, fallback: string) {
     return '#' + new_color.toString(16);
 }
 
-function handlePut(lines: Immutable.List<string>, cursor_line: number, cursor_col: number, event: string[][]) {
+function handlePut(lines: Immutable.List<string>, cursor_line: number, cursor_col: number, chars: string[][]) {
     const prev_line = lines.get(cursor_line) || '';
-    let next_line = prev_line.substring(cursor_col);
-    for (const c of event) {
+    let next_line = prev_line.substring(0, cursor_col);
+    for (const c of chars) {
         if (c.length !== 1) {
             console.log('Invalid character: ', c);
         }
@@ -65,8 +67,17 @@ function redraw(state: StateType, events: RPCValue[][]) {
         switch(name) {
             case 'put':
                 e.shift();
+                if (e.length === 0) {
+                    break;
+                }
                 // Use next_state.cursor.{line,col} because previous 'cursor_goto' event changed next_state's cursor position.
-                next_state.lines = handlePut(next_state.lines, next_state.cursor.line, next_state.cursor.col, e as string[][]);
+                next_state.lines = handlePut(
+                        next_state.lines,
+                        next_state.cursor.line,
+                        next_state.cursor.col,
+                        e as string[][]
+                    );
+                next_state.cursor.col += e.length;
                 break;
             case 'cursor_goto':
                 next_state.cursor = {
@@ -93,6 +104,9 @@ function redraw(state: StateType, events: RPCValue[][]) {
                 break;
             case 'update_bg':
                 next_state.bg_color = colorOf(args[0] as number, state.bg_color);
+                break;
+            case 'mode_change':
+                next_state.mode = args[0] as string;
                 break;
             default:
                 console.log('Unhandled event: ' + name, args);

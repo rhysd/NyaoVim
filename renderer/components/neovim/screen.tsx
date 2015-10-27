@@ -24,7 +24,7 @@ export default class NeovimScreen extends React.Component<Props, {}> {
         // TODO: Consider highlight sets
         const c = this.props.cursor;
         if (line_num !== c.line) {
-            return <div key={line_num}>{line}</div>;
+            return <pre key={line_num}>{line}</pre>;
         }
 
         const line_cursor_before = line.substring(0, c.col);
@@ -39,11 +39,11 @@ export default class NeovimScreen extends React.Component<Props, {}> {
         }
 
         return (
-            <div key={line_num}>
+            <pre key={line_num}>
                 <span>{line_cursor_before}</span>
                 <Cursor charUnderCursor={char_under_cursor}/>
                 <span>{line_cursor_after}</span>
-            </div>
+            </pre>
         );
     }
 
