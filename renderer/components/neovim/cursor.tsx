@@ -1,4 +1,5 @@
 import * as React from 'react';
+import {findDOMNode} from 'react-dom';
 import NeoVim from '../../neovim';
 
 interface Props {
@@ -15,16 +16,38 @@ export default class NeoVimCursor extends React.Component<Props, {}> {
         this.control_char = false;
     }
 
-    onNormalChar(event: React.KeyboardEvent) {
+    getVimSpecialChar(code: number) {
+        switch(code) {
+            case 0:   return '<Nul>';
+            case 8:   return '<BS>';
+            case 9:   return '<Tab>';
+            case 10:  return '<NL>';
+            case 13:  return '<CR>';
+            case 27:  return '<Esc>';
+            case 32:  return '<Space>';
+            case 92:  return '<Bslash>';
+            case 124: return '<Bar>';
+            case 127: return '<Del>';
+            default:  return null;
+        }
+    }
+
+    onNormalChar(event: KeyboardEvent) {
         if (this.ime_running || this.control_char) {
             return;
         }
 
+        event.preventDefault();
         const t = event.target as HTMLInputElement;
-        if (!this.ime_running) {
-            console.log('Input to neovim: ', t.value);
-            NeoVim.client.input(t.value);
+
+        if (t.value === '<') {
+            console.log('Input to neovim: \\lt');
+            NeoVim.client.input('\\lt');
+            return;
         }
+
+        console.log('Input to neovim: ', t.value);
+        NeoVim.client.input(t.value);
     }
 
     // Note:
@@ -34,10 +57,12 @@ export default class NeoVimCursor extends React.Component<Props, {}> {
             return;
         }
 
-        if (event.keyCode === 0x1b) {
+        const special_char = this.getVimSpecialChar(event.keyCode);
+        if (special_char !== null) {
             this.control_char = true;
-            console.log('Input to neovim: <Esc>');
-            NeoVim.client.input('<Esc>');
+            console.log('Input to neovim: ' + special_char);
+            NeoVim.client.input(special_char);
+            event.preventDefault();
             return;
         }
 
@@ -47,20 +72,18 @@ export default class NeoVimCursor extends React.Component<Props, {}> {
             const c = `<C-${String.fromCharCode(event.keyCode)}>`;
             console.log('Input to neovim: ' + c);
             NeoVim.client.input(c);
+            event.preventDefault();
 
             if (event.shiftKey) {
                 console.log('<C-S-x> combination is not supported yet. Fallback to <C-x>');
             }
-            return;
-        }
-
-        if (event.altKey && event.keyCode !== 18) {
+        } else if (event.altKey && event.keyCode !== 18) {
             this.control_char = true;
             // alt + something
             const c = `<M-${String.fromCharCode(event.keyCode)}>`;
             console.log('Input to neovim: ' + c);
             NeoVim.client.input(c);
-            return;
+            event.preventDefault();
         }
     }
 
@@ -77,7 +100,7 @@ export default class NeoVimCursor extends React.Component<Props, {}> {
     componentDidMount() {
         // Note:
         // Use findDOMNode() because react.d.ts doesn't support v0.14 yet.
-        const n = React.findDOMNode(this.refs['body']);
+        const n = findDOMNode(this.refs['body']);
         n.addEventListener('compositionstart', this.startComposition.bind(this));
         n.addEventListener('compositionend', this.endComposition.bind(this));
         n.addEventListener('keydown', this.onControlChar.bind(this));
