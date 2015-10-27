@@ -1,7 +1,7 @@
 import * as React from 'react';
 import {connect} from 'react-redux';
 import {StateType} from '../reducers';
-import NeovimScreen from './neovim-screen';
+import NeovimScreen from './neovim/screen';
 
 interface Props {
     lines?: Immutable.List<string>;

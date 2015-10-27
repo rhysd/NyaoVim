@@ -20,8 +20,8 @@ body {
 
 .neovim-cursor {
   width: 0.5em;
-  color: white;
-  background-color: red;
+  color: black;
+  background-color: white;
   padding: 0px;
   border: 0px;
   outline: none;

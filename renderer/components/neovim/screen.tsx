@@ -1,4 +1,5 @@
 import * as React from 'react';
+import Cursor from './cursor';
 
 interface Props {
     lines?: Immutable.List<string>;
@@ -26,11 +27,22 @@ export default class NeovimScreen extends React.Component<Props, {}> {
             return <div key={line_num}>{line}</div>;
         }
 
+        const line_cursor_before = line.substring(0, c.col);
+        let char_under_cursor: string;
+        let line_cursor_after: string;
+        if (c.col >= line.length) {
+            // Note: Cursor is at the end of line
+            line_cursor_after = '';
+        } else {
+            char_under_cursor = line[c.col];
+            line_cursor_after = line.substring(c.col + 1);
+        }
+
         return (
             <div key={line_num}>
-                <span>{line.substring(0, c.col)}</span>
-                <input className="neovim-cursor" autoFocus/>
-                <span>{line.substring(c.col)}</span>
+                <span>{line_cursor_before}</span>
+                <Cursor charUnderCursor={char_under_cursor}/>
+                <span>{line_cursor_after}</span>
             </div>
         );
     }
