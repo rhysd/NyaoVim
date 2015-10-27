@@ -75,7 +75,7 @@ function redraw(state: StateType, events: RPCValue[][]) {
                 } as CursorState;
                 break;
             case 'highlight_set':
-                console.log('highlight_set is ignored', args);
+                console.log('highlight_set is ignored', JSON.stringify(args, null, 2));
                 break;
             case 'clear':
                 next_state.lines = Immutable.List<string>(); // XXX: Is this correct?
@@ -103,7 +103,6 @@ function redraw(state: StateType, events: RPCValue[][]) {
 }
 
 export default function nyaovim(state: StateType = init, action: Action.Type) {
-    console.log(action.type);
     switch(action.type) {
         case Action.Kind.Redraw:
             return redraw(state, action.events);

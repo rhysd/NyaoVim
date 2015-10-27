@@ -16,5 +16,8 @@ export function redraw(events: RPCValue[][]) {
     };
 }
 
+// TODO
+// export function resizeWindow(width, height)
+
 // Union of all action types
 export type Type = RedrawActionType;

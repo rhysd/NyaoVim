@@ -6,14 +6,16 @@ const index_html = 'file://' + path.join(__dirname, '..', '..', 'index.html');
 
 app.on('ready', () => {
     let win = new BrowserWindow({
-        width: 1000,
-        height: 800,
+        width: 800,
+        height: 600,
     });
 
     win.on('closed', () => {
         win = null;
         app.quit();
     });
+
+    win.openDevTools({detach: true});
 
     win.loadUrl(index_html);
 });

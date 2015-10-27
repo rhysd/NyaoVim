@@ -15,9 +15,28 @@ interface Props {
 }
 
 export default class NeovimScreen extends React.Component<Props, {}> {
-    renderContents(lines: Immutable.List<string>) {
+    renderLine(line: string, line_num: number) {
+        if (!line) {
+            return <br key={line_num}/>;
+        }
+
         // TODO: Consider highlight sets
-        return lines.toArray().map((l: string, i: number) => <div key={i}>{l}</div>);
+        const c = this.props.cursor;
+        if (line_num !== c.line) {
+            return <div key={line_num}>{line}</div>;
+        }
+
+        return (
+            <div key={line_num}>
+                <span>{line.substring(0, c.col)}</span>
+                <input className="neovim-cursor" autoFocus/>
+                <span>{line.substring(c.col)}</span>
+            </div>
+        );
+    }
+
+    renderContents(lines: Immutable.List<string>) {
+        return lines.map((l, i) => this.renderLine(l, i)).toArray();
     }
 
     render() {

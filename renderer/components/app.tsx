@@ -29,7 +29,6 @@ class App extends React.Component<Props, {}> {
 }
 
 function select(state: StateType) {
-    console.log('State updated', state);
     return state;
 }
 

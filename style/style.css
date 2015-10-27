@@ -17,3 +17,12 @@ body {
   height: 100%;
   width: 100%;
 }
+
+.neovim-cursor {
+  width: 0.5em;
+  color: white;
+  background-color: red;
+  padding: 0px;
+  border: 0px;
+  outline: none;
+}
