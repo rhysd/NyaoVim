@@ -9,7 +9,7 @@
       "commit": "44cbde48eecd1918ed54b3be49a9752688b6c65a"
     },
     "react/react.d.ts": {
-      "commit": "44cbde48eecd1918ed54b3be49a9752688b6c65a"
+      "commit": "62eedc3121a5e28c50473d2e4a9cefbcb9c3957f"
     },
     "redux/redux.d.ts": {
       "commit": "44cbde48eecd1918ed54b3be49a9752688b6c65a"
@@ -28,6 +28,9 @@
     },
     "es6-promise/es6-promise.d.ts": {
       "commit": "35ba1a07e1ddafef621636fc8d0714f6f70ca479"
+    },
+    "react-dom/react-dom.d.ts": {
+      "commit": "62eedc3121a5e28c50473d2e4a9cefbcb9c3957f"
     }
   }
 }
