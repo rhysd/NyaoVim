@@ -116,3 +116,7 @@ declare module "react-dom" {
     export = DOM;
 }
 
+// Temporary fix for ES6
+declare interface String {
+    repeat(times: number): String;
+}

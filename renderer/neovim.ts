@@ -59,6 +59,10 @@ export class NeoVim {
 
     onDisconnected() {
         console.log('disconnected: ' + this.neovim_process.pid);
+        // TODO:
+        // Uncomment below line to close window on quit.
+        // I don't do yet for debug.
+        // global.require('remote').getCurrentWindow().close();
         this.started = false;
     }
 }

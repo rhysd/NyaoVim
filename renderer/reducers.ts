@@ -50,6 +50,9 @@ function colorOf(new_color: number, fallback: string) {
 function handlePut(lines: Immutable.List<string>, cursor_line: number, cursor_col: number, chars: string[][]) {
     const prev_line = lines.get(cursor_line) || '';
     let next_line = prev_line.substring(0, cursor_col);
+    if (next_line.length < cursor_col) {
+        next_line += ' '.repeat(cursor_col - next_line.length);
+    }
     for (const c of chars) {
         if (c.length !== 1) {
             console.log('Invalid character: ', c);
