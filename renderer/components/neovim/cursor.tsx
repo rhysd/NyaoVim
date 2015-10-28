@@ -7,7 +7,7 @@ interface Props {
     mode: string;
 }
 
-export default class NeoVimCursor extends React.Component<Props, {}> {
+export default class Cursor extends React.Component<Props, {}> {
     ime_running: boolean;
     control_char: boolean;
 
@@ -25,7 +25,7 @@ export default class NeoVimCursor extends React.Component<Props, {}> {
         t.value = '';
     }
 
-    getVimSpecialChar(code: number) {
+    static getVimSpecialChar(code: number) {
         switch(code) {
             case 0:   return '<Nul>';
             case 8:   return '<BS>';
@@ -42,11 +42,15 @@ export default class NeoVimCursor extends React.Component<Props, {}> {
     }
 
     onNormalChar(event: KeyboardEvent) {
-        if (this.ime_running || this.control_char) {
+        if (this.ime_running) {
             return;
         }
 
         event.preventDefault();
+        if (this.control_char) {
+            return;
+        }
+
         const t = event.target as HTMLInputElement;
 
         if (t.value === '<') {
@@ -64,7 +68,7 @@ export default class NeoVimCursor extends React.Component<Props, {}> {
             return;
         }
 
-        const special_char = this.getVimSpecialChar(event.keyCode);
+        const special_char = Cursor.getVimSpecialChar(event.keyCode);
         if (special_char !== null) {
             this.control_char = true;
             this.inputToNeovim(special_char, event);

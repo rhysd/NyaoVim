@@ -16,14 +16,15 @@ interface Props {
     mode?: string;
 }
 
-export default class NeovimScreen extends React.Component<Props, {}> {
+export default class Screen extends React.Component<Props, {}> {
     renderLine(line: string, line_num: number) {
-        if (!line) {
+        const c = this.props.cursor;
+
+        if (!line && line_num !== c.line) {
             return <br key={line_num}/>;
         }
 
         // TODO: Consider highlight sets
-        const c = this.props.cursor;
         if (line_num !== c.line) {
             return <pre key={line_num}>{line}</pre>;
         }
@@ -53,7 +54,7 @@ export default class NeovimScreen extends React.Component<Props, {}> {
     }
 
     renderContents(lines: Immutable.List<string>) {
-        return lines.map((l, i) => this.renderLine(l, i)).toArray();
+        return lines.map((l, i) => this.renderLine(l || '', i)).toArray();
     }
 
     render() {

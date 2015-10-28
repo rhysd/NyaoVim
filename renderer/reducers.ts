@@ -80,7 +80,12 @@ function redraw(state: StateType, events: RPCValue[][]) {
                         next_state.cursor.col,
                         e as string[][]
                     );
-                next_state.cursor.col += e.length;
+                // TODO:
+                // Make immutable CursorPos class
+                next_state.cursor = {
+                    line: next_state.cursor.line,
+                    col: next_state.cursor.col + e.length,
+                };
                 break;
             case 'cursor_goto':
                 next_state.cursor = {
@@ -96,9 +101,13 @@ function redraw(state: StateType, events: RPCValue[][]) {
                 next_state.cursor = {line: 0, col: 0};
                 break;
             case 'eol_clear':
-                // FIXME: Uncommenting below makes input very slow
-                // next_state.lines = next_state.lines.set(next_state.cursor.line, '');
-                // next_state.cursor.col = 0;
+                next_state.lines
+                    = next_state.lines.set(
+                        next_state.cursor.line,
+                        next_state.lines.get(
+                            next_state.cursor.line
+                        ).substring(0, next_state.cursor.col)
+                    );
                 break;
             case 'resize':
                 next_state.size = {
