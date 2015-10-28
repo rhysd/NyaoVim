@@ -22,7 +22,16 @@ body {
   margin: 0px;
 }
 
-.neovim-cursor {
+.neovim-insert-cursor {
+  width: 1px;
+  color: white;
+  background-color: white;
+  padding: 0px;
+  border: 0px;
+  outline: none;
+}
+
+.neovim-normal-cursor {
   width: 0.5em;
   color: black;
   background-color: white;

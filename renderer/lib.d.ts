@@ -120,3 +120,4 @@ declare module "react-dom" {
 declare interface String {
     repeat(times: number): String;
 }
+

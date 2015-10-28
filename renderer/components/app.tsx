@@ -15,6 +15,7 @@ interface Props {
         line: number;
         col: number;
     }
+    mode?: string;
 }
 
 class App extends React.Component<Props, {}> {

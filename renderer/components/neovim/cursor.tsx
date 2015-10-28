@@ -3,7 +3,8 @@ import {findDOMNode} from 'react-dom';
 import NeoVim from '../../neovim';
 
 interface Props {
-    charUnderCursor?: string;
+    charUnderCursor: string;
+    mode: string;
 }
 
 export default class NeoVimCursor extends React.Component<Props, {}> {
@@ -43,11 +44,13 @@ export default class NeoVimCursor extends React.Component<Props, {}> {
         if (t.value === '<') {
             console.log('Input to neovim: \\lt');
             NeoVim.client.input('\\lt');
+            t.value = '';
             return;
         }
 
         console.log('Input to neovim: "' + t.value + '"');
         NeoVim.client.input(t.value);
+        t.value = '';
     }
 
     // Note:
@@ -57,12 +60,15 @@ export default class NeoVimCursor extends React.Component<Props, {}> {
             return;
         }
 
+        const t = event.target as HTMLInputElement;
+
         const special_char = this.getVimSpecialChar(event.keyCode);
         if (special_char !== null) {
             this.control_char = true;
             console.log('Input to neovim: ' + special_char);
             NeoVim.client.input(special_char);
             event.preventDefault();
+            t.value = '';
             return;
         }
 
@@ -73,6 +79,7 @@ export default class NeoVimCursor extends React.Component<Props, {}> {
             console.log('Input to neovim: ' + c);
             NeoVim.client.input(c);
             event.preventDefault();
+            t.value = '';
 
             if (event.shiftKey) {
                 console.log('<C-S-x> combination is not supported yet. Fallback to <C-x>');
@@ -84,6 +91,7 @@ export default class NeoVimCursor extends React.Component<Props, {}> {
             console.log('Input to neovim: ' + c);
             NeoVim.client.input(c);
             event.preventDefault();
+            t.value = '';
         }
     }
 
@@ -108,11 +116,15 @@ export default class NeoVimCursor extends React.Component<Props, {}> {
     }
 
     render() {
-        return <input
-            className="neovim-cursor"
-            autoFocus
-            placeholder={this.props.charUnderCursor}
-            ref="body"
-        />;
+        const props = {
+            className: "neovim-" + this.props.mode + "-cursor",
+            autoFocus: true,
+            ref: "body",
+            placeholder: undefined as string,
+        };
+        if (this.props.mode === "normal") {
+            props.placeholder = this.props.charUnderCursor;
+        }
+        return <input {...props}/>;
     }
 }

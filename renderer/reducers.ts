@@ -37,7 +37,7 @@ const init: StateType = {
         line: 0,
         col: 0,
     },
-    mode: null,
+    mode: "normal", // XXX: Vim not always starts with normal mode
 };
 
 function colorOf(new_color: number, fallback: string) {
@@ -95,6 +95,11 @@ function redraw(state: StateType, events: RPCValue[][]) {
                 next_state.lines = Immutable.List<string>(); // XXX: Is this correct?
                 next_state.cursor = {line: 0, col: 0};
                 break;
+            case 'eol_clear':
+                // FIXME: Uncommenting below makes input very slow
+                // next_state.lines = next_state.lines.set(next_state.cursor.line, '');
+                // next_state.cursor.col = 0;
+                break;
             case 'resize':
                 next_state.size = {
                     columns: args[0],
@@ -109,6 +114,7 @@ function redraw(state: StateType, events: RPCValue[][]) {
                 next_state.bg_color = colorOf(args[0] as number, state.bg_color);
                 break;
             case 'mode_change':
+                console.log('mode changed: ' + args[0]);
                 next_state.mode = args[0] as string;
                 break;
             default:

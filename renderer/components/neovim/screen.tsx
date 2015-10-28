@@ -13,6 +13,7 @@ interface Props {
         line: number;
         col: number;
     }
+    mode?: string;
 }
 
 export default class NeovimScreen extends React.Component<Props, {}> {
@@ -34,14 +35,18 @@ export default class NeovimScreen extends React.Component<Props, {}> {
             // Note: Cursor is at the end of line
             line_cursor_after = '';
         } else {
-            char_under_cursor = line[c.col];
-            line_cursor_after = line.substring(c.col + 1);
+            if (this.props.mode === "insert") {
+                line_cursor_after = line.substring(c.col);
+            } else {
+                char_under_cursor = line[c.col];
+                line_cursor_after = line.substring(c.col + 1);
+            }
         }
 
         return (
             <pre key={line_num}>
                 <span>{line_cursor_before}</span>
-                <Cursor charUnderCursor={char_under_cursor}/>
+                <Cursor charUnderCursor={char_under_cursor} mode={this.props.mode}/>
                 <span>{line_cursor_after}</span>
             </pre>
         );
