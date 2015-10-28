@@ -21,6 +21,11 @@ export type RPCValue =
         any[] |
         {[key:string]: any};
 
+interface Size {
+    height: number;
+    width: number;
+}
+
 export class NeoVim {
     neovim_process: cp.ChildProcess;
     client: NvimClient.Nvim;
@@ -30,7 +35,7 @@ export class NeoVim {
         this.started = false;
     }
 
-    start(argv: string[], cmd = 'nvim') {
+    start(size: Size, argv: string[], cmd = 'nvim') {
         argv.push('--embed');
         this.neovim_process = child_process.spawn(cmd, argv, {stdio: ['pipe', 'pipe', process.stderr]});
         this.client = null;
@@ -40,9 +45,9 @@ export class NeoVim {
                 nvim.on('request', this.onRequested.bind(this));
                 nvim.on('notification', this.onNotified.bind(this));
                 nvim.on('disconnect', this.onDisconnected.bind(this));
-                nvim.uiAttach(80, 24, true);
+                nvim.uiAttach(size.width, size.height, true);
                 this.started = true;
-                console.log('nvim attached: ' + this.neovim_process.pid);
+                console.log(`nvim attached: ${this.neovim_process.pid} ${JSON.stringify(size)}`);
             }).catch(err => console.log(err));
     }
 

@@ -21,7 +21,7 @@ export default class Screen extends React.Component<Props, {}> {
         const c = this.props.cursor;
 
         if (!line && line_num !== c.line) {
-            return <br key={line_num}/>;
+            return <pre key={line_num}>{' '}</pre>;
         }
 
         // TODO: Consider highlight sets

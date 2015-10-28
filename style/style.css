@@ -39,3 +39,12 @@ body {
   border: 0px;
   outline: none;
 }
+
+.font-test {
+  position:absolute;
+  right:100%;
+  bottom:100%;
+}
+.font-test pre {
+  margin: 0px;
+}
