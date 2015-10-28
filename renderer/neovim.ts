@@ -42,6 +42,7 @@ export class NeoVim {
                 nvim.on('disconnect', this.onDisconnected.bind(this));
                 nvim.uiAttach(80, 24, true);
                 this.started = true;
+                console.log('nvim attached: ' + this.neovim_process.pid);
             }).catch(err => console.log(err));
     }
 

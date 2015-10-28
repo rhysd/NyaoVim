@@ -17,6 +17,14 @@ export default class NeoVimCursor extends React.Component<Props, {}> {
         this.control_char = false;
     }
 
+    inputToNeovim(input: string, event: Event) {
+        console.log('Input to neovim: ' + input);
+        NeoVim.client.input(input);
+        event.preventDefault();
+        const t = event.target as HTMLInputElement;
+        t.value = '';
+    }
+
     getVimSpecialChar(code: number) {
         switch(code) {
             case 0:   return '<Nul>';
@@ -42,15 +50,11 @@ export default class NeoVimCursor extends React.Component<Props, {}> {
         const t = event.target as HTMLInputElement;
 
         if (t.value === '<') {
-            console.log('Input to neovim: \\lt');
-            NeoVim.client.input('\\lt');
-            t.value = '';
+            this.inputToNeovim('\\lt', event);
             return;
         }
 
-        console.log('Input to neovim: "' + t.value + '"');
-        NeoVim.client.input(t.value);
-        t.value = '';
+        this.inputToNeovim(t.value, event);
     }
 
     // Note:
@@ -60,26 +64,17 @@ export default class NeoVimCursor extends React.Component<Props, {}> {
             return;
         }
 
-        const t = event.target as HTMLInputElement;
-
         const special_char = this.getVimSpecialChar(event.keyCode);
         if (special_char !== null) {
             this.control_char = true;
-            console.log('Input to neovim: ' + special_char);
-            NeoVim.client.input(special_char);
-            event.preventDefault();
-            t.value = '';
+            this.inputToNeovim(special_char, event);
             return;
         }
 
         if (event.ctrlKey && event.keyCode !== 17) {
             this.control_char = true;
             // ctrl + something
-            const c = `<C-${String.fromCharCode(event.keyCode)}>`;
-            console.log('Input to neovim: ' + c);
-            NeoVim.client.input(c);
-            event.preventDefault();
-            t.value = '';
+            this.inputToNeovim(`<C-${String.fromCharCode(event.keyCode)}>`, event);
 
             if (event.shiftKey) {
                 console.log('<C-S-x> combination is not supported yet. Fallback to <C-x>');
@@ -87,11 +82,7 @@ export default class NeoVimCursor extends React.Component<Props, {}> {
         } else if (event.altKey && event.keyCode !== 18) {
             this.control_char = true;
             // alt + something
-            const c = `<M-${String.fromCharCode(event.keyCode)}>`;
-            console.log('Input to neovim: ' + c);
-            NeoVim.client.input(c);
-            event.preventDefault();
-            t.value = '';
+            this.inputToNeovim(`<M-${String.fromCharCode(event.keyCode)}>`, event);
         }
     }
 
