@@ -9,23 +9,22 @@ interface Props {
 
 export default class Cursor extends React.Component<Props, {}> {
     ime_running: boolean;
-    control_char: boolean;
 
     constructor(props: Props) {
         super(props);
         this.ime_running = false;
-        this.control_char = false;
     }
 
     inputToNeovim(input: string, event: Event) {
         console.log('Input to neovim: ' + input);
         NeoVim.client.input(input);
         event.preventDefault();
+        event.stopPropagation();
         const t = event.target as HTMLInputElement;
         t.value = '';
     }
 
-    static getVimSpecialChar(code: number) {
+    getVimSpecialChar(code: number) {
         switch(code) {
             case 0:   return '<Nul>';
             case 8:   return '<BS>';
@@ -46,12 +45,12 @@ export default class Cursor extends React.Component<Props, {}> {
             return;
         }
 
-        event.preventDefault();
-        if (this.control_char) {
+        const t = event.target as HTMLInputElement;
+
+        if (t.value === '') {
+            console.log('onNormalChar: Empty');
             return;
         }
-
-        const t = event.target as HTMLInputElement;
 
         if (t.value === '<') {
             this.inputToNeovim('\\lt', event);
@@ -68,15 +67,13 @@ export default class Cursor extends React.Component<Props, {}> {
             return;
         }
 
-        const special_char = Cursor.getVimSpecialChar(event.keyCode);
+        const special_char = this.getVimSpecialChar(event.keyCode);
         if (special_char !== null) {
-            this.control_char = true;
             this.inputToNeovim(special_char, event);
             return;
         }
 
         if (event.ctrlKey && event.keyCode !== 17) {
-            this.control_char = true;
             // ctrl + something
             this.inputToNeovim(`<C-${String.fromCharCode(event.keyCode)}>`, event);
 
@@ -84,7 +81,6 @@ export default class Cursor extends React.Component<Props, {}> {
                 console.log('<C-S-x> combination is not supported yet. Fallback to <C-x>');
             }
         } else if (event.altKey && event.keyCode !== 18) {
-            this.control_char = true;
             // alt + something
             this.inputToNeovim(`<M-${String.fromCharCode(event.keyCode)}>`, event);
         }
