@@ -14,6 +14,10 @@ interface Props {
 export default class Line extends React.Component<Props, {}> {
     shouldComponentUpdate(next_props: Props) {
         const p = this.props;
+        if (next_props === p) {
+            return false;
+        }
+
         for (const k in p) {
             if (next_props[k] !== p[k]) {
                 return true;
