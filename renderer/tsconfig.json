@@ -12,6 +12,7 @@
   "files": [
     "components/app.tsx",
     "components/neovim/screen.tsx",
+    "components/neovim/line.tsx",
     "components/neovim/cursor.tsx",
     "neovim.ts",
     "store.ts",

@@ -6,38 +6,46 @@ interface Props {
     line_num: number;
     busy: boolean;
     mode: string;
-    cursor: {
-        line: number;
-        col: number;
-    }
+    cursor_col: number;
     key?: number;
+    [key: string]: any;
 }
 
 export default class Line extends React.Component<Props, {}> {
-    render() {
-        const {cursor, line, line_num, mode, busy} = this.props;
+    shouldComponentUpdate(next_props: Props) {
+        const p = this.props;
+        for (const k in p) {
+            if (next_props[k] !== p[k]) {
+                return true;
+            }
+        }
+        return false;
+    }
 
-        if (!line && line_num !== cursor.line) {
+    render() {
+        const {cursor_col, line, line_num, mode, busy} = this.props;
+
+        if (!line && cursor_col === null) {
             return <pre>{' '}</pre>;
         }
 
         // TODO: Consider highlight sets
-        if (line_num !== cursor.line || busy) {
+        if (cursor_col === null || busy) {
             return <pre>{line}</pre>;
         }
 
-        const line_cursor_before = line.substring(0, cursor.col);
+        const line_cursor_before = line.substring(0, cursor_col);
         let char_under_cursor: string;
         let line_cursor_after: string;
-        if (cursor.col >= line.length) {
+        if (cursor_col >= line.length) {
             // Note: Cursor is at the end of line
             line_cursor_after = '';
         } else {
             if (mode === "insert") {
-                line_cursor_after = line.substring(cursor.col);
+                line_cursor_after = line.substring(cursor_col);
             } else {
-                char_under_cursor = line[cursor.col];
-                line_cursor_after = line.substring(cursor.col + 1);
+                char_under_cursor = line[cursor_col];
+                line_cursor_after = line.substring(cursor_col + 1);
             }
         }
 
