@@ -23,6 +23,7 @@ export interface StateType {
     size: SizeState;
     cursor: CursorState;
     mode: string;
+    busy: boolean;
 }
 
 const init: StateType = {
@@ -38,6 +39,7 @@ const init: StateType = {
         col: 0,
     },
     mode: "normal", // XXX: Vim not always starts with normal mode
+    busy: false,
 };
 
 function colorOf(new_color: number, fallback: string) {
@@ -125,6 +127,12 @@ function redraw(state: StateType, events: RPCValue[][]) {
             case 'mode_change':
                 console.log('mode changed: ' + args[0]);
                 next_state.mode = args[0] as string;
+                break;
+            case 'busy_start':
+                next_state.busy = true;
+                break;
+            case 'mode_stop':
+                next_state.busy = false;
                 break;
             default:
                 console.log('Unhandled event: ' + name, args);

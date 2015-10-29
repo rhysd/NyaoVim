@@ -14,6 +14,7 @@ interface Props {
         col: number;
     }
     mode?: string;
+    busy?: boolean;
 }
 
 export default class Screen extends React.Component<Props, {}> {
@@ -25,7 +26,7 @@ export default class Screen extends React.Component<Props, {}> {
         }
 
         // TODO: Consider highlight sets
-        if (line_num !== c.line) {
+        if (line_num !== c.line || this.props.busy) {
             return <pre key={line_num}>{line}</pre>;
         }
 

@@ -16,6 +16,7 @@ interface Props {
         col: number;
     }
     mode?: string;
+    busy?: boolean;
 }
 
 class App extends React.Component<Props, {}> {
