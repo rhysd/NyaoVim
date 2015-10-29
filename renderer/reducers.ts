@@ -61,6 +61,9 @@ function handlePut(lines: Immutable.List<string>, cursor_line: number, cursor_co
         }
         next_line += c[0];
     }
+    if (cursor_col + chars.length < prev_line.length) {
+        next_line += prev_line.substring(cursor_col + chars.length);
+    }
     return lines.set(cursor_line, next_line);
 }
 
@@ -131,7 +134,7 @@ function redraw(state: StateType, events: RPCValue[][]) {
             case 'busy_start':
                 next_state.busy = true;
                 break;
-            case 'mode_stop':
+            case 'busy_stop':
                 next_state.busy = false;
                 break;
             default:
