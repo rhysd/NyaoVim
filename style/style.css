@@ -23,20 +23,17 @@ body {
 }
 
 .neovim-cursor {
-  width: 0.5em;
+  width: 1px;
+  color: transparent;
   background-color: white;
   padding: 0px;
   border: 0px;
   outline: none;
   vertical-align: middle;
 }
-.neovim-cursor.insert {
-  width: 1px;
-  color: transparent;
-}
-.neovim-cursor.normal {
-  width: 0.5em;
+.block-cursor {
   color: black;
+  background-color: white;
 }
 
 .font-test {

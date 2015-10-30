@@ -15,31 +15,13 @@ export default class Cursor extends React.Component<Props, {}> {
         this.ime_running = false;
     }
 
-    resetInput(target: HTMLInputElement) {
-        const {mode, charUnderCursor} = this.props;
-        if (mode === "normal" && charUnderCursor) {
-            target.value = charUnderCursor;
-        } else {
-            target.value = '';
-        }
-    }
-
-    getInput(target: HTMLInputElement) {
-        console.log('getInput', JSON.stringify(target.value));
-        const {mode, charUnderCursor} = this.props;
-        if (mode === "normal" && charUnderCursor) {
-            return target.value.slice(0, -1);
-        } else {
-            return target.value;
-        }
-    }
-
     inputToNeovim(input: string, event: Event) {
         console.log('Input to neovim: ' + input);
         NeoVim.client.input(input);
         event.preventDefault();
         event.stopPropagation();
-        this.resetInput(event.target as HTMLInputElement);
+        const t = event.target as HTMLInputElement;
+        t.value = '';
     }
 
     getVimSpecialChar(code: number) {
@@ -70,21 +52,18 @@ export default class Cursor extends React.Component<Props, {}> {
             return;
         }
 
-        const input = this.getInput(event.target as HTMLInputElement);
-
-        console.log('input', JSON.stringify(input));
-
-        if (input === '') {
+        const t = event.target as HTMLInputElement;
+        if (t.value === '') {
             console.log('onInsertNormalChar: Empty');
             return;
         }
 
-        if (input === '<') {
+        if (t.value === '<') {
             this.inputToNeovim('\\lt', event);
             return;
         }
 
-        this.inputToNeovim(input, event);
+        this.inputToNeovim(t.value, event);
     }
 
     static shouldHandleModifier(event: KeyboardEvent) {
@@ -115,6 +94,11 @@ export default class Cursor extends React.Component<Props, {}> {
         this.inputToNeovim(vim_input, event);
     }
 
+    focusInput() {
+        const n = findDOMNode(this.refs['body']) as HTMLInputElement;
+        n.focus();
+    }
+
     startComposition(event: Event) {
         console.log('start composition');
         this.ime_running = true;
@@ -137,16 +121,19 @@ export default class Cursor extends React.Component<Props, {}> {
 
     render() {
         const props = {
-            className: "neovim-cursor " + this.props.mode,
+            className: "neovim-cursor",
             autoFocus: true,
-            value: undefined as string,
             ref: "body",
         };
 
-        if (this.props.mode === "normal") {
-            props.value = this.props.charUnderCursor;
+        if (this.props.mode === 'normal') {
+            return (
+                <span className="block-cursor" onClick={this.focusInput.bind(this)}>
+                    {this.props.charUnderCursor || ' '}<input {...props}/>
+                </span>
+            );
+        } else {
+            return <input {...props}/>;
         }
-
-        return <input {...props}/>;
     }
 }
