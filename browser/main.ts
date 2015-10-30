@@ -1,6 +1,7 @@
 import * as path from 'path';
 import * as app from 'app';
 import * as BrowserWindow from 'browser-window';
+import setMenu from './menu';
 
 const index_html = 'file://' + path.join(__dirname, '..', '..', 'index.html');
 
@@ -18,4 +19,6 @@ app.on('ready', () => {
     win.openDevTools({detach: true});
 
     win.loadUrl(index_html);
+
+    setMenu(win);
 });

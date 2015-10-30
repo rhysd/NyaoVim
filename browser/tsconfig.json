@@ -9,6 +9,7 @@
     "sourceMap": true
   },
   "files": [
+    "menu.ts",
     "main.ts",
     "lib.d.ts"
   ]
