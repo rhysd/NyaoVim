@@ -9,11 +9,29 @@ interface Props {
 
 export default class Cursor extends React.Component<Props, {}> {
     ime_running: boolean;
-    keydown_listener: (event: Event) => void;
 
     constructor(props: Props) {
         super(props);
         this.ime_running = false;
+    }
+
+    resetInput(target: HTMLInputElement) {
+        const {mode, charUnderCursor} = this.props;
+        if (mode === "normal" && charUnderCursor) {
+            target.value = charUnderCursor;
+        } else {
+            target.value = '';
+        }
+    }
+
+    getInput(target: HTMLInputElement) {
+        console.log('getInput', JSON.stringify(target.value));
+        const {mode, charUnderCursor} = this.props;
+        if (mode === "normal" && charUnderCursor) {
+            return target.value.slice(0, -1);
+        } else {
+            return target.value;
+        }
     }
 
     inputToNeovim(input: string, event: Event) {
@@ -21,73 +39,10 @@ export default class Cursor extends React.Component<Props, {}> {
         NeoVim.client.input(input);
         event.preventDefault();
         event.stopPropagation();
-        const t = event.target as HTMLInputElement;
-        t.value = '';
+        this.resetInput(event.target as HTMLInputElement);
     }
 
     getVimSpecialChar(code: number) {
-        switch(code) {
-            case 0:   return '<Nul>';
-            case 8:   return '<BS>';
-            case 9:   return '<Tab>';
-            case 10:  return '<NL>';
-            case 13:  return '<CR>';
-            case 27:  return '<Esc>';
-            case 32:  return '<Space>';
-            case 92:  return '<Bslash>';
-            case 124: return '<Bar>';
-            case 127: return '<Del>';
-            default:  return null;
-        }
-    }
-
-    onInsertNormalChar(event: KeyboardEvent) {
-        if (this.ime_running) {
-            return;
-        }
-
-        const t = event.target as HTMLInputElement;
-
-        if (t.value === '') {
-            console.log('onInsertNormalChar: Empty');
-            return;
-        }
-
-        if (t.value === '<') {
-            this.inputToNeovim('\\lt', event);
-            return;
-        }
-
-        this.inputToNeovim(t.value, event);
-    }
-
-    // Note:
-    // Assumes keydown event is always fired before input event
-    onInsertControlChar(event: KeyboardEvent) {
-        if (this.ime_running) {
-            return;
-        }
-
-        const special_char = this.getVimSpecialChar(event.keyCode);
-        if (special_char !== null) {
-            this.inputToNeovim(special_char, event);
-            return;
-        }
-
-        if (event.ctrlKey && event.keyCode !== 17) {
-            // ctrl + something
-            this.inputToNeovim(`<C-${String.fromCharCode(event.keyCode)}>`, event);
-
-            if (event.shiftKey) {
-                console.log('<C-S-x> combination is not supported yet. Fallback to <C-x>');
-            }
-        } else if (event.altKey && event.keyCode !== 18) {
-            // alt + something
-            this.inputToNeovim(`<M-${String.fromCharCode(event.keyCode)}>`, event);
-        }
-    }
-
-    static convertCodeToVimChar(code: number) {
         switch(code) {
             case 0:   return 'Nul';
             case 8:   return 'BS';
@@ -103,47 +58,61 @@ export default class Cursor extends React.Component<Props, {}> {
             case 39:  return 'Right';
             case 40:  return 'Down';
             case 46:  return 'Del';
-            case 32:  return 'Space';
             case 92:  return 'Bslash';
             case 124: return 'Bar';
             case 127: return 'Del';
-            default:  return String.fromCharCode(code).toLowerCase();
+            default:  return null;
         }
     }
 
-
-    onNormalChar(e: KeyboardEvent) {
-        console.log('onNormalChar', e);
-        const c = e.keyCode;
-
-        // TODO: handle meta key
-        if ((e.shiftKey && c === 16) ||
-            (e.ctrlKey && c === 17) ||
-            (e.altKey && c === 18)
-        ) {
+    onInsertNormalChar(event: KeyboardEvent) {
+        if (this.ime_running) {
             return;
         }
 
-        let input = '';
-        if (e.ctrlKey) {
-            input += 'C-';
-        }
-        if (e.altKey) {
-            input += 'A-';
-        }
-        if (e.shiftKey) {
-            input += 'S-';
+        const input = this.getInput(event.target as HTMLInputElement);
+
+        console.log('input', JSON.stringify(input));
+
+        if (input === '') {
+            console.log('onInsertNormalChar: Empty');
+            return;
         }
 
-        const ch = Cursor.convertCodeToVimChar(c);
-
-        if (input === '' && ch.length === 1) {
-            input = ch;
-        } else {
-            input = '<' + input + ch + '>';
+        if (input === '<') {
+            this.inputToNeovim('\\lt', event);
+            return;
         }
 
         this.inputToNeovim(input, event);
+    }
+
+    static shouldHandleModifier(event: KeyboardEvent) {
+        return event.ctrlKey && event.keyCode !== 17 ||
+               event.altKey && event.keyCode !== 18;
+    }
+
+    // Note:
+    // Assumes keydown event is always fired before input event
+    onInsertControlChar(event: KeyboardEvent) {
+        if (this.ime_running) {
+            return;
+        }
+
+        const special_char = this.getVimSpecialChar(event.keyCode);
+        if (!Cursor.shouldHandleModifier(event) && !special_char) {
+            return;
+        }
+
+        let vim_input = '<';
+        if (event.ctrlKey) {
+            vim_input += 'C-';
+        }
+        if (event.altKey) {
+            vim_input += 'A-';
+        }
+        vim_input += (special_char || String.fromCharCode(event.keyCode)) + '>';
+        this.inputToNeovim(vim_input, event);
     }
 
     startComposition(event: Event) {
@@ -159,39 +128,25 @@ export default class Cursor extends React.Component<Props, {}> {
     componentDidMount() {
         // Note:
         // Use findDOMNode() because react.d.ts doesn't support v0.14 yet.
-        if (this.props.mode === "insert") {
-            const n = findDOMNode(this.refs['insert_body']);
-            n.addEventListener('compositionstart', this.startComposition.bind(this));
-            n.addEventListener('compositionend', this.endComposition.bind(this));
-            n.addEventListener('keydown', this.onInsertControlChar.bind(this));
-            n.addEventListener('input', this.onInsertNormalChar.bind(this));
-        } else {
-            this.keydown_listener = this.onNormalChar.bind(this)
-            window.addEventListener('keydown', this.keydown_listener);
-        }
-    }
-
-    componentWillUnmount() {
-        if (this.keydown_listener) {
-            window.removeEventListener('keydown', this.keydown_listener);
-        }
+        const n = findDOMNode(this.refs['body']);
+        n.addEventListener('compositionstart', this.startComposition.bind(this));
+        n.addEventListener('compositionend', this.endComposition.bind(this));
+        n.addEventListener('keydown', this.onInsertControlChar.bind(this));
+        n.addEventListener('input', this.onInsertNormalChar.bind(this));
     }
 
     render() {
         const props = {
-            className: "neovim-" + this.props.mode + "-cursor",
+            className: "neovim-cursor " + this.props.mode,
             autoFocus: true,
-            ref: this.props.mode + "_body",
+            value: undefined as string,
+            ref: "body",
         };
 
-        if (this.props.mode === "insert") {
-            return <input {...props}/>;
-        } else {
-            return (
-                <span {...props}>
-                    {this.props.charUnderCursor || ' '}
-                </span>
-            );
+        if (this.props.mode === "normal") {
+            props.value = this.props.charUnderCursor;
         }
+
+        return <input {...props}/>;
     }
 }

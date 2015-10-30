@@ -22,22 +22,21 @@ body {
   margin: 0px;
 }
 
-.neovim-insert-cursor {
-  width: 1px;
-  color: white;
+.neovim-cursor {
+  width: 0.5em;
   background-color: white;
   padding: 0px;
   border: 0px;
   outline: none;
+  vertical-align: middle;
 }
-
-.neovim-normal-cursor {
+.neovim-cursor.insert {
+  width: 1px;
+  color: transparent;
+}
+.neovim-cursor.normal {
   width: 0.5em;
   color: black;
-  background-color: white;
-  padding: 0px;
-  border: 0px;
-  outline: none;
 }
 
 .font-test {
