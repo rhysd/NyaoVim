@@ -26,16 +26,13 @@ interface Size {
     width: number;
 }
 
-export class NeoVim {
+export default class NeoVim {
     neovim_process: cp.ChildProcess;
     client: NvimClient.Nvim;
     started: boolean;
 
-    constructor() {
+    constructor(lines: number, columns: number, argv: string[], cmd: string) {
         this.started = false;
-    }
-
-    start(size: Size, argv: string[], cmd = 'nvim') {
         argv.push('--embed');
         this.neovim_process = child_process.spawn(cmd, argv, {stdio: ['pipe', 'pipe', process.stderr]});
         this.client = null;
@@ -45,9 +42,9 @@ export class NeoVim {
                 nvim.on('request', this.onRequested.bind(this));
                 nvim.on('notification', this.onNotified.bind(this));
                 nvim.on('disconnect', this.onDisconnected.bind(this));
-                nvim.uiAttach(size.width, size.height, true);
+                nvim.uiAttach(columns, lines, true);
                 this.started = true;
-                console.log(`nvim attached: ${this.neovim_process.pid} ${JSON.stringify(size)}`);
+                console.log(`nvim attached: ${this.neovim_process.pid} ${lines}x${columns} ${JSON.stringify(argv)}`);
             }).catch(err => console.log(err));
     }
 
@@ -73,7 +70,3 @@ export class NeoVim {
     }
 }
 
-const NeoVimSinglton = new NeoVim();
-global.__neovim = NeoVimSinglton;
-
-export default NeoVimSinglton;

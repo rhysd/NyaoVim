@@ -1,7 +1,7 @@
 import * as Immutable from 'immutable';
 import assign = require('object-assign');
 import * as Action from './actions';
-import {RPCValue} from './neovim';
+import NeoVim, {RPCValue} from './neovim';
 
 // TODO:
 // Split NeoVim state from others by splitting reducer
@@ -26,6 +26,7 @@ export interface NeovimState {
     mode: string;
     busy: boolean;
     [k: string]: any;
+    instance: NeoVim;
 }
 
 export interface StateType {
@@ -42,30 +43,10 @@ const gen_id = function() {
     }
 }();
 
-function newNeovim(): NeovimState {
-    return {
-        id: gen_id(),
-        lines: Immutable.List<string>(),
-        fg_color: 'white',
-        bg_color: 'black',
-        size: {
-            lines: 0,
-            columns: 0,
-        },
-        cursor: {
-            line: 0,
-            col: 0,
-        },
-        mode: "normal", // XXX: Vim not always starts with normal mode
-        busy: false,
-    };
-}
-
 const init: StateType = function() {
-    const nv = newNeovim();
     return {
-        current_id: nv.id,
-        neovims: {[nv.id]: nv},
+        current_id: 0,
+        neovims: {},
     } as StateType;
 }();
 
@@ -123,7 +104,6 @@ function redraw(state: StateType, events: RPCValue[][]) {
                 };
                 break;
             case 'cursor_goto':
-                console.log('cursor_goto', args);
                 nv.cursor = {
                     line: args[0] as number,
                     col: args[1] as number,
@@ -159,7 +139,6 @@ function redraw(state: StateType, events: RPCValue[][]) {
                 nv.bg_color = colorOf(args[0] as number, nv.bg_color);
                 break;
             case 'mode_change':
-                console.log('mode changed: ' + args[0]);
                 nv.mode = args[0] as string;
                 break;
             case 'busy_start':
@@ -185,10 +164,37 @@ function redraw(state: StateType, events: RPCValue[][]) {
     return next_state;
 }
 
+function create(state: StateType, a: Action.CreateNeovimActionType) {
+    const nv = {
+        id: gen_id(),
+        lines: Immutable.List<string>(),
+        fg_color: 'white',
+        bg_color: 'black',
+        size: {
+            lines: 0,
+            columns: 0,
+        },
+        cursor: {
+            line: 0,
+            col: 0,
+        },
+        mode: "normal", // XXX: Vim not always starts with normal mode
+        busy: false,
+        instance: new NeoVim(a.lines, a.columns, a.argv, a.cmd),
+    };
+
+    return {
+        current_id: nv.id,
+        neovims: assign(state.neovims, {[nv.id]: nv}),
+    };
+}
+
 export default function nyaovim(state: StateType = init, action: Action.Type) {
     switch(action.type) {
         case Action.Kind.Redraw:
-            return redraw(state, action.events);
+            return redraw(state, (action as Action.RedrawActionType).events);
+        case Action.Kind.CreateNeovim:
+            return create(state, (action as Action.CreateNeovimActionType));
         default:
             console.log('Unknown action: ' + action.type);
             return state;

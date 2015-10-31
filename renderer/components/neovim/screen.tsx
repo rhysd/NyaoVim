@@ -4,7 +4,7 @@ import {NeovimState} from '../../reducers';
 
 export default class Screen extends React.Component<NeovimState, {}> {
     render() {
-        const {fg_color, bg_color, lines, cursor, busy, mode} = this.props;
+        const {fg_color, bg_color, lines, cursor, busy, mode, instance} = this.props;
         const style = {
             color: fg_color,
             backgroundColor: bg_color,
@@ -18,6 +18,7 @@ export default class Screen extends React.Component<NeovimState, {}> {
                 busy: busy,
                 mode: mode,
                 cursor_col: includes_cursor ? cursor.col : null,
+                instance,
                 key: i,
             };
             return <Line {...props}/>;

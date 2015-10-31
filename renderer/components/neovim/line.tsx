@@ -1,5 +1,6 @@
 import * as React from 'react';
 import Cursor from './cursor';
+import NeoVim from '../../neovim';
 
 interface Props {
     line: string;
@@ -7,6 +8,7 @@ interface Props {
     busy: boolean;
     mode: string;
     cursor_col: number;
+    instance: NeoVim;
     key?: number;
     [key: string]: any;
 }
@@ -27,7 +29,7 @@ export default class Line extends React.Component<Props, {}> {
     }
 
     render() {
-        const {cursor_col, line, line_num, mode, busy} = this.props;
+        const {cursor_col, line, line_num, mode, busy, instance} = this.props;
 
         if (!line && cursor_col === null) {
             return <pre>{' '}</pre>;
@@ -56,7 +58,7 @@ export default class Line extends React.Component<Props, {}> {
         return (
             <pre>
                 <span>{line_cursor_before}</span>
-                <Cursor charUnderCursor={char_under_cursor} mode={mode}/>
+                <Cursor charUnderCursor={char_under_cursor} mode={mode} instance={instance}/>
                 <span>{line_cursor_after}</span>
             </pre>
         );

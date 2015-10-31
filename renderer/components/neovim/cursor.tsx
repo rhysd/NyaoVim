@@ -5,6 +5,7 @@ import NeoVim from '../../neovim';
 interface Props {
     charUnderCursor: string;
     mode: string;
+    instance: NeoVim;
 }
 
 export default class Cursor extends React.Component<Props, {}> {
@@ -17,7 +18,7 @@ export default class Cursor extends React.Component<Props, {}> {
 
     inputToNeovim(input: string, event: Event) {
         console.log('Input to neovim: ' + input);
-        NeoVim.client.input(input);
+        this.props.instance.client.input(input);
         event.preventDefault();
         event.stopPropagation();
         const t = event.target as HTMLInputElement;
