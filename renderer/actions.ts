@@ -4,6 +4,7 @@ export enum Kind {
     Redraw,
     CreateNeovim,
     ActivateNeovim,
+    DestroyNeovim,
 };
 
 export interface RedrawActionType {
@@ -64,8 +65,20 @@ export function activateNeovim(index: number) {
     };
 }
 
+export interface DestroyNeovimActionType {
+    type: Kind;
+    index: number;
+}
+
+export function destroyNeovim(index: number) {
+    return {
+        type: Kind.DestroyNeovim,
+        index,
+    };
+}
+
 // TODO
 // export function resizeWindow(width, height)
 
 // Union of all action types
-export type Type = RedrawActionType | CreateNeovimActionType | ActivateNeovimActionType;
+export type Type = RedrawActionType | CreateNeovimActionType | ActivateNeovimActionType | DestroyNeovimActionType;

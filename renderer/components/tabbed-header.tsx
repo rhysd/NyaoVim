@@ -14,7 +14,7 @@ export default class TabbedHeader extends React.Component<Props, {}> {
             const n = id === current_id ? 'tab-item active' : 'tab-item';
             return (
                 <div className={n} key={idx} onClick={() => dispatch(Action.activateNeovim(idx))}>
-                    <span className="icon icon-cancel icon-close-tab"></span>
+                    <span className="icon icon-cancel icon-close-tab" onClick={() => dispatch(Action.destroyNeovim(idx))}></span>
                     #{idx + 1}
                 </div>
             );
@@ -27,6 +27,10 @@ export default class TabbedHeader extends React.Component<Props, {}> {
             height: '30px',
             paddingLeft: '80px',
         };
+
+        // TODO:
+        // When platform is not darwin, tabs are set beneath header and is invisible if only one
+        // instance exists.
 
         return (
             <header className="toolbar toolbar-header" style={header_style}>

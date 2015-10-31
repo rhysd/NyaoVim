@@ -38,9 +38,9 @@ export interface StateType {
 }
 
 const gen_id = function() {
-    let id = 1;
+    let id = 0;
     return function() {
-        return id++;
+        return ++id;
     }
 }();
 
@@ -194,7 +194,27 @@ function activate(state: StateType, index: number) {
     return assign({}, state, {current_id: state.ids[index]});
 }
 
-export default function nyaovim(state: StateType = init, action: Action.Type) {
+function destroy(state: StateType, index: number) {
+    const next_state = assign({}, state);
+    const destroyed_id = state.ids[index];
+    // TODO: Delete process of neovim
+    delete next_state.neovims[destroyed_id];
+    next_state.ids.splice(index, 1);
+    if (destroyed_id === state.current_id) {
+        if (next_state.length === 0) {
+            next_state.current_id = 0;
+        } else {
+            if (index > next_state.ids.length - 1) {
+                next_state.current_id = next_state.ids[next_state.ids.length - 1];
+            } else {
+                next_state.current_id = state.current_id;
+            }
+        }
+    }
+    return next_state;
+}
+
+export default function nyaovim(state: StateType = init, action: Action.Type): StateType {
     switch(action.type) {
         case Action.Kind.Redraw:
             return redraw(state, (action as Action.RedrawActionType).events);
@@ -202,6 +222,8 @@ export default function nyaovim(state: StateType = init, action: Action.Type) {
             return activate(state, (action as Action.ActivateNeovimActionType).index);
         case Action.Kind.CreateNeovim:
             return create(state, (action as Action.CreateNeovimActionType));
+        case Action.Kind.DestroyNeovim:
+            return destroy(state, (action as Action.DestroyNeovimActionType).index);
         default:
             console.log('Unknown action: ' + action.type);
             return state;
