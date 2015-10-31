@@ -1,0 +1,6 @@
+{
+  "name": "NyaoVim",
+  "dependencies": {
+    "photon": "~0.1.2-alpha"
+  }
+}

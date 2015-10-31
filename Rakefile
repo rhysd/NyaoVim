@@ -25,12 +25,17 @@ file 'node_modules' do
   sh 'npm install'
 end
 
+file 'bower_components' do
+  ensure_cmd 'bower'
+  sh 'bower install'
+end
+
 file "typings" do
   ensure_cmd 'tsd'
   sh 'tsd install'
 end
 
-task :dep => %i(node_modules typings)
+task :dep => %i(node_modules bower_components typings)
 
 task :build_browser_src => %i(typings) do
   sh "#{BIN}/tsc -p #{ROOT}/browser"

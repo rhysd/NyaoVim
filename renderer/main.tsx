@@ -12,7 +12,7 @@ function calcScreenSize() {
     const font_width = n.clientWidth / ratio;
     n.parentNode.removeChild(n);
     return {
-        height: Math.floor(document.body.clientHeight / font_height),
+        height: Math.floor((document.body.clientHeight - 30) / font_height),
         width: Math.floor(document.body.clientWidth / font_width),
     };
 }

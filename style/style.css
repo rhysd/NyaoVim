@@ -6,6 +6,7 @@ html, body {
 body {
   margin: 0px;
   font-family: "Helvetica Neue", Helvetica, "Segoe UI", Arial, freesans, sans-serif;
+  font-size: 12px;
 }
 
 .app, .root {
@@ -13,9 +14,17 @@ body {
   width: 100%;
 }
 
+.root {
+  display flex;
+}
+
+.tabs {
+  height: 30px;
+}
+
 .neovim-screen {
-  height: 100%;
   width: 100%;
+  flex: auto;
 }
 
 .neovim-screen pre {
@@ -34,6 +43,7 @@ body {
 .block-cursor {
   color: black;
   background-color: white;
+  display: inline-block;
 }
 
 .font-test {
@@ -43,4 +53,10 @@ body {
 }
 .font-test pre {
   margin: 0px;
+}
+
+.toolbar.toolbar-header .for-inset {
+  flex: none;
+  border: 0;
+  border-right: 1px solid #989698;
 }

@@ -2,6 +2,7 @@ import * as React from 'react';
 import {connect} from 'react-redux';
 import {StateType} from '../reducers';
 import NeovimScreen from './neovim/screen';
+import TabbedHeader from './tabbed-header';
 
 interface Props {
     lines?: Immutable.List<string>;
@@ -23,8 +24,12 @@ class App extends React.Component<Props, {}> {
     render() {
         return (
             <div className="root">
-                <NeovimScreen {...this.props}>
-                </NeovimScreen>
+                <div className="window">
+                    <TabbedHeader />
+                    <div className="window-content">
+                        <NeovimScreen {...this.props}/>
+                    </div>
+                </div>
             </div>
         );
     }
