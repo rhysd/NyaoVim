@@ -1,28 +1,24 @@
 import * as React from 'react';
+import * as Action from '../actions';
 
-export default class TabbedHeader extends React.Component<{}, {}> {
+interface Props {
+    current_id: number;
+    ids: number[];
+    dispatch: (action: Action.Type) => void;
+}
+
+export default class TabbedHeader extends React.Component<Props, {}> {
     renderTabs() {
-        return (
-            <div className="tab-group">
-                <div className="for-inset">
-                </div>
-                <div className="tab-item">
+        const {current_id, ids} = this.props;
+        return ids.map((id, idx) => {
+            const n = id === current_id ? 'tab-item active' : 'tab-item';
+            return (
+                <div className={n} key={idx}>
                     <span className="icon icon-cancel icon-close-tab"></span>
-                    #1
+                    #{idx + 1}
                 </div>
-                <div className="tab-item active">
-                    <span className="icon icon-cancel icon-close-tab"></span>
-                    #2
-                </div>
-                <div className="tab-item">
-                    <span className="icon icon-cancel icon-close-tab"></span>
-                    #3
-                </div>
-                <div className="tab-item tab-item-fixed">
-                    <span className="icon icon-plus"></span>
-                </div>
-            </div>
-        );
+            );
+        })
     }
 
     render() {
@@ -34,7 +30,13 @@ export default class TabbedHeader extends React.Component<{}, {}> {
 
         return (
             <header className="toolbar toolbar-header" style={header_style}>
-                {this.renderTabs()}
+                <div className="tab-group">
+                    <div className="for-inset"/>
+                    {this.renderTabs()}
+                    <div className="tab-item tab-item-fixed" onClick={() => this.props.dispatch(Action.createNeovim())}>
+                        <span className="icon icon-plus"></span>
+                    </div>
+                </div>
             </header>
         );
     }

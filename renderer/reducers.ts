@@ -31,6 +31,7 @@ export interface NeovimState {
 
 export interface StateType {
     current_id: number;
+    ids: number[];
     neovims: {
         [id: number]: NeovimState;
     }
@@ -43,12 +44,11 @@ const gen_id = function() {
     }
 }();
 
-const init: StateType = function() {
-    return {
-        current_id: 0,
-        neovims: {},
-    } as StateType;
-}();
+const init: StateType = {
+    current_id: 0,
+    ids: [],
+    neovims: {},
+};
 
 function colorOf(new_color: number, fallback: string) {
     if (!new_color || new_color === -1) {
@@ -185,8 +185,9 @@ function create(state: StateType, a: Action.CreateNeovimActionType) {
 
     return {
         current_id: nv.id,
+        ids: state.ids.concat([nv.id]),
         neovims: assign(state.neovims, {[nv.id]: nv}),
-    };
+    } as StateType;
 }
 
 export default function nyaovim(state: StateType = init, action: Action.Type) {

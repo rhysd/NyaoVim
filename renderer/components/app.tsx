@@ -6,21 +6,10 @@ import TabbedHeader from './tabbed-header';
 import * as Action from '../actions';
 
 interface Props {
-    curren_id?: number;
+    current_id?: number;
+    ids?: number[];
     neovim?: NeovimState;
     dispatch?: (action: Action.Type) => void;
-}
-
-function calcScreenSize() {
-    const ratio = window.devicePixelRatio || 1;
-    const n = document.querySelector('.font-test');
-    const font_height = n.clientHeight / ratio;
-    const font_width = n.clientWidth / ratio;
-    n.parentNode.removeChild(n);
-    return {
-        height: Math.floor((document.body.clientHeight - 30) / font_height),
-        width: Math.floor(document.body.clientWidth / font_width),
-    };
 }
 
 class App extends React.Component<Props, {}> {
@@ -28,23 +17,19 @@ class App extends React.Component<Props, {}> {
         if (neovim) {
             return <NeovimScreen {...neovim}/>;
         } else {
-            const size = calcScreenSize();
-            this.props.dispatch(Action.createNeovim(
-                size.height,
-                size.width,
-                []
-            ));
+            this.props.dispatch(Action.createNeovim([]));
             return undefined;
         }
     }
 
     render() {
+        const {neovim, current_id, ids, dispatch} = this.props;
         return (
             <div className="root">
                 <div className="window">
-                    <TabbedHeader />
+                    <TabbedHeader current_id={current_id} ids={ids} dispatch={dispatch}/>
                     <div className="window-content">
-                        {this.renderNeovim(this.props.neovim)}
+                        {this.renderNeovim(neovim)}
                     </div>
                 </div>
             </div>
@@ -55,6 +40,7 @@ class App extends React.Component<Props, {}> {
 function select(state: StateType) {
     return {
         current_id: state.current_id,
+        ids: state.ids,
         neovim: state.neovims[state.current_id],
     };
 }
