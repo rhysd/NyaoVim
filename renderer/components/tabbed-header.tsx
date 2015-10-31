@@ -9,11 +9,11 @@ interface Props {
 
 export default class TabbedHeader extends React.Component<Props, {}> {
     renderTabs() {
-        const {current_id, ids} = this.props;
+        const {current_id, ids, dispatch} = this.props;
         return ids.map((id, idx) => {
             const n = id === current_id ? 'tab-item active' : 'tab-item';
             return (
-                <div className={n} key={idx}>
+                <div className={n} key={idx} onClick={() => dispatch(Action.activateNeovim(idx))}>
                     <span className="icon icon-cancel icon-close-tab"></span>
                     #{idx + 1}
                 </div>

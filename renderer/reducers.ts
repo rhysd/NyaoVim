@@ -190,10 +190,16 @@ function create(state: StateType, a: Action.CreateNeovimActionType) {
     } as StateType;
 }
 
+function activate(state: StateType, index: number) {
+    return assign({}, state, {current_id: state.ids[index]});
+}
+
 export default function nyaovim(state: StateType = init, action: Action.Type) {
     switch(action.type) {
         case Action.Kind.Redraw:
             return redraw(state, (action as Action.RedrawActionType).events);
+        case Action.Kind.ActivateNeovim:
+            return activate(state, (action as Action.ActivateNeovimActionType).index);
         case Action.Kind.CreateNeovim:
             return create(state, (action as Action.CreateNeovimActionType));
         default:

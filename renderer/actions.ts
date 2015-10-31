@@ -3,6 +3,7 @@ import {RPCValue} from './neovim';
 export enum Kind {
     Redraw,
     CreateNeovim,
+    ActivateNeovim,
 };
 
 export interface RedrawActionType {
@@ -51,8 +52,20 @@ export function createNeovim(argv: string[] = [], cmd = 'nvim', size = calcScree
     };
 }
 
+export interface ActivateNeovimActionType {
+    type: Kind;
+    index: number;
+}
+
+export function activateNeovim(index: number) {
+    return {
+        type: Kind.ActivateNeovim,
+        index,
+    };
+}
+
 // TODO
 // export function resizeWindow(width, height)
 
 // Union of all action types
-export type Type = RedrawActionType | CreateNeovimActionType;
+export type Type = RedrawActionType | CreateNeovimActionType | ActivateNeovimActionType;
