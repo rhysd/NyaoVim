@@ -117,6 +117,7 @@ export default class Cursor extends React.Component<Props, {}> {
         n.addEventListener('compositionend', this.endComposition.bind(this));
         n.addEventListener('keydown', this.onInsertControlChar.bind(this));
         n.addEventListener('input', this.onInsertNormalChar.bind(this));
+        n.addEventListener('blur', e => e.preventDefault());
     }
 
     render() {

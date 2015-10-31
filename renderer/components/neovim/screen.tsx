@@ -1,37 +1,23 @@
 import * as React from 'react';
 import Line from './line';
+import {NeovimState} from '../../reducers';
 
-interface Props {
-    lines?: Immutable.List<string>;
-    fg_color?: string;
-    bg_color?: string;
-    size?: {
-        lines: number;
-        columns: number;
-    }
-    cursor?: {
-        line: number;
-        col: number;
-    }
-    mode?: string;
-    busy?: boolean;
-}
-
-export default class Screen extends React.Component<Props, {}> {
+export default class Screen extends React.Component<NeovimState, {}> {
     render() {
+        const {fg_color, bg_color, lines, cursor, busy, mode} = this.props;
         const style = {
-            color: this.props.fg_color,
-            backgroundColor: this.props.bg_color,
+            color: fg_color,
+            backgroundColor: bg_color,
         };
 
-        const contents = this.props.lines.map((l, i) => {
-            const includes_cursor = this.props.cursor.line === i;
+        const contents = lines.map((l, i) => {
+            const includes_cursor = cursor.line === i;
             const props = {
                 line: l || '',
                 line_num: i,
-                busy: this.props.busy,
-                mode: this.props.mode,
-                cursor_col: includes_cursor ? this.props.cursor.col : null,
+                busy: busy,
+                mode: mode,
+                cursor_col: includes_cursor ? cursor.col : null,
                 key: i,
             };
             return <Line {...props}/>;

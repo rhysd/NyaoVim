@@ -16,7 +16,8 @@ interface CursorState {
     col: number;
 }
 
-export interface StateType {
+export interface NeovimState {
+    id: number;
     lines: Immutable.List<string>;
     fg_color: string;
     bg_color: string;
@@ -24,23 +25,49 @@ export interface StateType {
     cursor: CursorState;
     mode: string;
     busy: boolean;
+    [k: string]: any;
 }
 
-const init: StateType = {
-    lines: Immutable.List<string>(),
-    fg_color: 'white',
-    bg_color: 'black',
-    size: {
-        lines: 0,
-        columns: 0,
-    },
-    cursor: {
-        line: 0,
-        col: 0,
-    },
-    mode: "normal", // XXX: Vim not always starts with normal mode
-    busy: false,
-};
+export interface StateType {
+    current_id: number;
+    neovims: {
+        [id: number]: NeovimState;
+    }
+}
+
+const gen_id = function() {
+    let id = 1;
+    return function() {
+        return id++;
+    }
+}();
+
+function newNeovim(): NeovimState {
+    return {
+        id: gen_id(),
+        lines: Immutable.List<string>(),
+        fg_color: 'white',
+        bg_color: 'black',
+        size: {
+            lines: 0,
+            columns: 0,
+        },
+        cursor: {
+            line: 0,
+            col: 0,
+        },
+        mode: "normal", // XXX: Vim not always starts with normal mode
+        busy: false,
+    };
+}
+
+const init: StateType = function() {
+    const nv = newNeovim();
+    return {
+        current_id: nv.id,
+        neovims: {[nv.id]: nv},
+    } as StateType;
+}();
 
 function colorOf(new_color: number, fallback: string) {
     if (!new_color || new_color === -1) {
@@ -69,6 +96,9 @@ function handlePut(lines: Immutable.List<string>, cursor_line: number, cursor_co
 
 function redraw(state: StateType, events: RPCValue[][]) {
     const next_state: StateType = assign({}, state);
+    const nv = next_state.neovims[next_state.current_id];
+    let neovim_changed = false;
+
     for (const e of events) {
         const name = e[0] as string;
         const args = e[1] as RPCValue[];
@@ -76,72 +106,82 @@ function redraw(state: StateType, events: RPCValue[][]) {
             case 'put':
                 e.shift();
                 if (e.length === 0) {
-                    break;
+                    continue;
                 }
-                // Use next_state.cursor.{line,col} because previous 'cursor_goto' event changed next_state's cursor position.
-                next_state.lines = handlePut(
-                        next_state.lines,
-                        next_state.cursor.line,
-                        next_state.cursor.col,
+                // Use nv.cursor.{line,col} because previous 'cursor_goto' event changed next_state's cursor position.
+                nv.lines = handlePut(
+                        nv.lines,
+                        nv.cursor.line,
+                        nv.cursor.col,
                         e as string[][]
                     );
                 // TODO:
                 // Make immutable CursorPos class
-                next_state.cursor = {
-                    line: next_state.cursor.line,
-                    col: next_state.cursor.col + e.length,
+                nv.cursor = {
+                    line: nv.cursor.line,
+                    col: nv.cursor.col + e.length,
                 };
                 break;
             case 'cursor_goto':
-                next_state.cursor = {
+                console.log('cursor_goto', args);
+                nv.cursor = {
                     line: args[0] as number,
                     col: args[1] as number,
                 } as CursorState;
                 break;
             case 'highlight_set':
                 console.log('highlight_set is ignored', JSON.stringify(args, null, 2));
-                break;
+                continue;
             case 'clear':
-                next_state.lines = Immutable.List<string>(); // XXX: Is this correct?
-                next_state.cursor = {line: 0, col: 0};
+                nv.lines = Immutable.List<string>(); // XXX: Is this correct?
+                nv.cursor = {line: 0, col: 0};
                 break;
             case 'eol_clear':
-                next_state.lines
-                    = next_state.lines.set(
-                        next_state.cursor.line,
-                        next_state.lines.get(
-                            next_state.cursor.line
-                        ).substring(0, next_state.cursor.col)
+                nv.lines
+                    = nv.lines.set(
+                        nv.cursor.line,
+                        nv.lines.get(
+                            nv.cursor.line
+                        ).substring(0, nv.cursor.col)
                     );
                 break;
             case 'resize':
-                next_state.size = {
+                nv.size = {
                     columns: args[0],
                     lines: args[1],
                 } as SizeState;
                 // TODO: When cursor is out of field
                 break;
             case 'update_fg':
-                next_state.fg_color = colorOf(args[0] as number, state.fg_color);
+                nv.fg_color = colorOf(args[0] as number, nv.fg_color);
                 break;
             case 'update_bg':
-                next_state.bg_color = colorOf(args[0] as number, state.bg_color);
+                nv.bg_color = colorOf(args[0] as number, nv.bg_color);
                 break;
             case 'mode_change':
                 console.log('mode changed: ' + args[0]);
-                next_state.mode = args[0] as string;
+                nv.mode = args[0] as string;
                 break;
             case 'busy_start':
-                next_state.busy = true;
+                nv.busy = true;
                 break;
             case 'busy_stop':
-                next_state.busy = false;
+                nv.busy = false;
                 break;
             default:
                 console.log('Unhandled event: ' + name, args);
-                break;
+                continue;
         }
+
+        // Note:
+        // Reach here only when current NeoVim state is changed
+        neovim_changed = true;
     }
+
+    if (neovim_changed) {
+        next_state.neovims[next_state.current_id] = assign({}, nv);
+    }
+
     return next_state;
 }
 

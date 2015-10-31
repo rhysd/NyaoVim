@@ -1,23 +1,12 @@
 import * as React from 'react';
 import {connect} from 'react-redux';
-import {StateType} from '../reducers';
+import {StateType, NeovimState} from '../reducers';
 import NeovimScreen from './neovim/screen';
 import TabbedHeader from './tabbed-header';
 
 interface Props {
-    lines?: Immutable.List<string>;
-    fg_color?: string;
-    bg_color?: string;
-    size?: {
-        lines: number;
-        columns: number;
-    }
-    cursor?: {
-        line: number;
-        col: number;
-    }
-    mode?: string;
-    busy?: boolean;
+    curren_id?: number;
+    neovim?: NeovimState;
 }
 
 class App extends React.Component<Props, {}> {
@@ -27,7 +16,7 @@ class App extends React.Component<Props, {}> {
                 <div className="window">
                     <TabbedHeader />
                     <div className="window-content">
-                        <NeovimScreen {...this.props}/>
+                        <NeovimScreen {...this.props.neovim}/>
                     </div>
                 </div>
             </div>
@@ -36,7 +25,10 @@ class App extends React.Component<Props, {}> {
 }
 
 function select(state: StateType) {
-    return state;
+    return {
+        current_id: state.current_id,
+        neovim: state.neovims[state.current_id],
+    };
 }
 
 export default connect(select)(App);
