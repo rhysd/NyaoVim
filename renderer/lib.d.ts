@@ -4,7 +4,6 @@
 declare module NodeJS {
     interface Global {
         require(m: string): any;
-        __neovim: any;
     }
 }
 

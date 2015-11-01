@@ -122,8 +122,7 @@ export default class Cursor extends React.Component<Props, {}> {
     }
 
     componentDidUpdate() {
-        const n = findDOMNode(this.refs['body']);
-        n.focus();
+        this.focusInput();
     }
 
     render() {

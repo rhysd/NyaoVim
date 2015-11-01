@@ -2,6 +2,6 @@
 
 declare module GitHubElectron {
     interface BrowserWindowOptions {
-        'title-bar-style': string;
+        'title-bar-style'?: string;
     }
 }

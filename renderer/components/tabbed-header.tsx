@@ -7,9 +7,18 @@ interface Props {
     dispatch: (action: Action.Type) => void;
 }
 
+const headerPadding = global.process.platform === 'darwin' ? '80px' : undefined;
+
 export default class TabbedHeader extends React.Component<Props, {}> {
     renderTabs() {
         const {current_id, ids, dispatch} = this.props;
+
+        if (ids.length === 1) {
+            return [
+                <div className="tab-item active" key={0}>NyaoVim</div>
+            ];
+        }
+
         return ids.map((id, idx) => {
             const n = id === current_id ? 'tab-item active' : 'tab-item';
             return (
@@ -22,10 +31,9 @@ export default class TabbedHeader extends React.Component<Props, {}> {
     }
 
     render() {
-        // Note: 80px for inset buttons on OS X
         const header_style = {
             height: '30px',
-            paddingLeft: '80px',
+            paddingLeft: headerPadding,
         };
 
         // TODO:
