@@ -1,13 +1,3 @@
-@font-face {
-  font-family: "Source Han Code JP";
-  src: url("../resources/fonts/SourceHanCodeJP/SourceHanCodeJP-Regular.otf") format("opentype");
-}
-@font-face {
-  font-family: "Source Han Code JP";
-  font-weight: bold;
-  src: url("../resources/fonts/SourceHanCodeJP/SourceHanCodeJP-Bold.otf") format("opentype");
-}
-
 html, body {
   width: 100%;
   height: 100%;
@@ -38,7 +28,6 @@ body {
 }
 
 .neovim-screen pre {
-  font-family: "Source Han Code JP", monospace;
   margin: 0px;
 }
 
