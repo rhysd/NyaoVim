@@ -121,6 +121,11 @@ export default class Cursor extends React.Component<Props, {}> {
         n.addEventListener('blur', e => e.preventDefault());
     }
 
+    componentDidUpdate() {
+        const n = findDOMNode(this.refs['body']);
+        n.focus();
+    }
+
     render() {
         const props = {
             className: "neovim-cursor",

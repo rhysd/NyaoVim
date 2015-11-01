@@ -38,15 +38,18 @@ class App extends React.Component<Props, {}> {
 }
 
 function select(state: StateType) {
-    let n = state.neovims[state.current_id];
-    if (state.current_id === undefined) {
+    console.log('select: ', state);
+    let current_id = state.current_id;
+
+    // XXX
+    if (current_id === undefined) {
         console.log('Bug: current_id is undefined!!', state);
-        n = state.neovims[state.ids[state.ids.length - 1]];
+        current_id = state.ids[state.ids.length - 1] || 0;
     }
     return {
-        current_id: state.current_id,
+        current_id: current_id,
         ids: state.ids,
-        neovim: n,
+        neovim: state.neovims[current_id],
     };
 }
 

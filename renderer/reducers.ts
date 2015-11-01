@@ -197,7 +197,8 @@ function activate(state: StateType, index: number) {
 function destroy(state: StateType, index: number) {
     const next_state = assign({}, state);
     const destroyed_id = state.ids[index];
-    // TODO: Delete process of neovim
+    const destroyed_neovim = next_state.neovims[destroyed_id];
+    destroyed_neovim.instance.finalize();
     delete next_state.neovims[destroyed_id];
     next_state.ids.splice(index, 1);
     if (destroyed_id === state.current_id) {
@@ -215,6 +216,12 @@ function destroy(state: StateType, index: number) {
 }
 
 export default function nyaovim(state: StateType = init, action: Action.Type): StateType {
+    // XXX
+    if (state.current_id === undefined) {
+        console.log('Bug: current_id is undefined');
+        state.current_id = state.ids[state.ids.length - 1] || 0;
+    }
+
     switch(action.type) {
         case Action.Kind.Redraw:
             return redraw(state, (action as Action.RedrawActionType).events);

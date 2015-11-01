@@ -68,5 +68,11 @@ export default class NeoVim {
         // global.require('remote').getCurrentWindow().close();
         this.started = false;
     }
+
+    finalize() {
+        this.client.uiDetach();
+        this.client.quit();
+        this.started = false;
+    }
 }
 
