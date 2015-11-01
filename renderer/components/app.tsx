@@ -38,7 +38,6 @@ class App extends React.Component<Props, {}> {
 }
 
 function select(state: StateType) {
-    console.log('select: ', state);
     let current_id = state.current_id;
 
     // XXX
@@ -46,6 +45,7 @@ function select(state: StateType) {
         console.log('Bug: current_id is undefined!!', state);
         current_id = state.ids[state.ids.length - 1] || 0;
     }
+
     return {
         current_id: current_id,
         ids: state.ids,
