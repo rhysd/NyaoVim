@@ -24,11 +24,14 @@ body {
 
 .neovim-screen {
   width: 100%;
+  line-height: normal;
   flex: auto;
 }
 
 .neovim-screen pre {
+  font-family: monospace,monospace;
   margin: 0px;
+  overflow: hidden;
 }
 
 .neovim-cursor {
@@ -47,11 +50,13 @@ body {
 }
 
 .font-test {
-  position:absolute;
-  right:100%;
-  bottom:100%;
+  position: absolute;
+  right: 100%;
+  bottom: 100%;
+  line-height: normal;
 }
 .font-test pre {
+  font-family: monospace,monospace;
   margin: 0px;
 }
 

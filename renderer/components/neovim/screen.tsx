@@ -28,6 +28,7 @@ export default class Screen extends React.Component<NeovimState, {}> {
             <div className="neovim-screen" style={style}>
                 <code>
                     {contents}
+                    <pre className="font-test">m</pre>
                 </code>
             </div>
         );

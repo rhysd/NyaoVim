@@ -28,9 +28,7 @@ class App extends React.Component<Props, {}> {
             <div className="root">
                 <div className="window">
                     <TabbedHeader current_id={current_id} ids={ids} dispatch={dispatch}/>
-                    <div className="window-content">
-                        {this.renderNeovim(neovim)}
-                    </div>
+                    {this.renderNeovim(neovim)}
                 </div>
             </div>
         );

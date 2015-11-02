@@ -33,6 +33,7 @@ export default class TabbedHeader extends React.Component<Props, {}> {
     render() {
         const header_style = {
             height: '30px',
+            minHeight: '30px',
             paddingLeft: headerPadding,
         };
 
