@@ -4,7 +4,15 @@
   "description": "Non-Yet Another Original Vim",
   "main": "build/browser/main.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "clean": "rm -rf build",
+    "dep": "npm-run-all -p dep:*",
+    "dep:bower": "bower install",
+    "dep:tsd": "tsd install",
+    "build": "npm-run-all dep -p build:*",
+    "build:browser": "tsc -p browser",
+    "build:renderer": "tsc -p renderer && browserify -d build/renderer/main.js -o build/renderer/index.js",
+    "run": "bin/cli.js",
+    "start": "npm-run-all build run"
   },
   "repository": {
     "type": "git",
@@ -36,6 +44,7 @@
     "bower": "^1.6.5",
     "browserify": "^11.2.0",
     "electron-prebuilt": "^0.34.0",
+    "npm-run-all": "^1.2.13",
     "tsd": "^0.6.5",
     "typescript": "^1.6.2"
   }
