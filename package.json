@@ -33,7 +33,8 @@
   },
   "homepage": "https://github.com/rhysd/NyaoVim#readme",
   "dependencies": {
-    "neovim-component": "^0.1.4"
+    "neovim-component": "^0.1.4",
+    "promised-neovim-client": "^1.0.0"
   },
   "devDependencies": {
     "bower": "^1.7.1",
