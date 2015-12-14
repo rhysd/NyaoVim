@@ -15,7 +15,7 @@ editor.store.on('title-changed', () => {
     document.title = editor.store.title;
 });
 editor.store.on('icon-changed', () => {
-    var icon = editor.store.icon_path;
+    const icon = editor.store.icon_path;
     if (icon === '') {
         return;
     }

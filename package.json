@@ -10,6 +10,7 @@
     "build-main": "$(npm bin)/tsc -p $(npm prefix)/main",
     "build-renderer": "$(npm bin)/tsc -p $(npm prefix)/renderer && $(npm bin)/browserify $(npm prefix)/renderer/out/index.js -o build/renderer/bundle.js",
     "build": "npm run build-main && npm run build-renderer",
+    "lint": "tslint $(git ls-files | grep -E \"*.ts$\")",
     "app": "$(npm bin)/electron $(npm prefix)",
     "clean": "rm -rf \"$(npm prefix)/build\" \"$(npm prefix)/typings\" \"$(npm prefix)/bower_components\" \"$(npm prefix)/node_modules\""
   },

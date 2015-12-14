@@ -16,7 +16,7 @@ app.on('ready', function() {
     });
 
     win.loadURL(index_html);
-    if (process.env['NODE_ENV'] !== 'production') {
+    if (process.env.NODE_ENV !== 'production') {
         win.webContents.openDevTools({detach: true});
     }
 });
