@@ -1,6 +1,12 @@
 {
-  "name": "NyaoVim",
+  "name": "nyaovim",
+  "version": "0.0.0",
+  "homepage": "https://github.com/rhysd/NyaoVim",
+  "authors": [
+    "rhysd <lin90162@yahoo.co.jp>"
+  ],
+  "license": "MIT",
   "dependencies": {
-    "photon": "~0.1.2-alpha"
+    "webcomponentsjs": "~0.7.19"
   }
 }

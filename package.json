@@ -1,18 +1,19 @@
 {
   "name": "nyaovim",
-  "version": "0.0.0",
-  "description": "Non-Yet Another Original Vim",
-  "main": "build/browser/main.js",
+  "productName": "NyaoVim",
+  "version": "0.0.1",
+  "description": "Web-enhanced Extensible Neovim Frontend",
+  "main": "build/main/main.js",
+  "bin": "./bin/cli.js",
   "scripts": {
-    "clean": "rm -rf build",
-    "dep": "npm-run-all -p dep:*",
-    "dep:bower": "bower install",
-    "dep:tsd": "tsd install",
-    "build": "npm-run-all dep -p build:*",
-    "build:browser": "tsc -p browser",
-    "build:renderer": "tsc -p renderer && browserify -d build/renderer/main.js -o build/renderer/index.js",
-    "run": "bin/cli.js",
-    "start": "npm-run-all build run"
+    "dep": "npm install && $(npm bin)/bower install && $(npm bin)/tsd install && mkdir -p build/renderer",
+    "build-main": "$(npm bin)/tsc -p $(npm prefix)/main",
+    "build-renderer": "$(npm bin)/tsc -p $(npm prefix)/renderer && $(npm bin)/browserify $(npm prefix)/renderer/out/index.js -o build/renderer/bundle.js",
+    "build": "npm run build-main && npm run build-renderer",
+    "lint": "tslint $(git ls-files | grep -E \"*.ts$\")",
+    "app": "$(npm bin)/electron $(npm prefix)",
+    "all": "npm run dep && npm run build && npm run app",
+    "clean": "rm -rf \"$(npm prefix)/build\" \"$(npm prefix)/typings\" \"$(npm prefix)/bower_components\" \"$(npm prefix)/node_modules\""
   },
   "repository": {
     "type": "git",
@@ -20,32 +21,27 @@
   },
   "keywords": [
     "editor",
-    "neovim",
-    "electron",
+    "extensible",
+    "WebComponents",
+    "Neovim",
+    "nvim",
+    "Electron",
     "cat"
   ],
-  "author": "rhysd",
+  "author": "rhysd <lin90162@yahoo.co.jp>",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/rhysd/NyaoVim/issues"
   },
   "homepage": "https://github.com/rhysd/NyaoVim#readme",
   "dependencies": {
-    "immutable": "^3.7.5",
-    "mousetrap": "^1.5.3",
-    "object-assign": "^4.0.1",
-    "promised-neovim-client": "^0.1.9",
-    "react": "^0.14.0",
-    "react-dom": "^0.14.0",
-    "react-redux": "^4.0.0",
-    "redux": "^3.0.3"
+    "neovim-component": "^0.1.4",
+    "promised-neovim-client": "^1.0.0"
   },
   "devDependencies": {
-    "bower": "^1.6.5",
-    "browserify": "^11.2.0",
-    "electron-prebuilt": "^0.34.0",
-    "npm-run-all": "^1.2.13",
+    "bower": "^1.7.1",
+    "browserify": "^12.0.1",
     "tsd": "^0.6.5",
-    "typescript": "^1.6.2"
+    "typescript": "^1.7.3"
   }
 }

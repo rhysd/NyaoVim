@@ -3,22 +3,13 @@
     "module": "commonjs",
     "removeComments": true,
     "preserveConstEnums": true,
-    "outDir": "../build/renderer",
+    "outDir": "./out",
     "noImplicitAny": true,
     "target": "es5",
-    "sourceMap": true,
-    "jsx": "react"
+    "sourceMap": true
   },
   "files": [
-    "components/app.tsx",
-    "components/neovim/screen.tsx",
-    "components/neovim/line.tsx",
-    "components/neovim/cursor.tsx",
-    "neovim.ts",
-    "store.ts",
-    "reducers.ts",
-    "actions.ts",
-    "main.tsx",
+    "index.ts",
     "lib.d.ts"
   ]
 }

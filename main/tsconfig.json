@@ -3,13 +3,12 @@
     "module": "commonjs",
     "removeComments": true,
     "preserveConstEnums": true,
-    "outDir": "../build/browser",
+    "outDir": "../build/main",
     "noImplicitAny": true,
     "target": "es5",
     "sourceMap": true
   },
   "files": [
-    "menu.ts",
     "main.ts",
     "lib.d.ts"
   ]

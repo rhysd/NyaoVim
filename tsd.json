@@ -6,31 +6,19 @@
   "bundle": "typings/tsd.d.ts",
   "installed": {
     "node/node.d.ts": {
-      "commit": "44cbde48eecd1918ed54b3be49a9752688b6c65a"
-    },
-    "react/react.d.ts": {
-      "commit": "62eedc3121a5e28c50473d2e4a9cefbcb9c3957f"
-    },
-    "redux/redux.d.ts": {
-      "commit": "44cbde48eecd1918ed54b3be49a9752688b6c65a"
+      "commit": "8ea42cd8bb11863ed6f242d67c502288ebc45a7b"
     },
     "github-electron/github-electron.d.ts": {
-      "commit": "44cbde48eecd1918ed54b3be49a9752688b6c65a"
+      "commit": "8ea42cd8bb11863ed6f242d67c502288ebc45a7b"
     },
-    "github-electron/github-electron-main.d.ts": {
-      "commit": "44cbde48eecd1918ed54b3be49a9752688b6c65a"
+    "bluebird/bluebird.d.ts": {
+      "commit": "8ea42cd8bb11863ed6f242d67c502288ebc45a7b"
     },
-    "react-redux/react-redux.d.ts": {
-      "commit": "44cbde48eecd1918ed54b3be49a9752688b6c65a"
+    "flux/flux.d.ts": {
+      "commit": "8ea42cd8bb11863ed6f242d67c502288ebc45a7b"
     },
-    "object-assign/object-assign.d.ts": {
-      "commit": "35ba1a07e1ddafef621636fc8d0714f6f70ca479"
-    },
-    "es6-promise/es6-promise.d.ts": {
-      "commit": "35ba1a07e1ddafef621636fc8d0714f6f70ca479"
-    },
-    "react-dom/react-dom.d.ts": {
-      "commit": "62eedc3121a5e28c50473d2e4a9cefbcb9c3957f"
+    "react/react.d.ts": {
+      "commit": "8ea42cd8bb11863ed6f242d67c502288ebc45a7b"
     }
   }
 }
