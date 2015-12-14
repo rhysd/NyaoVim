@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1, user-scalable=yes" />
+    <title>NyaoVim</title>
+
+    <script src="./bower_components/webcomponentsjs/webcomponents-lite.min.js"></script>
+    <link rel="import" href="./node_modules/neovim-component/neovim-editor.html" />
+
+    <style>
+      body {
+        height: 100%;
+        width: 100%;
+        margin: 0px;
+        padding: 0px;
+        overflow: hidden;
+      }
+    </style>
+  </head>
+
+  <body>
+    <neovim-editor id="nyaovim" font="Ricty,monospace" font-size="14"></neovim-editor>
+  </body>
+
+  <script src="./build/renderer/bundle.js"></script>
+</html>

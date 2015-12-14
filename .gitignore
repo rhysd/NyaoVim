@@ -3,4 +3,5 @@
 /app.asar
 /typings
 /build
+/renderer/out
 /bower_components
