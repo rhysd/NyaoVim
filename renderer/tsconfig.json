@@ -10,6 +10,7 @@
   },
   "files": [
     "nyaovim-app.ts",
+    "nyaovim-plugins.ts",
     "lib.d.ts"
   ]
 }

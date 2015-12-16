@@ -1,8 +1,10 @@
 <link rel="import" href="../node_modules/neovim-component/neovim-editor.html" />
+<link rel="import" href="./nyaovim-plugins.html" />
 
 <dom-module id="nyaovim-app">
   <template>
-    <neovim-editor id="internal-editor" argv$="[[argv]]"></neovim-editor>
+    <neovim-editor id="nyaovim-editor" argv$="[[argv]]"></neovim-editor>
+    <nyaovim-plugins id="nyaovim-plugin-manager"></nyaovim-plugins>
   </template>
 </dom-module>
 

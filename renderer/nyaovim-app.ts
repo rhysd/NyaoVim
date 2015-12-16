@@ -7,12 +7,14 @@ Polymer({
     properties: {
         argv: {
             type: Array,
-            value: () => remote.process.argv.slice(2)
-        }
+            value: () => remote.process.argv.slice(2),
+        },
     },
 
     ready: function() {
-        var editor = (document.getElementById('internal-editor') as any).editor as Neovim;
+        const editor = (document.getElementById('nyaovim-editor') as any).editor as Neovim;
+        const plugin_manager = document.getElementById('nyaovim-plugin-manager') as any;
+        plugin_manager.editor = editor;
         editor.on('quit', () => remote.require('app').quit());
 
         editor.store.on('beep', () => shell.beep());
@@ -22,7 +24,7 @@ Polymer({
 
         window.addEventListener(
             'resize',
-            () => editor.screen.resizeWithPixels(window.innerWidth, window.innerHeight)
+            () => editor.screen.resizeWithPixels(window.innerWidth, window.innerHeight) // XXX
         );
-    }
+    },
 });
