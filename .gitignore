@@ -2,8 +2,6 @@
 /npm-debug.log
 /app.asar
 /typings
-/build
-/renderer/out
 /bower_components
 /main/**/*.js
 /main/**/*.js.map

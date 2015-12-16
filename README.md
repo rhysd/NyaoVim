@@ -16,7 +16,7 @@ NyaoVim has the same spirit as this.  NyaoVim contains Neovim editor as WebCompo
 - NyaoVim bundles **no extended UI** by default.  It only provides the nice UI plugin architecture.  Users should compose their favorite UI with WebComponent, HTML and CSS.
 - Do not introduce another plugin manager.  HTML for WebComponent should be bundled with Vim plugin.  Therefore Vim plugin manager can handle UI components and it enables to bundle JS codes and Vim script codes.
 - Do not lose Vim's comfortability by default.
-- UI component creators can use powerful APIs ([Node.js APIs](https://nodejs.org/en/docs/), [Electron APIs](https://github.com/atom/electron/tree/master/docs/api) and [Neovim msgpack-rpc APIs](https://neovim.io/doc/user/msgpack_rpc.html)) and so many [npm packages](https://www.npmjs.com/).
+- UI component creators can use powerful APIs ([Node.js APIs](https://nodejs.org/en/docs/), [Electron APIs](https://github.com/atom/electron/tree/master/docs/api) and [Neovim msgpack-rpc APIs](https://neovim.io/doc/user/msgpack_rpc.html)), so many [npm packages](https://www.npmjs.com/) and [Chrome DevTools](https://developers.google.com/web/tools/chrome-devtools/).
 
 Memo: 'nyao' is 'meow' in Japanese and an acronym for 'Non-Yet Another Original'.
 
