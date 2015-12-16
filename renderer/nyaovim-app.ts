@@ -7,7 +7,12 @@ Polymer({
     properties: {
         argv: {
             type: Array,
-            value: () => remote.process.argv.slice(2),
+            value: function() {
+                // Note: First and second arguments are related to Electron
+                const a = remote.process.argv.slice(2);
+                a.push('-c', 'let\ g:nyaovim_running=1');
+                return a;
+            },
         },
     },
 

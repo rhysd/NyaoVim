@@ -12,6 +12,7 @@
     "build": "npm run build-main && npm run build-renderer",
     "lint": "tslint $(git ls-files | grep -E \"*.ts$\")",
     "app": "$(npm bin)/electron $(npm prefix)",
+    "debug": "NODE_ENV=debug $(npm bin)/electron $(npm prefix)",
     "all": "npm run dep && npm run build && npm run app",
     "clean": "rm -rf \"$(npm prefix)/build\" \"$(npm prefix)/typings\" \"$(npm prefix)/bower_components\" \"$(npm prefix)/node_modules\""
   },
