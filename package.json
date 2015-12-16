@@ -3,12 +3,12 @@
   "productName": "NyaoVim",
   "version": "0.0.1",
   "description": "Web-enhanced Extensible Neovim Frontend",
-  "main": "build/main/main.js",
+  "main": "main/main.js",
   "bin": "./bin/cli.js",
   "scripts": {
     "dep": "npm install && $(npm bin)/bower install && $(npm bin)/tsd install && mkdir -p build/renderer",
     "build-main": "$(npm bin)/tsc -p $(npm prefix)/main",
-    "build-renderer": "$(npm bin)/tsc -p $(npm prefix)/renderer && $(npm bin)/browserify $(npm prefix)/renderer/out/index.js -o build/renderer/bundle.js",
+    "build-renderer": "$(npm bin)/tsc -p $(npm prefix)/renderer",
     "build": "npm run build-main && npm run build-renderer",
     "lint": "tslint $(git ls-files | grep -E \"*.ts$\")",
     "app": "$(npm bin)/electron $(npm prefix)",
@@ -35,7 +35,7 @@
   },
   "homepage": "https://github.com/rhysd/NyaoVim#readme",
   "dependencies": {
-    "neovim-component": "^0.1.4",
+    "neovim-component": "^0.1.5",
     "promised-neovim-client": "^1.0.0"
   },
   "devDependencies": {

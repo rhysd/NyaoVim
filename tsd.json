@@ -19,6 +19,12 @@
     },
     "react/react.d.ts": {
       "commit": "8ea42cd8bb11863ed6f242d67c502288ebc45a7b"
+    },
+    "webcomponents.js/webcomponents.js.d.ts": {
+      "commit": "24e12a7af994afa2226af70fbfae0adc78736a9e"
+    },
+    "polymer/polymer.d.ts": {
+      "commit": "24e12a7af994afa2226af70fbfae0adc78736a9e"
     }
   }
 }

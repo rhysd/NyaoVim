@@ -6,10 +6,11 @@
     <title>NyaoVim</title>
 
     <script src="./bower_components/webcomponentsjs/webcomponents-lite.min.js"></script>
-    <link rel="import" href="./node_modules/neovim-component/neovim-editor.html" />
+    <link rel="import" href="./bower_components/polymer/polymer.html" />
+    <link rel="import" href="./renderer/nyaovim-app.html" />
 
     <style>
-      body {
+      body, nyaovim-app {
         height: 100%;
         width: 100%;
         margin: 0px;
@@ -20,8 +21,6 @@
   </head>
 
   <body>
-    <neovim-editor id="nyaovim" font="Ricty,monospace" font-size="14"></neovim-editor>
+    <nyaovim-app></nyaovim-app>
   </body>
-
-  <script src="./build/renderer/bundle.js"></script>
 </html>

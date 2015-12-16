@@ -5,3 +5,7 @@
 /build
 /renderer/out
 /bower_components
+/main/**/*.js
+/main/**/*.js.map
+/renderer/**/*.js
+/renderer/**/*.js.map

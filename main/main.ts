@@ -1,7 +1,7 @@
 import {join} from 'path';
 import {app, BrowserWindow} from 'electron';
 
-const index_html = 'file://' + join(__dirname, '..', '..', 'index.html');
+const index_html = 'file://' + join(__dirname, '..', 'index.html');
 
 app.on('ready', function() {
     let win = new BrowserWindow({

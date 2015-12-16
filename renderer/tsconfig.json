@@ -3,13 +3,13 @@
     "module": "commonjs",
     "removeComments": true,
     "preserveConstEnums": true,
-    "outDir": "./out",
+    "outDir": ".",
     "noImplicitAny": true,
     "target": "es5",
     "sourceMap": true
   },
   "files": [
-    "index.ts",
+    "nyaovim-app.ts",
     "lib.d.ts"
   ]
 }
