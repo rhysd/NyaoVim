@@ -36,6 +36,7 @@
   },
   "homepage": "https://github.com/rhysd/NyaoVim#readme",
   "dependencies": {
+    "electron-prebuilt": "^0.36.0",
     "neovim-component": "^0.1.5",
     "promised-neovim-client": "^1.0.0"
   },

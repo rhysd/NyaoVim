@@ -9,7 +9,7 @@ This is a [Neovim](https://neovim.io/) frontend built on [Electron](http://elect
 
 > Use Vim as a component from a shell or in an IDE.
 
-NyaoVim has the same spirit as this.  NyaoVim puts neovim editor as WebComponent and enables to extend its UI with web technology as IDE.
+NyaoVim has the same spirit as this.  NyaoVim contains Neovim editor as WebComponent and enables to extend its UI with web technology as recent modern editors and IDEs (e.g. [Atom](http://atom.io/), [VS Code](https://github.com/Microsoft/vscode), [LightTable](http://lighttable.com/)).
 
 ## Goal
 
