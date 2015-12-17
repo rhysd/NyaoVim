@@ -7,27 +7,30 @@ import {RPCValue} from 'promised-neovim-client';
 class ComponentLoader {
     initially_loaded: boolean;
     component_paths: string[];
+    nyaovim_plugin_paths: string[];
 
     constructor() {
         this.initially_loaded = false;
         this.component_paths = [];
     }
 
-    loadPath(path: string) {
+    loadComponent(path: string) {
         const link = document.createElement('link') as HTMLLinkElement;
         link.rel = 'import';
         link.href = path;
         document.head.appendChild(link);
+        this.component_paths.push(path);
     }
 
     loadPluginDir(dir: string) {
+        const nyaovim_plugin_dir = join(dir, 'nyaovim-plugin');
         try {
-            for (const entry of readdirSync(dir)) {
+            for (const entry of readdirSync(nyaovim_plugin_dir)) {
                 if (entry.endsWith('.html')) {
-                    this.loadPath(entry);
-                    this.component_paths.push(entry);
+                    this.loadComponent(join(nyaovim_plugin_dir, entry));
                 }
             }
+            this.nyaovim_plugin_paths.push(dir);
         } catch (err) {
             // 'nyaovim-plugin' doesn't exist
         }
@@ -36,7 +39,7 @@ class ComponentLoader {
     loadFromRTP(rtp_string: string) {
         const runtimepaths = rtp_string.split(',');
         for (const rtp of runtimepaths) {
-            this.loadPluginDir(join(rtp, 'nyaovim-plugin'));
+            this.loadPluginDir(rtp);
         }
     }
 }
@@ -82,7 +85,7 @@ Polymer({
             client.on('notification', (method: string, args: RPCValue[]) => {
                 switch (method) {
                 case 'nyaovim:load-path':
-                    component_loader.loadPath(args[0] as string);
+                    component_loader.loadComponent(args[0] as string);
                     break;
                 case 'nyaovim:load-plugin-dir':
                     component_loader.loadPluginDir(args[0] as string);
