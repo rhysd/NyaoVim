@@ -9,10 +9,11 @@ global.config_dir_path = join(process.env.XDG_CONFIG_HOME || join(process.env.HO
 global.nyaovimrc_path = join(global.config_dir_path, 'nyaovimrc.html');
 
 function exists(path: string) {
+    'use strict';
     return new Promise<boolean>(resolve => {
         stat(path, (err, stats) => {
             if (err) {
-                return resolve(false)
+                return resolve(false);
             }
             return resolve(stats.isFile() || stats.isDirectory());
         });
@@ -20,6 +21,7 @@ function exists(path: string) {
 }
 
 function prepareDefaultNyaovimrc() {
+    'use strict';
     console.log('Generate default nyaovimrc at ' + global.nyaovimrc_path);
 
     return exists(global.config_dir_path).then(e => {

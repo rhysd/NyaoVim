@@ -30,7 +30,7 @@ class ComponentLoader {
                         this.component_paths.push(entry);
                     }
                 }
-            } catch(err) {
+            } catch (err) {
                 // 'nyaovim-plugin' doesn't exist
             }
         }
