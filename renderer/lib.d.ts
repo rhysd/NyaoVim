@@ -5,3 +5,7 @@ declare module NodeJS {
         require: NodeRequireFunction;
     }
 }
+
+interface String {
+    endsWith(search: string, position?: number): boolean;
+}
