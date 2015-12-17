@@ -14,13 +14,13 @@ Polymer({
                 return a;
             },
         },
+        editor: Object,
     },
 
     ready: function() {
         const editor = (document.getElementById('nyaovim-editor') as any).editor as Neovim;
-        const plugin_manager = document.getElementById('nyaovim-plugin-manager') as any;
-        plugin_manager.editor = editor;
         editor.on('quit', () => remote.require('app').quit());
+        this.editor = editor;
 
         editor.store.on('beep', () => shell.beep());
         editor.store.on('title-changed', () => {
