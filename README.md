@@ -80,6 +80,21 @@ After installing nyaovim-popup-tooltip as Neovim plugin and adding UI to HTML, a
 
 ![nyaovim-popup-tooltip screenshot](https://raw.githubusercontent.com/rhysd/ss/master/nyaovim-popup-tooltip/main.gif)
 
+### Configure Window
+
+You can configure window by properties of [`<neovim-editor>` properties](https://github.com/rhysd/neovim-component#neovim-editor-properties).
+For example, below configures font face and font size.
+
+```html
+<neovim-editor
+    id="nyaovim-editor"
+    argv$="[[argv]]"
+    font-size="14"
+    font="Ricty,monospace"
+></neovim-editor>
+```
+
+
 ## How to Make UI Plugin
 
 I created [nyaovim-popup-tooltip](https://github.com/rhysd/nyaovim-popup-tooltip) as sample UI plugin.  It will help you understand how to make UI plugin.

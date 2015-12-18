@@ -32,14 +32,14 @@ function prepareDefaultNyaovimrc() {
         const nyaovim_app_js = 'file://' + join(__dirname, '..', 'renderer', 'nyaovim-app.js');
         const contents =
 `<dom-module id="nyaovim-app">
-<template>
+  <template>
     <style>
-        /* CSS configurations here */
+      /* CSS configurations here */
     </style>
 
     <!-- Component tags here -->
     <neovim-editor id="nyaovim-editor" argv$="[[argv]]"></neovim-editor>
-</template>
+  </template>
 </dom-module>
 
 <script src="${nyaovim_app_js}"></script>
