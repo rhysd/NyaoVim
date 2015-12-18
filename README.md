@@ -164,8 +164,12 @@ Subscribe notification from Neovim as following.
 </script>
 ```
 
-You've finished creating UI.  Next, write small Vim script code in `plugin/hello-world.vim`.
+If you created your component as [Polymer](https://github.com/Polymer/polymer) element, you can receive editor instance as `editor` property of it.
+
+You've finished creating UI.
 Note that you can also use [Electron APIs](https://github.com/atom/electron/tree/master/docs/api) and [Node.js APIs](https://nodejs.org/en/) (e.g. `require()`) here.
+
+Next, write small Vim script code in `plugin/hello-world.vim`.  `rpcnotify()` is available to send Vim script values to component via msgpack-rpc.
 
 ```vim
 " Send notfication to your UI
@@ -179,7 +183,7 @@ Put `<hello-world></hello-world>` in your `nyaovimrc.html` and start NyaoVim, th
 :HelloWorld Hello world from NyaoVim!
 ```
 
-Congrats!  Now you can start to make your UI with HTML, CSS, Polymer, Electron and Node.js!  If you want to ask a question, please feel free to make an issue for question.
+Congrats!  Now you can start to make your UI with HTML, CSS, Polymer, Electron and Node.js!  When you want to ask a question, please feel free to make an issue for question.
 
 
 ## License
