@@ -1,7 +1,7 @@
 ![NyaoVim](resources/title-bar.png)
 ===================================
 
-This is a [Neovim](https://neovim.io/) frontend built on [Electron](http://electron.atom.io/).  Neovim editor is [composed as WebComponent](https://github.com/rhysd/neovim-component) and users can extend UI by reusable WebComponents, HTML, CSS and JavaScript.
+This is a [Neovim](https://neovim.io/) frontend built on [Electron](http://electron.atom.io/).  Neovim editor is [composed as Web Component](https://github.com/rhysd/neovim-component) and users can extend UI by reusable Web Components, HTML, CSS and JavaScript.
 
 **This repository is being heavily developed.  Everything is unstable.**
 
@@ -9,12 +9,12 @@ This is a [Neovim](https://neovim.io/) frontend built on [Electron](http://elect
 
 > Use Vim as a component from a shell or in an IDE.
 
-NyaoVim has the same spirit as this.  NyaoVim contains Neovim editor as WebComponent and enables to extend its UI with web technology as recent modern editors and IDEs (e.g. [Atom](http://atom.io/), [VS Code](https://github.com/Microsoft/vscode), [LightTable](http://lighttable.com/)).
+NyaoVim has the same spirit as this.  NyaoVim contains Neovim editor as Web Component and enables to extend its UI with web technology as recent modern editors and IDEs (e.g. [Atom](http://atom.io/), [VS Code](https://github.com/Microsoft/vscode), [LightTable](http://lighttable.com/)).
 
 ## Goals
 
-- NyaoVim bundles **no extended UI** by default.  It only provides the nice UI plugin architecture.  Users should compose their favorite UI with WebComponent, HTML and CSS.
-- Do not introduce another plugin manager.  HTML for WebComponent should be bundled with Vim plugin.  Therefore Vim plugin manager can handle UI components and it enables to bundle JS codes and Vim script codes.
+- NyaoVim bundles **no extended UI** by default.  It only provides the nice UI plugin architecture.  Users should compose their favorite UI with Web Component, HTML and CSS.
+- Do not introduce another plugin manager.  HTML for Web Component should be bundled with Vim plugin.  Therefore Vim plugin manager can handle UI components and it enables to bundle JS codes and Vim script codes.
 - Do not lose Vim's comfortability by default.
 - UI component creators can use powerful APIs ([Node.js APIs](https://nodejs.org/en/docs/), [Electron APIs](https://github.com/atom/electron/tree/master/docs/api) and [Neovim msgpack-rpc APIs](https://neovim.io/doc/user/msgpack_rpc.html)), so many [npm packages](https://www.npmjs.com/) and [Chrome DevTools](https://developers.google.com/web/tools/chrome-devtools/).
 - Cross Platform (Linux, OS X, Windows)
@@ -27,9 +27,9 @@ NyaoVim consists Web Components on Electron as following figure.  At first there
 
 ![structure](https://raw.githubusercontent.com/rhysd/ss/master/NyaoVim/structure.png)
 
-## UI Examples
+## UI Plugin Examples
 
-Examples [bundled in `<neovim-component>`](https://github.com/rhysd/neovim-component/tree/master/example).  Each of them is written within 100~300 lines. You can create reusable WebComponents and integrate it to NyaoVim.
+Examples are [bundled in `<neovim-component>` repository](https://github.com/rhysd/neovim-component/tree/master/example).  Each of them is written within 100~300 lines. You can create reusable Web Components and integrate it to NyaoVim.
 
 - Markdown editor
 
