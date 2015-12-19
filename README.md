@@ -11,9 +11,7 @@ This is a [Neovim](https://neovim.io/) frontend built on [Electron](http://elect
 
 NyaoVim has the same spirit as this.  NyaoVim contains Neovim editor as WebComponent and enables to extend its UI with web technology as recent modern editors and IDEs (e.g. [Atom](http://atom.io/), [VS Code](https://github.com/Microsoft/vscode), [LightTable](http://lighttable.com/)).
 
-![structure](https://raw.githubusercontent.com/rhysd/ss/master/NyaoVim/structure.png)
-
-## Goal
+## Goals
 
 - NyaoVim bundles **no extended UI** by default.  It only provides the nice UI plugin architecture.  Users should compose their favorite UI with WebComponent, HTML and CSS.
 - Do not introduce another plugin manager.  HTML for WebComponent should be bundled with Vim plugin.  Therefore Vim plugin manager can handle UI components and it enables to bundle JS codes and Vim script codes.
@@ -22,6 +20,12 @@ NyaoVim has the same spirit as this.  NyaoVim contains Neovim editor as WebCompo
 - Cross Platform (Linux, OS X, Windows)
 
 Memo: 'nyao' is 'meow' in Japanese and an acronym for 'Non-Yet Another Original'.
+
+## App Structure
+
+NyaoVim consists Web Components on Electron as following figure.  At first there is only `<neovim-editor>` and you can add/remove additional components.
+
+![structure](https://raw.githubusercontent.com/rhysd/ss/master/NyaoVim/structure.png)
 
 ## UI Examples
 
