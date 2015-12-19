@@ -11,6 +11,8 @@ This is a [Neovim](https://neovim.io/) frontend built on [Electron](http://elect
 
 NyaoVim has the same spirit as this.  NyaoVim contains Neovim editor as WebComponent and enables to extend its UI with web technology as recent modern editors and IDEs (e.g. [Atom](http://atom.io/), [VS Code](https://github.com/Microsoft/vscode), [LightTable](http://lighttable.com/)).
 
+![structure](https://raw.githubusercontent.com/rhysd/ss/master/NyaoVim/structure.png)
+
 ## Goal
 
 - NyaoVim bundles **no extended UI** by default.  It only provides the nice UI plugin architecture.  Users should compose their favorite UI with WebComponent, HTML and CSS.
