@@ -5,7 +5,12 @@ import {sync as mkdirpSync} from 'mkdirp';
 
 const index_html = 'file://' + join(__dirname, '..', 'renderer', 'main.html');
 
-global.config_dir_path = join(process.env.XDG_CONFIG_HOME || join(process.env.HOME, '.config'), 'nyaovim');
+const config_dir_name =
+        process.platform !== 'darwin' ?
+            app.getPath('appData') :
+            process.env.XDG_CONFIG_HOME || join(process.env.HOME, '.config');
+
+global.config_dir_path = join(config_dir_name, 'nyaovim');
 global.nyaovimrc_path = join(global.config_dir_path, 'nyaovimrc.html');
 
 function exists(path: string) {
@@ -29,7 +34,6 @@ function prepareDefaultNyaovimrc() {
             mkdirpSync(global.config_dir_path);
         }
     }).then(() => {
-        const nyaovim_app_js = 'file://' + join(__dirname, '..', 'renderer', 'nyaovim-app.js');
         const contents =
 `<dom-module id="nyaovim-app">
   <template>
@@ -41,10 +45,7 @@ function prepareDefaultNyaovimrc() {
     <neovim-editor id="nyaovim-editor" argv$="[[argv]]"></neovim-editor>
   </template>
 </dom-module>
-
-<script src="${nyaovim_app_js}"></script>
 `;
-
         writeFileSync(global.nyaovimrc_path, contents, 'utf8');
     });
 }

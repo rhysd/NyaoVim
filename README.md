@@ -13,13 +13,13 @@ NyaoVim has the same spirit as this.  NyaoVim contains Neovim editor as Web Comp
 
 ## Goals
 
-- NyaoVim bundles **no extended UI** by default.  It only provides the nice UI plugin architecture.  Users should compose their favorite UI with Web Component, HTML and CSS.
-- Do not introduce another plugin manager.  HTML for Web Component should be bundled with Vim plugin.  Therefore Vim plugin manager can handle UI components and it enables to bundle JS codes and Vim script codes.
-- Do not lose Vim's comfortability by default.
-- UI component creators can use powerful APIs ([Node.js APIs](https://nodejs.org/en/docs/), [Electron APIs](https://github.com/atom/electron/tree/master/docs/api) and [Neovim msgpack-rpc APIs](https://neovim.io/doc/user/msgpack_rpc.html)), so many [npm packages](https://www.npmjs.com/) and [Chrome DevTools](https://developers.google.com/web/tools/chrome-devtools/).
-- Cross Platform (Linux, OS X, Windows)
+- **NyaoVim bundles no extended UI by default.**  It only provides the nice UI plugin architecture.  Users can compose their favorite UI with Web Components, HTML and CSS.  It is also easy to make NyaVim distribution where useful components are bundled.
+- **Do not introduce another plugin manager.**  HTML for Web Component should be bundled with Vim plugin.  Therefore Vim plugin manager can handle UI components and it enables to bundle JS codes and Vim script codes.
+- **Do not lose Vim's comfortability by default.**  It should be aware of performance.
+- **UI component creators can use powerful APIs**; ([Node.js APIs](https://nodejs.org/en/docs/), [Electron APIs](https://github.com/atom/electron/tree/master/docs/api) and [Neovim msgpack-rpc APIs](https://neovim.io/doc/user/msgpack_rpc.html)), so many [npm packages](https://www.npmjs.com/) and [Chrome DevTools](https://developers.google.com/web/tools/chrome-devtools/).
+- **Cross Platform** (Linux, OS X, Windows)
 
-Memo: 'nyao' is 'meow' in Japanese and an acronym for 'Non-Yet Another Original'.
+Memo: 'nyao' is 'meow' in Japanese and its pronounce resembles 'neo'.  It is also an acronym for 'Not Yet Another Original'.
 
 ## App Structure
 
@@ -59,7 +59,7 @@ $ nyaovim [files...]
 
 You would see minimal Neovim GUI editor (as normal gVim).  This is Electron app and Neovim is drawn on `<canvas>`.  You can see DevTools of this app with 'Developer Tools' menu item.
 
-On first start up of NyaoVim, it creates `~/.config/nyaovimrc.html` for UI configuration.  Yes, you can extend and configure UI components with HTML and CSS!
+On first start up of NyaoVim, it creates `~/.config/nyaovimrc.html` for UI configuration (`%AppData%` instead of `.config` in Windows).  Yes, you can extend and configure UI components with HTML and CSS!
 
 ### Install UI Plugin
 
@@ -71,7 +71,7 @@ As described in Goal section, UI plugin is a normal Neovim plugin.  You can inst
 Plug 'rhysd/nyaovim-popup-tooltip'
 ```
 
-Then you need to put popup tooltip UI to your NyaoVim interface.  Please open `~/.config/nyaovim/nyaovimrc.html`.  As described in Goal section, user can put UI with HTML and CSS with high customization.
+Then you need to put popup tooltip UI to your NyaoVim interface.  Please open `~/.config/nyaovim/nyaovimrc.html` (`%AppData%` instead of `.config` in Windows).  As described in Goal section, user can put UI with HTML and CSS with high customization.
 
 Please add `<popup-tooltip>` tag under `<neovim-editor>` tag as below
 
