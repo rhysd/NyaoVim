@@ -97,11 +97,6 @@ Polymer({
             client.subscribe('nyaovim:load-path');
             client.subscribe('nyaovim:load-plugin-dir');
         });
-
-        window.addEventListener(
-            'resize',
-            () => editor.screen.resizeWithPixels(window.innerWidth, window.innerHeight) // XXX
-        );
     },
 
     attached: function() {

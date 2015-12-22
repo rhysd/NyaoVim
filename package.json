@@ -13,7 +13,7 @@
     "lint": "tslint $(git ls-files | grep -E \".ts$\")",
     "app": "$(npm bin)/electron $(npm prefix)",
     "debug": "NODE_ENV=debug $(npm bin)/electron $(npm prefix)",
-    "all": "npm run dep && npm run build && npm run app",
+    "start": "npm run dep && npm run build && npm run app",
     "clean": "rm -rf \"$(npm prefix)/build\" \"$(npm prefix)/typings\" \"$(npm prefix)/bower_components\" \"$(npm prefix)/node_modules\""
   },
   "repository": {
@@ -40,7 +40,7 @@
   "dependencies": {
     "electron-prebuilt": "^0.36.0",
     "mkdirp": "^0.5.1",
-    "neovim-component": "^0.1.5",
+    "neovim-component": "^0.2.1",
     "promised-neovim-client": "^1.0.0"
   },
   "devDependencies": {
