@@ -43,17 +43,20 @@ Examples are [bundled in `<neovim-component>` repository](https://github.com/rhy
 
 ![mini browser example screenshot](https://raw.githubusercontent.com/rhysd/ss/master/neovim-component/mini-browser.gif)
 
-## Installation
-
-[npm package](https://www.npmjs.com/package/nyaovim) (`npm install -g nyaovim`) and package release (not yet).
 
 ## Usage
 
 ### Getting Started
 
+You can install NyaoVim as [npm package](https://www.npmjs.com/package/nyaovim).  Currently no packaging release is available yet.
+
+```sh
+$ npm install -g nyaovim
+```
+
 You can start NyaoVim with `nyaovim` command if you install this app with npm.
 
-```
+```sh
 $ nyaovim [files...]
 ```
 
@@ -190,6 +193,14 @@ Put `<hello-world></hello-world>` in your `nyaovimrc.html` and start NyaoVim, th
 ```
 
 Congrats!  Now you can start to make your UI with HTML, CSS, Polymer, Electron and Node.js!  When you want to ask a question, please feel free to make an issue for question.
+
+If you want to debug your plugin or NyaoVim, you can start NyaoVim in debug mode with `$NODE_ENV` environment variable.
+
+```sh
+$ NODE_ENV=debug nyaovim
+```
+
+Chrome DevTools will be launched in detached window and you can debug your UI plugin like general web applications; showing console, checking DOM elements, profiling and so on.  Even if you start NyaoVim normally, you can also open Chrome DevTools by clicking menu item 'Toggle DevTools'.
 
 
 ## License
