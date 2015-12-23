@@ -1,4 +1,4 @@
-import {Neovim} from 'neovim-component';
+import {Neovim, NeovimElement} from 'neovim-component';
 import {remote, shell} from 'electron';
 import {join} from 'path';
 import {readdirSync} from 'fs';
@@ -64,7 +64,8 @@ Polymer({
     },
 
     ready: function() {
-        const editor = (document.getElementById('nyaovim-editor') as any).editor as Neovim;
+        const element = document.getElementById('nyaovim-editor') as NeovimElement;
+        const editor = element.editor;
         editor.on('quit', () => remote.require('app').quit());
         this.editor = editor;
 
@@ -96,7 +97,16 @@ Polymer({
             });
             client.subscribe('nyaovim:load-path');
             client.subscribe('nyaovim:load-plugin-dir');
+            element.addEventListener('drop', e => {
+                e.preventDefault();
+                const f: any = e.dataTransfer.files[0];
+                if (f) {
+                    client.command('edit! ' + f.path);
+                }
+            })
         });
+
+        element.addEventListener('dragover', e => e.preventDefault());
     },
 
     attached: function() {

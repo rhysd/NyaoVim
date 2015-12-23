@@ -9,3 +9,4 @@ declare module NodeJS {
 interface String {
     endsWith(search: string, position?: number): boolean;
 }
+

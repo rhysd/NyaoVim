@@ -40,7 +40,7 @@
   "dependencies": {
     "electron-prebuilt": "^0.36.0",
     "mkdirp": "^0.5.1",
-    "neovim-component": "^0.2.1",
+    "neovim-component": "^0.2.2",
     "promised-neovim-client": "^1.0.0"
   },
   "devDependencies": {
