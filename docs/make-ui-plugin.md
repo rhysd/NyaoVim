@@ -6,6 +6,7 @@ I created [nyaovim-popup-tooltip](https://github.com/rhysd/nyaovim-popup-tooltip
 - [Directory Structure](#structure)
 - [Getting Started](#tutorial)
 - [Debug Your Plugin](#debug)
+- [Handle Resizing Neovim Window](#window-resize)
 
 ## <a name="structure">Directory Structure</a>
 
@@ -108,4 +109,23 @@ $ NODE_ENV=debug nyaovim
 
 Chrome DevTools will be launched in detached window and you can debug your UI plugin like general web applications; showing console, checking DOM elements, profiling and so on.  Even if you start NyaoVim normally, you can also open Chrome DevTools by clicking menu item 'Toggle DevTools'.
 
+## <a name="window-resize">Handle Resizing Neovim Window</a>
+
+As [described in neovim-component document](https://github.com/rhysd/neovim-component#view-apis), when `<neovim-editor>` **may** need to resize, you **must** call `editor.screen.checkShouldResize()` in order to notify it to `<neovim-editor>`.  Please note that the notification is not needed when window is resized.  And it is OK that nothing happens to the size of `<neovim-editor>` as result.
+This is needed because Neovim is rendered on `<canvas>` and it can't know the timing when itself is resized.
+
+For example, when your component appears in window, the area of `<neovim-editor>` may change.
+
+```javascript
+function showUpSomeElementInNyaoVimWindow() {
+    const e = document.getElementById('some-elem');
+
+    // Element appears in window!  Screen might be resized by the change.
+    // 'none' -> 'block'
+    e.style.display = 'block';
+
+    // You need to call this to say to <neovim-editor> that 'You may be resized.  Check it out!'.
+    editor.screen.checkShouldResize();
+}
+```
 
