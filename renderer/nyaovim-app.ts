@@ -1,4 +1,4 @@
-import {Neovim, NeovimElement} from 'neovim-component';
+import {NeovimElement} from 'neovim-component';
 import {remote, shell} from 'electron';
 import {join} from 'path';
 import {readdirSync} from 'fs';
