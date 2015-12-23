@@ -4,6 +4,8 @@ import {join} from 'path';
 import {readdirSync} from 'fs';
 import {RPCValue} from 'promised-neovim-client';
 
+const app = remote.require('app');
+
 class ComponentLoader {
     initially_loaded: boolean;
     component_paths: string[];
@@ -83,6 +85,9 @@ Polymer({
                       component_loader.initially_loaded = true;
                   });
 
+            client.subscribe('nyaovim:edit-start');
+            client.command(`set rtp+=${join(__dirname, '..', 'runtime').replace(' ', '\ ')} | runtime plugin/nyaovim.vim`);
+
             client.on('notification', (method: string, args: RPCValue[]) => {
                 switch (method) {
                 case 'nyaovim:load-path':
@@ -91,19 +96,30 @@ Polymer({
                 case 'nyaovim:load-plugin-dir':
                     component_loader.loadPluginDir(args[0] as string);
                     break;
+                case 'nyaovim:edit-start':
+                    const file_path = args[0] as string;
+                    ThisBrowserWindow.setRepresentedFilename(file_path);
+                    app.addRecentDocument(file_path);
+                    break;
                 default:
                     break;
                 }
             });
             client.subscribe('nyaovim:load-path');
             client.subscribe('nyaovim:load-plugin-dir');
+
             element.addEventListener('drop', e => {
                 e.preventDefault();
                 const f: any = e.dataTransfer.files[0];
                 if (f) {
                     client.command('edit! ' + f.path);
                 }
-            })
+            });
+
+            app.on('open-file', (e: Event, p: string) => {
+                e.preventDefault();
+                client.command('edit! ' + p);
+            });
         });
 
         element.addEventListener('dragover', e => e.preventDefault());
