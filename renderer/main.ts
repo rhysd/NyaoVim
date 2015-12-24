@@ -9,4 +9,3 @@ link.rel = 'import';
 link.href = nyaovimrc_path;
 document.head.appendChild(link);
 
-// TODO: Import all component html files here

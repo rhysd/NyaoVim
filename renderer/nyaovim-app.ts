@@ -58,7 +58,7 @@ Polymer({
             value: function() {
                 // Note: First and second arguments are related to Electron
                 const a = remote.process.argv.slice(2);
-                a.push('-c', 'let\ g:nyaovim_running=1');
+                a.push('--cmd', 'let\ g:nyaovim_running=1');
                 return a;
             },
         },

@@ -1,6 +1,17 @@
 Tips
 ====
 
+## Check Running on NyaoVim in Vim script
+
+Before loading `.config/nvim/init.vim`, `g:nyaovim_running` is set to `1`.  You can check it if the Vim script code is executed on NyaoVim or not (`init.vim` or plugin code).
+
+```vim
+if get(g:, 'nyaovim_running', 0)
+    " Write NyaoVim specific code here
+    " ...
+endif
+```
+
 ## Drag and Drop Files
 
 If you drag and drop a file to NyaoVim, NyaoVim will start to edit the file with `:edit!`.
