@@ -3,10 +3,10 @@ Tips
 
 ## Check Running on NyaoVim in Vim script
 
-Before loading `.config/nvim/init.vim`, `g:nyaovim_running` is set to `1`.  You can check it if the Vim script code is executed on NyaoVim or not (`init.vim` or plugin code).
+Before loading `.config/nvim/init.vim`, `g:nyaovim_version` is set to version string.  You can check if the Vim script code is executed on NyaoVim or not (`init.vim` or plugin code).
 
 ```vim
-if get(g:, 'nyaovim_running', 0)
+if get(g:, 'nyaovim_version', '') !=# ''
     " Write NyaoVim specific code here
     " ...
 endif
