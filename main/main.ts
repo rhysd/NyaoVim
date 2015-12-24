@@ -11,7 +11,7 @@ USAGE: nyaovim [options] [neovim args...]
 
 OPTIONS:
   --help    Show this help
-  --version Show versions of NyaoVim, Electron, Chrome, Node.js, and V8jk
+  --version Show versions of NyaoVim, Electron, Chrome, Node.js, and V8
 `);
     app.quit();
 }
