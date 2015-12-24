@@ -110,7 +110,7 @@ Polymer({
 
             element.addEventListener('drop', e => {
                 e.preventDefault();
-                const f: any = e.dataTransfer.files[0];
+                const f = e.dataTransfer.files[0];
                 if (f) {
                     client.command('edit! ' + f.path);
                 }

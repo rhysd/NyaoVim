@@ -18,7 +18,6 @@ function startAboutWindow() {
     win.loadURL(index_html);
 }
 
-
 export default function setMenu() {
     const template = [
         {
