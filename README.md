@@ -62,7 +62,7 @@ $ nyaovim [files...]
 
 You would see minimal Neovim GUI editor (as normal gVim).  This is Electron app and Neovim is drawn on `<canvas>`.  You can see DevTools of this app with 'Developer Tools' menu item.
 
-On first start up of NyaoVim, it creates `~/.config/nyaovimrc.html` for UI configuration (`%AppData%` instead of `.config` in Windows).  Yes, you can extend and configure UI components with HTML and CSS!
+On first start up of NyaoVim, it creates `~/.config/nyaovim/nyaovimrc.html` for UI configuration (`%AppData%` instead of `.config` in Windows).  Yes, you can extend and configure UI components with HTML and CSS!
 
 ### Configure GUI Options
 
