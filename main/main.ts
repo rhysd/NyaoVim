@@ -2,8 +2,7 @@ import {join} from 'path';
 import {stat, writeFileSync} from 'fs';
 import {app, BrowserWindow} from 'electron';
 import {sync as mkdirpSync} from 'mkdirp';
-
-const index_html = 'file://' + join(__dirname, '..', 'renderer', 'main.html');
+import setMenu from './menu';
 
 const config_dir_name =
         process.platform !== 'darwin' ?
@@ -57,6 +56,8 @@ const ensure_nyaovimrc = exists(global.nyaovimrc_path).then((e: boolean) => {
 }).catch(err => console.error(err));
 
 function startMainWindow() {
+    const index_html = 'file://' + join(__dirname, '..', 'renderer', 'main.html');
+
     let win = new BrowserWindow({
         width: 800,
         height: 600,
@@ -77,7 +78,10 @@ app.once('window-all-closed', () => app.quit());
 
 app.once(
     'ready',
-    () => ensure_nyaovimrc.then(
-        () => startMainWindow()
-    )
+    () => {
+        ensure_nyaovimrc.then(
+            () => startMainWindow()
+        );
+        setMenu();
+    }
 );

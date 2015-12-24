@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1, user-scalable=yes" />
+    <title>About NyaoVim</title>
+    <style>
+      body, html {
+        width: 100%;
+        height: 100%;
+      }
+      body {
+        margin: 0px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        color: #333333;
+        background-color: #eeeeee;
+        font-size: 12px;
+        font-family: 'Helvetica', 'Arial', 'ヒラギノ角ゴ Pro W3', 'Hiragino Kaku Gothic Pro', 'メイリオ', Meiryo, 'ＭＳ Ｐゴシック', 'MS PGothic', sans-serif;
+      }
+      .logo {
+        width: 200px;
+        cursor: pointer;
+      }
+      .title,.copyright {
+        margin: 0.2em;
+      }
+      .versions {
+        border-collapse: collapse;
+        margin-top: 1em;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="logo">
+      <img src="../resources/icon/nyaovim-logo.svg" width="200px" />
+    </div>
+    <h2 class="title">NyaoVim</h2>
+    <h3 class="copyright">Copyright (c) 2015 rhysd</h3>
+    <table class="versions"></table>
+  </body>
+  <script>
+    (function() {
+      var electron = require('electron');
+      document
+        .querySelector('.logo')
+        .addEventListener(
+          'click',
+          function() {
+            electron.shell.openExternal('https://github.com/rhysd/NyaoVim');
+          }
+        );
+      var versions = document.querySelector('.versions');
+      var vs = process.versions;
+      ['electron', 'chrome', 'node', 'v8'].forEach(function(name) {
+        var tr = document.createElement('tr');
+        var name_td = document.createElement('td');
+        name_td.innerText = name;
+        tr.appendChild(name_td);
+        var version_td = document.createElement('td');
+        version_td.innerText = ' : ' + vs[name];
+        tr.appendChild(version_td);
+        versions.appendChild(tr);
+      });
+    })();
+  </script>
+</html>
