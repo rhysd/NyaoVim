@@ -56,22 +56,28 @@ const ensure_nyaovimrc = exists(global.nyaovimrc_path).then((e: boolean) => {
     }
 }).catch(err => console.error(err));
 
-app.once('ready', function() {
-    ensure_nyaovimrc.then(() => {
-        let win = new BrowserWindow({
-            width: 800,
-            height: 600,
-            useContentSize: true,
-        });
-
-        win.once('closed', function() {
-            win = null;
-            app.quit();
-        });
-
-        win.loadURL(index_html);
-        if (process.env.NODE_ENV !== 'production') {
-            win.webContents.openDevTools({detach: true});
-        }
+function startMainWindow() {
+    let win = new BrowserWindow({
+        width: 800,
+        height: 600,
+        useContentSize: true,
     });
-});
+
+    win.once('closed', function() {
+        win = null;
+    });
+
+    win.loadURL(index_html);
+    if (process.env.NODE_ENV !== 'production') {
+        win.webContents.openDevTools({detach: true});
+    }
+}
+
+app.once('window-all-closed', () => app.quit());
+
+app.once(
+    'ready',
+    () => ensure_nyaovimrc.then(
+        () => startMainWindow()
+    )
+);
