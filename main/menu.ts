@@ -1,21 +1,13 @@
 import {Menu, app, BrowserWindow} from 'electron';
 import {join} from 'path';
+import openAboutWindow from 'about-window';
 
 function startAboutWindow() {
-    const index_html = 'file://' + join(__dirname, '..', 'renderer', 'about.html');
-
-    let win = new BrowserWindow({
-        width: 400,
-        height: 400,
-        useContentSize: true,
-        titleBarStyle: 'hidden-inset',
-    });
-
-    win.once('closed', function() {
-        win = null;
-    });
-
-    win.loadURL(index_html);
+    openAboutWindow(
+        join(__dirname, '..', 'resources', 'icon', 'nyaovim-logo.png'),
+        'Copyright (c) 2015 rhysd',
+        'https://github.com/rhysd/NyaoVim'
+    );
 }
 
 export default function setMenu() {
