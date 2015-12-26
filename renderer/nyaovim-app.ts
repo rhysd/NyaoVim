@@ -58,6 +58,9 @@ Polymer({
                 // Note: First and second arguments are related to Electron
                 const a = remote.process.argv.slice(2);
                 a.push('--cmd', `let\ g:nyaovim_version="${app.getVersion()}"`);
+                // XXX:
+                // Swap files are disabled because it shows message window on start up but frontend can't detect it.
+                a.push('-n');
                 return a;
             },
         },
