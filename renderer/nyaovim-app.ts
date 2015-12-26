@@ -38,8 +38,7 @@ class ComponentLoader {
         }
     }
 
-    loadFromRTP(rtp_string: string) {
-        const runtimepaths = rtp_string.split(',');
+    loadFromRTP(runtimepaths: string[]) {
         for (const rtp of runtimepaths) {
             this.loadPluginDir(rtp);
         }
@@ -79,8 +78,8 @@ Polymer({
         editor.on('process-attached', () => {
             const client = editor.getClient();
 
-            client.eval('&runtimepath')
-                  .then((rtp: string) => {
+            client.listRuntimePaths()
+                  .then((rtp: string[]) => {
                       component_loader.loadFromRTP(rtp);
                       component_loader.initially_loaded = true;
                   });
