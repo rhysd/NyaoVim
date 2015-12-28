@@ -6,11 +6,13 @@ Tips
 Before loading `.config/nvim/init.vim`, `g:nyaovim_version` is set to version string.  You can check if the Vim script code is executed on NyaoVim or not (`init.vim` or plugin code).
 
 ```vim
-if get(g:, 'nyaovim_version', '') !=# ''
+if exists('g:nyaovim_version')
     " Write NyaoVim specific code here
     " ...
 endif
 ```
+
+`g:nyaovim_version` is a string which represents the version of NyaoVim.  You can also use it to check the version of NyaoVim.
 
 ## Drag and Drop Files
 
