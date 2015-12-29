@@ -125,6 +125,13 @@ Polymer({
         });
 
         element.addEventListener('dragover', e => e.preventDefault());
+
+        window.addEventListener('keydown', e => {
+            if (e.keyCode === 0x1b && !editor.store.focused) {
+                // Note: Global shortcut to make focus back to screen
+                editor.focus();
+            }
+        });
     },
 
     attached: function() {
@@ -136,4 +143,6 @@ Polymer({
             ThisBrowserWindow.setContentSize(canvas.width, canvas.height);
         }
     },
+
+    // TODO: Remove all listeners on detached
 });
