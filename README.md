@@ -29,19 +29,19 @@ NyaoVim consists Web Components on Electron as following figure.  At first there
 
 ## UI Plugin Examples
 
-Examples are [bundled in `<neovim-component>` repository](https://github.com/rhysd/neovim-component/tree/master/example).  Each of them is written within 100~300 lines. You can create reusable Web Components and integrate it to NyaoVim.
+UI plugins are easily installed to NyaoVim the same as other normal plugins.  Each of them is written within 100~300 lines.  You can create reusable Web Components and integrate it to NyaoVim.
 
-- Markdown editor
+- [nyaovim-markdown-preview](https://github.com/rhysd/nyaovim-markdown-preview)
 
-![markdown example screenshot](https://raw.githubusercontent.com/rhysd/ss/master/neovim-component/markdown-example.gif)
+![nyaovim-markdown-preview screenshot](https://raw.githubusercontent.com/rhysd/ss/master/nyaovim-markdown-preview/main.gif)
 
-- Image popup on cursor
+- [nyaovim-popup-tooltip](https://github.com/rhysd/nyaovim-popup-tooltip)
 
-![image popup example screenshot](https://raw.githubusercontent.com/rhysd/ss/master/neovim-component/popup-image-example.gif)
+![nyaovim-popup-tooltip screenshot](https://raw.githubusercontent.com/rhysd/ss/master/nyaovim-popup-tooltip/main.gif)
 
-- Embedded mini browser
+- [nyaovim-mini-browser](https://github.com/rhysd/nyaovim-mini-browser)
 
-![mini browser example screenshot](https://raw.githubusercontent.com/rhysd/ss/master/neovim-component/mini-browser.gif)
+![nyaovim-mini-browser screenshot](https://raw.githubusercontent.com/rhysd/ss/master/nyaovim-mini-browser/main.gif)
 
 
 ## Usage
