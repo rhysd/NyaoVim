@@ -126,7 +126,7 @@ export default function setMenu() {
                     type: 'separator'
                 },
                 {
-                    label: 'Hide Irasutoyer',
+                    label: 'Hide NyaoVim',
                     accelerator: 'Command+H',
                     role: 'hide'
                 },
