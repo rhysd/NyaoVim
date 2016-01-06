@@ -16,7 +16,7 @@ NyaoVim has the same spirit as this.  NyaoVim contains Neovim editor as Web Comp
 - **NyaoVim bundles no extended UI by default.**  It only provides the nice UI plugin architecture.  Users can compose their favorite UI with Web Components, HTML and CSS.  It is also easy to make NyaVim distribution where useful components are bundled.
 - **Do not introduce another plugin manager.**  HTML for Web Component should be bundled with Vim plugin.  Therefore Vim plugin manager can handle UI components and it enables to bundle JS codes and Vim script codes.
 - **Do not lose Vim's comfortability by default.**  It should be aware of performance.
-- **UI component creators can use powerful APIs**; ([Node.js APIs](https://nodejs.org/en/docs/), [Electron APIs](https://github.com/atom/electron/tree/master/docs/api) and [Neovim msgpack-rpc APIs](https://neovim.io/doc/user/msgpack_rpc.html)), so many [npm packages](https://www.npmjs.com/) and [Chrome DevTools](https://developers.google.com/web/tools/chrome-devtools/).
+- **UI component creators can use powerful APIs, packages and tools**; [Node.js APIs](https://nodejs.org/en/docs/), [Electron APIs](https://github.com/atom/electron/tree/master/docs/api), [Neovim msgpack-rpc APIs](https://neovim.io/doc/user/msgpack_rpc.html)), so many [npm packages](https://www.npmjs.com/) and [Chrome DevTools](https://developers.google.com/web/tools/chrome-devtools/).
 - **Cross Platform** (Linux, OS X, Windows)
 
 Memo: 'nyao' is 'meow' in Japanese and its pronounce resembles 'neo'.  It is also an acronym for 'Not Yet Another Original'.
@@ -110,6 +110,7 @@ More documents are put in [docs directory](docs).
 
 - [How to Make UI Plugin](docs/make-ui-plugin.md)
 - [Tips](docs/tips.md)
+- [FAQ](docs/faq.md)
 
 ## License
 
