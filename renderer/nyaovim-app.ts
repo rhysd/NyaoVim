@@ -138,9 +138,10 @@ Polymer({
         // XXX:
         // Temporary fix.  Resize browser window to fit to content
         const [win_width, win_height] = ThisBrowserWindow.getContentSize();
-        const canvas = this.editor.screen.canvas;
-        if (win_width !== canvas.width || win_height !== canvas.height) {
-            ThisBrowserWindow.setContentSize(canvas.width, canvas.height);
+        const body_width = document.body.scrollWidth;
+        const body_height = document.body.scrollHeight;
+        if (win_width !== body_width || win_height !== body_height) {
+            ThisBrowserWindow.setContentSize(body_width, body_height);
         }
     },
 
