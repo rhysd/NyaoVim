@@ -134,16 +134,5 @@ Polymer({
         });
     },
 
-    attached: function() {
-        // XXX:
-        // Temporary fix.  Resize browser window to fit to content
-        const [win_width, win_height] = ThisBrowserWindow.getContentSize();
-        const body_width = document.body.scrollWidth;
-        const body_height = document.body.scrollHeight;
-        if (win_width !== body_width || win_height !== body_height) {
-            ThisBrowserWindow.setContentSize(body_width, body_height);
-        }
-    },
-
     // TODO: Remove all listeners on detached
 });
