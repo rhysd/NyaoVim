@@ -45,14 +45,10 @@ class ComponentLoader {
     }
 }
 
-interface ApiDefinitions {
-    [api_name: string]: (args: RPCValue[]) => any;
-}
-
 class RuntimeApi {
     private client: Nvim;
 
-    constructor(private definitions: ApiDefinitions) {
+    constructor(private definitions: {[name: string]: Function}) {
         this.client = null;
     }
 
@@ -61,6 +57,7 @@ class RuntimeApi {
         for (const name in this.definitions) {
             client.subscribe(name);
         }
+        this.client = client;
     }
 
     unsubscribe() {
@@ -76,6 +73,7 @@ class RuntimeApi {
         if (!func) {
             return null;
         }
+        console.log('call(): ', func_name, args);
         return func.apply(func, args);
     }
 }
@@ -83,27 +81,23 @@ class RuntimeApi {
 const component_loader = new ComponentLoader();
 const ThisBrowserWindow = remote.getCurrentWindow();
 const runtime_api = new RuntimeApi({
-    'nyaovim:load-path': function(args) {
-        component_loader.loadComponent(args[0] as string);
+    'nyaovim:load-path': function(html_path: string) {
+        component_loader.loadComponent(html_path);
     },
-    'nyaovim:load-plugin-dir': function(args) {
-        component_loader.loadPluginDir(args[0] as string);
+    'nyaovim:load-plugin-dir': function(dir_path: string) {
+        component_loader.loadPluginDir(dir_path);
     },
-    'nyaovim:edit-start': function(args) {
-        const file_path = args[0] as string;
+    'nyaovim:edit-start': function(file_path: string) {
         ThisBrowserWindow.setRepresentedFilename(file_path);
         app.addRecentDocument(file_path);
     },
-    'nyaovim:require-script-file': function(args) {
-        const script_path = args[0] as string;
+    'nyaovim:require-script-file': function(script_path: string) {
         require(script_path);
     },
-    'nyaovim:call-global-function': function(args) {
-        const func_name = args[0] as string;
-        const argv = args[1] as RPCValue[];
-        const func = window[func_name] as Function;
-        if (func) {
-            func.apply(window, argv);
+    'nyaovim:call-global-function': function(func_name: string, args: RPCValue[]) {
+        const func = (window as any)[func_name];
+        if (func /*&& func is Function*/) {
+            func.apply(window, args);
         }
     },
 });
