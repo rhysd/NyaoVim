@@ -2,7 +2,7 @@ import {NeovimElement} from 'neovim-component';
 import {remote, shell} from 'electron';
 import {join} from 'path';
 import {readdirSync} from 'fs';
-import {RPCValue} from 'promised-neovim-client';
+import {Nvim, RPCValue} from 'promised-neovim-client';
 
 const app = remote.require('app');
 
@@ -45,8 +45,57 @@ class ComponentLoader {
     }
 }
 
+interface ApiDefinitions {
+    [api_name: string]: (args: RPCValue[]) => any;
+}
+
+class RuntimeApi {
+    private client: Nvim;
+
+    constructor(private definitions: ApiDefinitions) {
+        this.client = null;
+    }
+
+    subscribe(client: Nvim) {
+        client.on('notification', this.call.bind(this));
+        for (const name in this.definitions) {
+            client.subscribe(name);
+        }
+    }
+
+    unsubscribe() {
+        if (this.client) {
+            for (const name in this.definitions) {
+                this.client.unsubscribe(name);
+            }
+        }
+    }
+
+    call(func_name: string, args: RPCValue[]) {
+        console.log('RuntimeApi: ' + func_name);
+        const func = this.definitions[func_name];
+        if (!func) {
+            return null;
+        }
+        return func.apply(func, args);
+    }
+}
+
 const component_loader = new ComponentLoader();
 const ThisBrowserWindow = remote.getCurrentWindow();
+const runtime_api = new RuntimeApi({
+    'nyaovim:load-path': function(args) {
+        component_loader.loadComponent(args[0] as string);
+    },
+    'nyaovim:load-plugin-dir': function(args) {
+        component_loader.loadPluginDir(args[0] as string);
+    },
+    'nyaovim:edit-start': function(args) {
+        const file_path = args[0] as string;
+        ThisBrowserWindow.setRepresentedFilename(file_path);
+        app.addRecentDocument(file_path);
+    },
+});
 
 Polymer({
     is: 'nyaovim-app',
@@ -87,28 +136,9 @@ Polymer({
                       component_loader.initially_loaded = true;
                   });
 
-            client.subscribe('nyaovim:edit-start');
             client.command(`set rtp+=${join(__dirname, '..', 'runtime').replace(' ', '\ ')} | runtime plugin/nyaovim.vim`);
 
-            client.on('notification', (method: string, args: RPCValue[]) => {
-                switch (method) {
-                case 'nyaovim:load-path':
-                    component_loader.loadComponent(args[0] as string);
-                    break;
-                case 'nyaovim:load-plugin-dir':
-                    component_loader.loadPluginDir(args[0] as string);
-                    break;
-                case 'nyaovim:edit-start':
-                    const file_path = args[0] as string;
-                    ThisBrowserWindow.setRepresentedFilename(file_path);
-                    app.addRecentDocument(file_path);
-                    break;
-                default:
-                    break;
-                }
-            });
-            client.subscribe('nyaovim:load-path');
-            client.subscribe('nyaovim:load-plugin-dir');
+            runtime_api.subscribe(client);
 
             element.addEventListener('drop', e => {
                 e.preventDefault();
