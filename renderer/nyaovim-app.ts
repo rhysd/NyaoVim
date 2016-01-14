@@ -72,7 +72,6 @@ class RuntimeApi {
     }
 
     call(func_name: string, args: RPCValue[]) {
-        console.log('RuntimeApi: ' + func_name);
         const func = this.definitions[func_name];
         if (!func) {
             return null;
@@ -94,6 +93,18 @@ const runtime_api = new RuntimeApi({
         const file_path = args[0] as string;
         ThisBrowserWindow.setRepresentedFilename(file_path);
         app.addRecentDocument(file_path);
+    },
+    'nyaovim:require-script-file': function(args) {
+        const script_path = args[0] as string;
+        require(script_path);
+    },
+    'nyaovim:call-global-function': function(args) {
+        const func_name = args[0] as string;
+        const argv = args[1] as RPCValue[];
+        const func = window[func_name] as Function;
+        if (func) {
+            func.apply(window, argv);
+        }
     },
 });
 
