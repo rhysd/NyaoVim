@@ -6,28 +6,28 @@
   "bundle": "typings/tsd.d.ts",
   "installed": {
     "node/node.d.ts": {
-      "commit": "8ea42cd8bb11863ed6f242d67c502288ebc45a7b"
+      "commit": "fab683ca77d0286b9d51aba6375deaceb41b22f5"
     },
     "github-electron/github-electron.d.ts": {
-      "commit": "8ea42cd8bb11863ed6f242d67c502288ebc45a7b"
+      "commit": "fab683ca77d0286b9d51aba6375deaceb41b22f5"
     },
     "bluebird/bluebird.d.ts": {
-      "commit": "8ea42cd8bb11863ed6f242d67c502288ebc45a7b"
+      "commit": "fab683ca77d0286b9d51aba6375deaceb41b22f5"
     },
     "flux/flux.d.ts": {
-      "commit": "8ea42cd8bb11863ed6f242d67c502288ebc45a7b"
+      "commit": "fab683ca77d0286b9d51aba6375deaceb41b22f5"
     },
     "react/react.d.ts": {
-      "commit": "8ea42cd8bb11863ed6f242d67c502288ebc45a7b"
+      "commit": "fab683ca77d0286b9d51aba6375deaceb41b22f5"
     },
     "webcomponents.js/webcomponents.js.d.ts": {
-      "commit": "24e12a7af994afa2226af70fbfae0adc78736a9e"
+      "commit": "fab683ca77d0286b9d51aba6375deaceb41b22f5"
     },
     "polymer/polymer.d.ts": {
-      "commit": "24e12a7af994afa2226af70fbfae0adc78736a9e"
+      "commit": "fab683ca77d0286b9d51aba6375deaceb41b22f5"
     },
     "mkdirp/mkdirp.d.ts": {
-      "commit": "11322524f8db9cdb921427cad84cd22fe2d4f965"
+      "commit": "fab683ca77d0286b9d51aba6375deaceb41b22f5"
     }
   }
 }

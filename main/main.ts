@@ -81,12 +81,17 @@ const ensure_nyaovimrc = exists(global.nyaovimrc_path).then((e: boolean) => {
 }).catch(err => console.error(err));
 
 function startMainWindow() {
+    'use strict';
+
     const index_html = 'file://' + join(__dirname, '..', 'renderer', 'main.html');
 
     let win = new BrowserWindow({
         width: 800,
         height: 600,
         useContentSize: true,
+        webPreferences: {
+            blinkFeatures: 'KeyboardEventKey'
+        } as any, // XXX: because 'blink feature is not added to d.ts yet.'
     });
 
     win.once('closed', function() {

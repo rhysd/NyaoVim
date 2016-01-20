@@ -75,6 +75,7 @@ For example, below configures font face and font size by `font` and `font-size` 
     argv$="[[argv]]"
     font-size="14"
     font="Ricty,monospace"
+    line-height="1.5"
 ></neovim-editor>
 ```
 
