@@ -1,8 +1,9 @@
-import {Menu, app, BrowserWindow} from 'electron';
+import {Menu, app} from 'electron';
 import {join} from 'path';
 import openAboutWindow from 'about-window';
 
 function startAboutWindow() {
+    'use strict';
     openAboutWindow(
         join(__dirname, '..', 'resources', 'icon', 'nyaovim-logo.png'),
         'Copyright (c) 2015 rhysd',
@@ -11,6 +12,7 @@ function startAboutWindow() {
 }
 
 export default function setMenu() {
+    'use strict';
     const template = [
         {
             label: 'Edit',
@@ -18,12 +20,12 @@ export default function setMenu() {
                 {
                     label: 'Undo',
                     accelerator: 'CmdOrCtrl+Z',
-                    role: 'undo'
+                    role: 'undo',
                 },
                 {
                     label: 'Redo',
                     accelerator: 'Shift+CmdOrCtrl+Z',
-                    role: 'redo'
+                    role: 'redo',
                 },
                 {
                     type: 'separator'
@@ -31,24 +33,24 @@ export default function setMenu() {
                 {
                     label: 'Cut',
                     accelerator: 'CmdOrCtrl+X',
-                    role: 'cut'
+                    role: 'cut',
                 },
                 {
                     label: 'Copy',
                     accelerator: 'CmdOrCtrl+C',
-                    role: 'copy'
+                    role: 'copy',
                 },
                 {
                     label: 'Paste',
                     accelerator: 'CmdOrCtrl+V',
-                    role: 'paste'
+                    role: 'paste',
                 },
                 {
                     label: 'Select All',
                     accelerator: 'CmdOrCtrl+A',
                     role: 'selectall',
                 },
-            ]
+            ],
         },
 
         {
@@ -57,25 +59,25 @@ export default function setMenu() {
                 {
                     label: 'Reload',
                     accelerator: 'CmdOrCtrl+R',
-                    click: (_: any, focusedWindow: GitHubElectron.BrowserWindow) => {
+                    click: (_: any, focusedWindow: Electron.BrowserWindow) => {
                         focusedWindow && focusedWindow.reload();
-                    }
+                    },
                 },
                 {
                     label: 'Toggle Full Screen',
                     accelerator: process.platform === 'darwin' ? 'Ctrl+Command+F' : 'F11',
-                    click: (_: any, focusedWindow: GitHubElectron.BrowserWindow) => {
+                    click: (_: any, focusedWindow: Electron.BrowserWindow) => {
                         focusedWindow && focusedWindow.setFullScreen(!focusedWindow.isFullScreen());
-                    }
+                    },
                 },
                 {
                     label: 'Open Developer Tools',
                     accelerator: process.platform === 'darwin' ? 'Alt+Command+I' : 'Ctrl+Shift+I',
-                    click: (_: any, focusedWindow: GitHubElectron.BrowserWindow) => {
+                    click: (_: any, focusedWindow: Electron.BrowserWindow) => {
                         focusedWindow && focusedWindow.webContents.openDevTools({detach: true});
-                    }
+                    },
                 },
-            ]
+            ],
         },
 
         {
@@ -85,14 +87,14 @@ export default function setMenu() {
                 {
                     label: 'Minimize',
                     accelerator: 'CmdOrCtrl+M',
-                    role: 'minimize'
+                    role: 'minimize',
                 },
                 {
                     label: 'Close',
                     accelerator: 'CmdOrCtrl+W',
-                    role: 'close'
+                    role: 'close',
                 },
-            ]
+            ],
         },
 
         {
@@ -103,11 +105,11 @@ export default function setMenu() {
                     label: 'About NyaoVim',
                     click: () => startAboutWindow(),
                 },
-            ]
+            ],
         },
-    ] as GitHubElectron.MenuItemOptions[];
+    ] as Electron.MenuItemOptions[];
 
-    if (process.platform == 'darwin') {
+    if (process.platform === 'darwin') {
         template.unshift({
             label: 'NyaoVim',
             submenu: [
@@ -128,16 +130,16 @@ export default function setMenu() {
                 {
                     label: 'Hide NyaoVim',
                     accelerator: 'Command+H',
-                    role: 'hide'
+                    role: 'hide',
                 },
                 {
                     label: 'Hide Others',
                     accelerator: 'Command+Shift+H',
-                    role: 'hideothers'
+                    role: 'hideothers',
                 },
                 {
                     label: 'Show All',
-                    role: 'unhide'
+                    role: 'unhide',
                 },
                 {
                     type: 'separator'
@@ -145,18 +147,18 @@ export default function setMenu() {
                 {
                     label: 'Quit',
                     accelerator: 'Command+Q',
-                    click: () => { app.quit(); }
+                    click: () => { app.quit(); },
                 },
-            ]
-        } as GitHubElectron.MenuItemOptions);
+            ],
+        } as Electron.MenuItemOptions);
 
-        template[3].submenu.push(
+        (template[3].submenu as Electron.MenuItemOptions[]).push(
             {
                 type: 'separator'
             },
             {
                 label: 'Bring All to Front',
-                role: 'front'
+                role: 'front',
             }
         );
     }

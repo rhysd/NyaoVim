@@ -14,6 +14,7 @@
     "app": "$(npm bin)/electron $(npm prefix)",
     "debug": "NODE_ENV=debug $(npm bin)/electron $(npm prefix)",
     "start": "npm run dep && npm run build && npm run app",
+    "watch": "guard --watchdir \"$(npm prefix)/main\" \"$(npm prefix)/renderer\" \"$(npm prefix)/typings\"",
     "clean": "rm -rf \"$(npm prefix)/build\" \"$(npm prefix)/typings\" \"$(npm prefix)/bower_components\" \"$(npm prefix)/node_modules\""
   },
   "repository": {
@@ -38,16 +39,16 @@
   },
   "homepage": "https://github.com/rhysd/NyaoVim#readme",
   "dependencies": {
-    "about-window": "^0.1.0",
+    "about-window": "^0.1.1",
     "electron-prebuilt": "^0.36.4",
     "mkdirp": "^0.5.1",
-    "neovim-component": "^0.3.6",
+    "neovim-component": "^0.4.0",
     "promised-neovim-client": "^1.0.0"
   },
   "devDependencies": {
     "bower": "^1.7.1",
     "browserify": "^12.0.1",
-    "tsd": "^0.6.5",
-    "typescript": "^1.7.3"
+    "typescript": "^1.7.3",
+    "typings": "^0.6.3"
   }
 }
