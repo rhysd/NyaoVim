@@ -111,7 +111,10 @@ Polymer({
             value: function() {
                 // Note: First and second arguments are related to Electron
                 const a = remote.process.argv.slice(2);
-                a.push('--cmd', `let\ g:nyaovim_version="${app.getVersion()}"`);
+                a.push(
+                    '--cmd', `let\ g:nyaovim_version="${app.getVersion()}"`,
+                    '--cmd', `set\ rtp+=${join(__dirname, '..', 'runtime').replace(' ', '\ ')}`
+                );
                 // XXX:
                 // Swap files are disabled because it shows message window on start up but frontend can't detect it.
                 a.push('-n');
@@ -140,8 +143,6 @@ Polymer({
                       component_loader.loadFromRTP(rtp);
                       component_loader.initially_loaded = true;
                   });
-
-            client.command(`set rtp+=${join(__dirname, '..', 'runtime').replace(' ', '\ ')} | runtime plugin/nyaovim.vim`);
 
             runtime_api.subscribe(client);
 
