@@ -40,7 +40,7 @@
   "homepage": "https://github.com/rhysd/NyaoVim#readme",
   "dependencies": {
     "about-window": "^0.1.1",
-    "electron-prebuilt": "^0.36.4",
+    "electron-prebuilt": "^0.36.6",
     "mkdirp": "^0.5.1",
     "neovim-component": "^0.4.0",
     "promised-neovim-client": "^1.0.0"

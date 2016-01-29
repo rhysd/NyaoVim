@@ -113,9 +113,16 @@ app.on('open-url', (e: Event, u: string) => {
 app.once(
     'ready',
     () => {
+        if (process.platform === 'darwin') {
+            // XXX:
+            // app.dock.setIcon() is not defined in github-electron.d.ts yet.
+            (app.dock as any).setIcon(join(__dirname, '..', 'resources', 'icon', 'nyaovim-logo.png'));
+        }
+
         ensure_nyaovimrc.then(
             () => startMainWindow()
         );
+
         setMenu();
     }
 );
