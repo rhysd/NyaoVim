@@ -6,16 +6,16 @@
   "main": "main/main.js",
   "bin": "./bin/cli.js",
   "scripts": {
-    "dep": "npm install && $(npm bin)/bower install && $(npm bin)/tsd install && mkdir -p build/renderer",
-    "build-main": "$(npm bin)/tsc -p $(npm prefix)/main",
-    "build-renderer": "$(npm bin)/tsc -p $(npm prefix)/renderer",
-    "build": "npm run build-main && npm run build-renderer",
-    "lint": "tslint $(git ls-files | grep -E \".ts$\")",
-    "app": "$(npm bin)/electron $(npm prefix)",
-    "debug": "NODE_ENV=debug $(npm bin)/electron $(npm prefix)",
-    "start": "npm run dep && npm run build && npm run app",
-    "watch": "guard --watchdir \"$(npm prefix)/main\" \"$(npm prefix)/renderer\" \"$(npm prefix)/typings\"",
-    "clean": "rm -rf \"$(npm prefix)/build\" \"$(npm prefix)/typings\" \"$(npm prefix)/bower_components\" \"$(npm prefix)/node_modules\""
+    "dep":            "npm install && bower install && typings install && mkdir -p build/renderer",
+    "build-main":     "tsc -p $(npm prefix)/main",
+    "build-renderer": "tsc -p $(npm prefix)/renderer",
+    "build":          "npm run build-main && npm run build-renderer",
+    "lint":           "tslint $(git ls-files | grep -E \".ts$\")",
+    "app":            "electron $(npm prefix)",
+    "debug":          "NODE_ENV=debug electron $(npm prefix)",
+    "start":          "npm run dep && npm run build && npm run app",
+    "watch":          "cd $(npm prefix) && guard --watchdir main renderer typings",
+    "clean":          "cd $(npm prefix) && rm -rf build typings bower_components node_modules"
   },
   "repository": {
     "type": "git",
