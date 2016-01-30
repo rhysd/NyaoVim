@@ -54,6 +54,8 @@ You can install NyaoVim as [npm package](https://www.npmjs.com/package/nyaovim).
 $ npm install -g nyaovim
 ```
 
+If you don't install Neovim yet, please install it following [Neovim's instaruction](https://github.com/neovim/neovim/wiki/Installing-Neovim) because NyaoVim internally uses `nvim` command.
+
 You can start NyaoVim with `nyaovim` command if you install this app with npm.
 
 ```sh
@@ -67,7 +69,7 @@ On first start up of NyaoVim, it creates `~/.config/nyaovim/nyaovimrc.html` for 
 ### Configure GUI Options
 
 I guess you're now thinking 'Hmm, font is not good and too small...'. You can configure some GUI options by properties of [`<neovim-editor>` properties](https://github.com/rhysd/neovim-component#neovim-editor-properties).
-For example, below configures font face and font size by `font` and `font-size` properties.
+For example, below configures font face and font size by `font` and `font-size` properties.  Then set line-height to 1.5 (for example, Atom adopts 1.5 as line-height).
 
 ```html
 <neovim-editor
@@ -93,7 +95,7 @@ Then you need to put popup tooltip UI to your NyaoVim interface.  Please open `~
 
 Please add `<popup-tooltip>` tag under `<neovim-editor>` tag as below
 
-```
+```html
 <neovim-editor id="nyaovim-editor" argv$="[[argv]]"></neovim-editor>
 <popup-tooltip editor="[[editor]]"></popup-tooltip>
 ```
