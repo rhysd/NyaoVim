@@ -127,6 +127,7 @@ Polymer({
     ready: function() {
         const element = document.getElementById('nyaovim-editor') as NeovimElement;
         const editor = element.editor;
+        editor.on('error', (err: Error) => alert(err.message));
         editor.on('quit', () => ThisBrowserWindow.close());
         this.editor = editor;
 
