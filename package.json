@@ -7,8 +7,8 @@
   "bin": "./bin/cli.js",
   "scripts": {
     "dep":            "npm install && bower install && typings install && mkdir -p build/renderer",
-    "build-main":     "tsc -p $(npm prefix)/main",
-    "build-renderer": "tsc -p $(npm prefix)/renderer",
+    "build-main":     "tsc --pretty -p $(npm prefix)/main",
+    "build-renderer": "tsc --pretty -p $(npm prefix)/renderer",
     "build":          "npm run build-main && npm run build-renderer",
     "lint":           "tslint $(git ls-files | grep -E \".ts$\")",
     "app":            "electron $(npm prefix)",
@@ -48,7 +48,7 @@
   "devDependencies": {
     "bower": "^1.7.1",
     "browserify": "^12.0.1",
-    "typescript": "^1.7.3",
+    "typescript": "^1.8.0",
     "typings": "^0.6.3"
   }
 }
