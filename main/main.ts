@@ -74,6 +74,11 @@ function prepareDefaultNyaovimrc() {
     });
 }
 
+function isRunFromNpmPackage() {
+    'use strict';
+    return app.getAppPath().indexOf('/NyaoVim.app/') === -1;
+}
+
 const ensure_nyaovimrc = exists(global.nyaovimrc_path).then((e: boolean) => {
     if (!e) {
         return prepareDefaultNyaovimrc();
@@ -113,7 +118,7 @@ app.on('open-url', (e: Event, u: string) => {
 app.once(
     'ready',
     () => {
-        if (process.platform === 'darwin') {
+        if (process.platform === 'darwin' && isRunFromNpmPackage()) {
             // XXX:
             // app.dock.setIcon() is not defined in github-electron.d.ts yet.
             (app.dock as any).setIcon(join(__dirname, '..', 'resources', 'icon', 'nyaovim-logo.png'));
