@@ -1,8 +1,10 @@
 import {remote} from 'electron';
 
-if (process.env.PATH.indexOf('/usr/local/bin') === -1) {
+if (process.env.PATH.indexOf('/usr/local/bin') === -1 && process.platform !== 'win32') {
     // Note:
-    // When app is started via clicking NyaoVim.app, $PATH is not set up.
+    // This solves the problem that $PATH is not set up when app is
+    // started via clicking NyaoVim.app.
+    //
     // XXX:
     // This is just a workaround.
     // If nvim is installed to other directory, we can't know that.
