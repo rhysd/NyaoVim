@@ -4,11 +4,10 @@ import openAboutWindow from 'about-window';
 
 function startAboutWindow() {
     'use strict';
-    openAboutWindow(
-        join(__dirname, '..', 'resources', 'icon', 'nyaovim-logo.png'),
-        'Copyright (c) 2015 rhysd',
-        'https://github.com/rhysd/NyaoVim'
-    );
+    openAboutWindow({
+        icon_path: join(__dirname, '..', 'resources', 'icon', 'nyaovim-logo.png'),
+        copyright: 'Copyright (c) 2015 rhysd',
+    });
 }
 
 export default function setMenu() {
