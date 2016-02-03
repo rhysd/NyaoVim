@@ -66,7 +66,7 @@ function prepareDefaultNyaovimrc() {
     </style>
 
     <!-- Component tags here -->
-    <neovim-editor id="nyaovim-editor" argv$="[[argv]]"></neovim-editor>
+    <neovim-editor id="nyaovim-editor" argv$="[[argv]]" font="monospace"></neovim-editor>
   </template>
 </dom-module>
 `;
