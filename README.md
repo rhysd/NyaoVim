@@ -48,7 +48,7 @@ UI plugins are easily installed to NyaoVim the same as other normal plugins.  Ea
 
 ### Getting Started
 
-You can install NyaoVim as [npm package](https://www.npmjs.com/package/nyaovim).  Currently no packaging release is available yet.
+You can install NyaoVim as [npm package](https://www.npmjs.com/package/nyaovim).  Currently no packaging release is available yet.  If you use Windows and haven't install Neovim yet, please read [first tips](docs/tips.md) at first.
 
 ```sh
 $ npm install -g nyaovim
