@@ -36,3 +36,17 @@ When a file icon is shown just left of title in title bar, you can select a file
 ## Don't detach the process
 
 NyaoVim's process is detached by default when launched from command line.  If you don't want to detach the editor process, please consider to use `--no-detach` option of `nyaovim` command.  If you always want to use it.  `alias nyaovim='nyaovim --no-detach'` in bashrc or zshrc may help you.
+
+## Load JavaScript
+
+If you want to load some JavaScript code, you can use `<script>` tag in `nyaovimrc.html`.  Put your favorite-named JavaScript code in `nyaovim` configuration directory at first.  Then load it as below.
+
+```html
+<dom-module id="nyaovim-app">
+    <!-- snip -->
+</dom-module>
+<script src="your-config.js"></script>
+```
+
+It ensures that the script is loaded after `<dom-module>` is loaded.
+
