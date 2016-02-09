@@ -27,12 +27,14 @@ export default class BrowserConfig {
     }
 
     apply(opt: Electron.BrowserWindowOptions): Electron.BrowserWindowOptions {
-        if (typeof this.loaded_config !== 'object') {
+        if (typeof this.loaded_config !== 'object' || this.loaded_config === null) {
             return opt;
         }
+
         if (typeof this.loaded_config.window_options === 'object') {
             extend(opt, this.loaded_config.window_options);
         }
+
         return opt;
     }
 }

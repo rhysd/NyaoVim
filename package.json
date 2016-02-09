@@ -6,7 +6,7 @@
   "main": "main/main.js",
   "bin": "./bin/cli.js",
   "scripts": {
-    "dep": "npm install && bower install && typings install && mkdir -p build/renderer",
+    "dep": "npm install && bower install && typings install",
     "build-main": "tsc --pretty -p $(npm prefix)/main",
     "build-renderer": "tsc --pretty -p $(npm prefix)/renderer",
     "build": "npm run build-main && npm run build-renderer",
@@ -48,7 +48,6 @@
   },
   "devDependencies": {
     "bower": "^1.7.1",
-    "browserify": "^12.0.1",
     "typescript": "^1.8.0",
     "typings": "^0.6.3"
   }
