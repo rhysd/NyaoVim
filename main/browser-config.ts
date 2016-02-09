@@ -2,8 +2,12 @@ import {join} from 'path';
 import {readFileSync} from 'fs';
 import extend = require('deep-extend');
 
+export interface BrowserConfigJson {
+    window_options: Electron.BrowserWindowOptions;
+}
+
 export default class BrowserConfig {
-    loaded_config: Electron.BrowserWindowOptions;
+    loaded_config: BrowserConfigJson;
 
     constructor() {
         this.loaded_config = null;
@@ -23,7 +27,12 @@ export default class BrowserConfig {
     }
 
     apply(opt: Electron.BrowserWindowOptions): Electron.BrowserWindowOptions {
-        extend(opt, this.loaded_config);
+        if (typeof this.loaded_config !== 'object') {
+            return opt;
+        }
+        if (typeof this.loaded_config.window_options === 'object') {
+            extend(opt, this.loaded_config.window_options);
+        }
         return opt;
     }
 }
