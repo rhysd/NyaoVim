@@ -2,7 +2,7 @@
   "ambientDependencies": {
     "bluebird": "github:DefinitelyTyped/DefinitelyTyped/bluebird/bluebird.d.ts#fab683ca77d0286b9d51aba6375deaceb41b22f5",
     "flux": "github:DefinitelyTyped/DefinitelyTyped/flux/flux.d.ts#fab683ca77d0286b9d51aba6375deaceb41b22f5",
-    "github-electron": "github:DefinitelyTyped/DefinitelyTyped/github-electron/github-electron.d.ts#c4826e748ddfc4c3b96dfe9636d6bd1b062baf8b",
+    "github-electron": "github:DefinitelyTyped/DefinitelyTyped/github-electron/github-electron.d.ts#04be44e2b5380acbc39439a8ac61bd7938fc77e0",
     "mkdirp": "github:DefinitelyTyped/DefinitelyTyped/mkdirp/mkdirp.d.ts#fab683ca77d0286b9d51aba6375deaceb41b22f5",
     "node": "github:DefinitelyTyped/DefinitelyTyped/node/node.d.ts#fab683ca77d0286b9d51aba6375deaceb41b22f5",
     "polymer": "github:DefinitelyTyped/DefinitelyTyped/polymer/polymer.d.ts#fab683ca77d0286b9d51aba6375deaceb41b22f5",

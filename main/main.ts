@@ -104,7 +104,7 @@ function startMainWindow() {
         autoHideMenuBar: true,
         webPreferences: {
             blinkFeatures: 'KeyboardEventKey'
-        } as any, // XXX: because 'blink feature is not added to d.ts yet.'
+        },
     } as Electron.BrowserWindowOptions;
 
     const user_config = browser_config.apply(default_config);
