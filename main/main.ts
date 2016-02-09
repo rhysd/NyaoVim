@@ -3,6 +3,7 @@ import {stat, writeFileSync} from 'fs';
 import {app, BrowserWindow, shell} from 'electron';
 import {sync as mkdirpSync} from 'mkdirp';
 import setMenu from './menu';
+import BrowserConfig from './browser-config';
 
 if (process.argv.indexOf('--help') !== -1) {
     console.log(`OVERVIEW: NyaoVim; Web-enhanced Extensible Neovim Frontend
@@ -86,19 +87,29 @@ const ensure_nyaovimrc = exists(global.nyaovimrc_path).then((e: boolean) => {
     }
 }).catch(err => console.error(err));
 
+const browser_config = new BrowserConfig();
+const prepare_browser_config
+    = browser_config.loadFrom(global.config_dir_path)
+        .catch(err => console.error(err));
+
 function startMainWindow() {
     'use strict';
 
     const index_html = 'file://' + join(__dirname, '..', 'renderer', 'main.html');
 
-    let win = new BrowserWindow({
+    const default_config = {
         width: 800,
         height: 600,
         useContentSize: true,
+        autoHideMenuBar: true,
         webPreferences: {
             blinkFeatures: 'KeyboardEventKey'
         } as any, // XXX: because 'blink feature is not added to d.ts yet.'
-    });
+    } as Electron.BrowserWindowOptions;
+
+    const user_config = browser_config.apply(default_config);
+
+    let win = new BrowserWindow(user_config);
 
     win.once('closed', function() {
         win = null;
@@ -125,7 +136,7 @@ app.once(
             (app.dock as any).setIcon(join(__dirname, '..', 'resources', 'icon', 'nyaovim-logo.png'));
         }
 
-        ensure_nyaovimrc.then(
+        Promise.all([ensure_nyaovimrc, prepare_browser_config]).then(
             () => startMainWindow()
         );
 

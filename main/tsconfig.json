@@ -9,6 +9,7 @@
     "sourceMap": true
   },
   "files": [
+    "browser-config.ts",
     "menu.ts",
     "main.ts",
     "lib.d.ts"
