@@ -66,9 +66,9 @@ You would see minimal Neovim GUI editor (as normal gVim).  This is Electron app 
 
 On first start up of NyaoVim, it creates `~/.config/nyaovim/nyaovimrc.html` for UI configuration (`%AppData%` instead of `.config` in Windows).  Yes, you can extend and configure UI components with HTML and CSS!
 
-### Configure GUI Options
+### Configure Editor Options
 
-I guess you're now thinking 'Hmm, font is not good and too small...'. You can configure some GUI options by properties of [`<neovim-editor>` properties](https://github.com/rhysd/neovim-component#neovim-editor-properties).
+I guess you're now thinking 'Hmm, font is not good and too small...'. You can configure some editor options by properties of [`<neovim-editor>` properties](https://github.com/rhysd/neovim-component#neovim-editor-properties).
 For example, below configures font face and font size by `font` and `font-size` properties.  Then set line-height to 1.5 (for example, Atom adopts 1.5 as line-height).
 
 ```html
@@ -114,6 +114,8 @@ More documents are put in [docs directory](docs).
 - [How to Make UI Plugin](docs/make-ui-plugin.md)
 - [Tips](docs/tips.md)
 - [FAQ](docs/faq.md)
+- [Runtime API](docs/runtime-api.md)
+- [Browser Config](docs/browser-config.md)
 
 ## License
 
