@@ -8,7 +8,7 @@ NyaoVim is rendered in browser window using [Electron](https://github.com/atom/e
 You can configure browser window options using `browser-config.json` in `~/.config/nyaovim/`.  It does not exist by default and you need to create it at first.
 
 ```sh
-$ echo "{\n  "window_options": {}\n}" > ~/.config/nyaovim/browser-config.json
+$ echo "{\n  \"window_options\": {}\n}" > ~/.config/nyaovim/browser-config.json
 ```
 
 `browser-config.json` contains one JSON object.  The object optionally contains below key/value entries.
