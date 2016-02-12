@@ -1,11 +1,13 @@
 import {join} from 'path';
 import {readFileSync} from 'fs';
+import {app} from 'electron';
 import extend = require('deep-extend');
 import windowStateKeeper = require('electron-window-state');
 
 export interface BrowserConfigJson {
     remember_window_state: boolean;
     window_options: Electron.BrowserWindowOptions;
+    single_instance: boolean;
 }
 
 export default class BrowserConfig {
@@ -74,5 +76,27 @@ export default class BrowserConfig {
             win.maximize();
         }
         return this.window_state;
+    }
+
+    configSingletonWindow(win: Electron.BrowserWindow) {
+        if (this.loaded_config === null || !this.loaded_config.single_instance) {
+            return false;
+        }
+        return app.makeSingleInstance((argv, cwd) => {
+            if (win.isMinimized()) {
+                win.restore();
+            }
+            win.focus();
+
+            // Note: Omit Electron binary and NyaoVim directory
+            const args = argv.slice(2);
+            if (args.length !== 0) {
+                win.webContents.send('nyaovim:exec-commands', [
+                    'cd ' + cwd,
+                    'args ' + args.join(' '),
+                ]);
+            }
+            return true;
+        });
     }
 }

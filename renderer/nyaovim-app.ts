@@ -1,5 +1,5 @@
 import {NeovimElement} from 'neovim-component';
-import {remote, shell} from 'electron';
+import {remote, shell, ipcRenderer as ipc} from 'electron';
 import {join} from 'path';
 import {readdirSync} from 'fs';
 import {Nvim, RPCValue} from 'promised-neovim-client';
@@ -158,6 +158,13 @@ Polymer({
             app.on('open-file', (e: Event, p: string) => {
                 e.preventDefault();
                 client.command('edit! ' + p);
+            });
+
+            ipc.on('nyaovim:exec-commands', (_: Event, cmds: string[]) => {
+                console.log('ipc: nyaovim:exec-commands', cmds);
+                for (const c of cmds) {
+                    client.command(c);
+                }
             });
         });
 

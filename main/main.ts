@@ -27,10 +27,6 @@ ${versions}
     app.quit();
 }
 
-// TODO:
-// Enable this application to make single instance by app.makeSingleInstance().
-// It should be controlled by window-config.json .
-
 const config_dir_name =
         process.platform !== 'darwin' ?
             app.getPath('appData') :
@@ -76,7 +72,7 @@ function prepareDefaultNyaovimrc() {
     });
 }
 
-function isRunFromNpmPackage() {
+function isRunFromNpmPackageOnDarwin() {
     'use strict';
     return app.getAppPath().indexOf('/NyaoVim.app/') === -1;
 }
@@ -111,6 +107,12 @@ function startMainWindow() {
 
     let win = new BrowserWindow(user_config);
 
+    const already_exists = browser_config.configSingletonWindow(win);
+    if (already_exists) {
+        app.quit();
+        return;
+    }
+
     browser_config.setupWindowState(win);
 
     win.once('closed', function() {
@@ -132,7 +134,7 @@ app.on('open-url', (e: Event, u: string) => {
 app.once(
     'ready',
     () => {
-        if (process.platform === 'darwin' && isRunFromNpmPackage()) {
+        if (process.platform === 'darwin' && isRunFromNpmPackageOnDarwin()) {
             // XXX:
             // app.dock.setIcon() is not defined in github-electron.d.ts yet.
             (app.dock as any).setIcon(join(__dirname, '..', 'resources', 'icon', 'nyaovim-logo.png'));
