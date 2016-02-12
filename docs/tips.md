@@ -20,6 +20,20 @@ endif
 
 `g:nyaovim_version` is a string which represents the version of NyaoVim.  You can also use it to check the version of NyaoVim.
 
+## Single Instance Application
+
+NyaoVim can become 'Single Instance Application'.
+Only one NyaoVim instance can exist in desktop.  If `nyaovim` command is secondly executed, it focuses on NyaoVim window which already exists, opens files specified with arguments in it, and simply quits.
+
+```sh
+$ nyaovim foo.c bar.c # Open NyaoVim firstly with foo.c and bar.c
+$ cd ~/blah
+$ nyaovim aaa.js bbb.js # Focus window which already exists, open aaa.js and bbb.js in it
+```
+
+You can make NyaoVim 'Single Instance Application' with `browser-config.json`.  Please read [the document](browser-config.md)
+
+
 ## Drag and Drop Files
 
 If you drag and drop a file to NyaoVim, NyaoVim will start to edit the file with `:edit!`.

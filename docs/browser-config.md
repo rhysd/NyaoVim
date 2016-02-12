@@ -14,7 +14,8 @@ $ echo "{\n  \"window_options\": {}\n}" > ~/.config/nyaovim/browser-config.json
 `browser-config.json` contains one JSON object.  The object optionally contains below key/value entries.
 
 - **window_options** : Its value is [options of `BrowserWindow` class of Electron](https://github.com/atom/electron/blob/master/docs/api/browser-window.md#new-browserwindowoptions).  You can configure many options here; `width`, `height`, `fullscreen`, `webPreferences`, and so on.
-- **remember_window_state** : Preserve the window state (position, size, fullscreen?, maximized?) at closing window and restore it at next start-up.  The state is written to `~/.config/nyaovim/window-state.json`.
+- **remember_window_state** : Boolean value.  Preserve the window state (position, size, fullscreen?, maximized?) at closing window and restore it at next start-up.  The state is written to `~/.config/nyaovim/window-state.json`.
+- **single_instance** : Boolean value.  If true, NyaoVim becomes 'Single Instance Application'.  Only one NyaoVim instance can exist in desktop.  If `nyaovim` command is secondly executed, it focuses on NyaoVim window which already exists, opens files specified as arguments in it, and simply quits.
 
 Below is an example:
 

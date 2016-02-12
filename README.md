@@ -81,6 +81,8 @@ For example, below configures font face and font size by `font` and `font-size` 
 ></neovim-editor>
 ```
 
+And you can also configure browser window options with `browser-config.json` (e.g. Preserving window state, Single instance app, and so on). See [tips](docs/tips.md) for more detail.
+
 ### Install UI Plugin
 
 For example, let's install [nyaovim-popup-tooltip](https://github.com/rhysd/nyaovim-popup-tooltip).
