@@ -18,3 +18,29 @@ declare module 'deep-extend' {
     function deepExtend(target: any, ...sources: any[]): any;
     export = deepExtend;
 }
+
+declare namespace ElectronWindowState {
+    interface WindowState {
+        x: number;
+        y: number;
+        width: number;
+        height: number;
+        isMaximized: boolean;
+        isFullScreen: boolean;
+        manage(win: Electron.BrowserWindow): void;
+        saveState(win: Electron.BrowserWindow): void;
+    }
+    interface WindowStateKeeperOptions {
+        defaultWidth?: number;
+        defaultHeight?: number;
+        path?: string;
+        file?: string;
+        maximize?: boolean;
+        fullScreen?: boolean;
+    }
+}
+
+declare module 'electron-window-state' {
+    function windowStateKeeper(opts: ElectronWindowState.WindowStateKeeperOptions): ElectronWindowState.WindowState;
+    export = windowStateKeeper;
+}

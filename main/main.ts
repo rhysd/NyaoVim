@@ -111,6 +111,8 @@ function startMainWindow() {
 
     let win = new BrowserWindow(user_config);
 
+    browser_config.setupWindowState(win);
+
     win.once('closed', function() {
         win = null;
     });
