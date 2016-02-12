@@ -1,7 +1,7 @@
 {
   "name": "nyaovim",
   "productName": "NyaoVim",
-  "version": "0.0.16",
+  "version": "0.0.17",
   "description": "Web-enhanced Extensible Neovim Frontend",
   "main": "main/main.js",
   "bin": "./bin/cli.js",
