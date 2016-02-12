@@ -14,6 +14,7 @@ $ echo "{\n  \"window_options\": {}\n}" > ~/.config/nyaovim/browser-config.json
 `browser-config.json` contains one JSON object.  The object optionally contains below key/value entries.
 
 - **window_options** : Its value is [options of `BrowserWindow` class of Electron](https://github.com/atom/electron/blob/master/docs/api/browser-window.md#new-browserwindowoptions).  You can configure many options here; `width`, `height`, `fullscreen`, `webPreferences`, and so on.
+- **remember_window_state** : Preserve the window state (position, size, fullscreen?, maximized?) at closing window and restore it at next start-up.  The state is written to `~/.config/nyaovim/window-state.json`.
 
 Below is an example:
 
@@ -28,7 +29,8 @@ Below is an example:
       "webgl": false,
       "plugins": true
     }
-  }
+  },
+  "remember_window_state": true
 }
 ```
 
