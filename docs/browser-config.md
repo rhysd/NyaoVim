@@ -31,7 +31,8 @@ Below is an example:
       "plugins": true
     }
   },
-  "remember_window_state": true
+  "remember_window_state": true,
+  "single_instance": true
 }
 ```
 
