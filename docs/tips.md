@@ -4,7 +4,7 @@ Tips
 ## Installation on Windows
 
 At first, you should install Visual C++ 2015 runtime from [official](https://www.microsoft.com/en-us/download).  Neovim requires it to run.
-Following [Neovim official instruction](https://github.com/neovim/neovim/wiki/Installing-Neovim#windows), download Neovim.zip from AppVeyor build results, unzip it, and set `bin` directory to `$PATH`.  After installation, please be sure that `nvim` command work correctly from PowerShell or CMD.exe.
+Following [Neovim official instruction](https://github.com/neovim/neovim/wiki/Installing-Neovim#windows), download Neovim.zip from AppVeyor build results, unzip it, and set `bin` directory to `$PATH`.  After installation, please be sure that `nvim` command works correctly from PowerShell or CMD.exe.
 Now you can install NyaoVim with [npm](https://www.npmjs.com/).  Please read 'Getting Started' subsection in [README](../README.md).  Currently zip-archived app is not released yet because NyaoVim is being developed yet.
 
 ## Check Running on NyaoVim in Vim script
