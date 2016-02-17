@@ -17,3 +17,10 @@ LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRA
 TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR
 THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
+
+
+
+Logo of this app is created based on Neovim logo licensed under CCA 3.0 Unported.
+The Neovim logo by Jason Long is licensed under the Creative Commons Attribution 3.0 Unported License.
+
+https://creativecommons.org/licenses/by/3.0/legalcode
