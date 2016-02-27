@@ -16,6 +16,7 @@ $ echo "{\n  \"window_options\": {}\n}" > ~/.config/nyaovim/browser-config.json
 - **window_options** : Its value is [options of `BrowserWindow` class of Electron](https://github.com/atom/electron/blob/master/docs/api/browser-window.md#new-browserwindowoptions).  You can configure many options here; `width`, `height`, `fullscreen`, `webPreferences`, and so on.
 - **remember_window_state** : Boolean value.  Preserve the window state (position, size, fullscreen?, maximized?) at closing window and restore it at next start-up.  The state is written to `~/.config/nyaovim/window-state.json`.
 - **single_instance** : Boolean value.  If true, NyaoVim becomes 'Single Instance Application'.  Only one NyaoVim instance can exist in desktop.  If `nyaovim` command is secondly executed, it focuses on NyaoVim window which already exists, opens files specified as arguments in it, and simply quits.
+- **enable_canvas_workaround** : Boolean value.  If you see that all the characters in window are renderered as square, please set this value to `true`.  Original issue is [here](https://github.com/rhysd/NyaoVim/issues/3).
 
 Below is an example:
 
