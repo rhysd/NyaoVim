@@ -91,8 +91,6 @@ const prepare_browser_config
 function startMainWindow() {
     'use strict';
 
-    browser_config.configCanvasWorkaround();
-
     const index_html = 'file://' + join(__dirname, '..', 'renderer', 'main.html');
 
     const default_config = {

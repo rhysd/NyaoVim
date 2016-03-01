@@ -8,7 +8,6 @@ export interface BrowserConfigJson {
     remember_window_state: boolean;
     window_options: Electron.BrowserWindowOptions;
     single_instance: boolean;
-    enable_canvas_workaround: boolean;
 }
 
 export default class BrowserConfig {
@@ -99,20 +98,5 @@ export default class BrowserConfig {
             }
             return true;
         });
-    }
-
-    configCanvasWorkaround() {
-        if (this.loaded_config === null || !this.loaded_config.enable_canvas_workaround) {
-            return;
-        }
-
-        // Note:
-        // Avoid <canvas> rendering problem.
-        //
-        // https://github.com/rhysd/NyaoVim/issues/3
-        // https://github.com/atom/electron/issues/4594
-        //
-        app.commandLine.appendArgument('--use-gl=egl');
-        process.env.MESA_GLSL_VERSION_OVERRIDE = '1.30';
     }
 }
