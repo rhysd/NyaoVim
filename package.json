@@ -1,7 +1,7 @@
 {
   "name": "nyaovim",
   "productName": "NyaoVim",
-  "version": "0.0.18",
+  "version": "0.0.19",
   "description": "Web-enhanced Extensible Neovim Frontend",
   "main": "main/main.js",
   "bin": "./bin/cli.js",
@@ -44,8 +44,8 @@
     "electron-prebuilt": "^0.36.7",
     "electron-window-state": "^2.0.0",
     "mkdirp": "^0.5.1",
-    "neovim-component": "^0.4.1",
-    "promised-neovim-client": "^1.0.0"
+    "neovim-component": "^0.5.1",
+    "promised-neovim-client": "^1.0.1"
   },
   "devDependencies": {
     "bower": "^1.7.1",
