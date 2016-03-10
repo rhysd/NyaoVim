@@ -35,4 +35,7 @@ If you don't want to add `nvim`'s directory path to `$PATH`, please specify the 
 ></neovim-editor>
 ```
 
+### Q. Where is your `init.vim`?
+
+[Here!](https://github.com/rhysd/dogfiles/blob/master/nvimrc) (Sorry for Japanese in comments.)
 
