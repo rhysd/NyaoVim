@@ -10,8 +10,10 @@
 
 ### Check lists (check `x` in `[ ]` of list items)
 
-- [ ] Test passed (if any code was modified)
-- [ ] Coding style (indentation, etc)
+- [ ] Coding style (if any code was modified)
+- [ ] Confirmed
+  - OS: {Please write here}
+  - `nvim` version: {Please write here}
 
 ### Additional Comments (if any)
 
