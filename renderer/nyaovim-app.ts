@@ -4,8 +4,6 @@ import {join} from 'path';
 import {readdirSync} from 'fs';
 import {Nvim, RPCValue} from 'promised-neovim-client';
 
-const app = remote.require('app');
-
 class ComponentLoader {
     initially_loaded: boolean;
     component_paths: string[];
@@ -89,7 +87,7 @@ const runtime_api = new RuntimeApi({
     },
     'nyaovim:edit-start': function(file_path: string) {
         ThisBrowserWindow.setRepresentedFilename(file_path);
-        app.addRecentDocument(file_path);
+        remote.app.addRecentDocument(file_path);
     },
     'nyaovim:require-script-file': function(script_path: string) {
         require(script_path);
@@ -112,7 +110,7 @@ Polymer({
                 // Note: First and second arguments are related to Electron
                 const a = remote.process.argv.slice(2);
                 a.push(
-                    '--cmd', `let\ g:nyaovim_version="${app.getVersion()}"`,
+                    '--cmd', `let\ g:nyaovim_version="${remote.app.getVersion()}"`,
                     '--cmd', `set\ rtp+=${join(__dirname, '..', 'runtime').replace(' ', '\ ')}`
                 );
                 // XXX:
@@ -155,12 +153,12 @@ Polymer({
                 }
             });
 
-            app.on('open-file', (e: Event, p: string) => {
+            remote.app.on('open-file', (e: Event, p: string) => {
                 e.preventDefault();
                 client.command('edit! ' + p);
             });
 
-            ipc.on('nyaovim:exec-commands', (_: Event, cmds: string[]) => {
+            ipc.on('nyaovim:exec-commands', (_: Electron.IpcRendererEvent, cmds: string[]) => {
                 console.log('ipc: nyaovim:exec-commands', cmds);
                 for (const c of cmds) {
                     client.command(c);

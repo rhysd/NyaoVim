@@ -1,4 +1,4 @@
-/// <reference path="../typings/browser.d.ts" />
+/// <reference path="../typings/index.d.ts" />
 
 declare module NodeJS {
     interface Global {

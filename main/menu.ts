@@ -73,7 +73,7 @@ export default function setMenu() {
                     label: 'Open Developer Tools',
                     accelerator: process.platform === 'darwin' ? 'Alt+Command+I' : 'Ctrl+Shift+I',
                     click: (_: any, focusedWindow: Electron.BrowserWindow) => {
-                        focusedWindow && focusedWindow.webContents.openDevTools({detach: true});
+                        focusedWindow && focusedWindow.webContents.openDevTools({mode: 'detach'});
                     },
                 },
             ],

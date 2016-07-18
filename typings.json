@@ -1,12 +1,14 @@
 {
-  "ambientDependencies": {
-    "bluebird": "github:DefinitelyTyped/DefinitelyTyped/bluebird/bluebird.d.ts#fab683ca77d0286b9d51aba6375deaceb41b22f5",
-    "flux": "github:DefinitelyTyped/DefinitelyTyped/flux/flux.d.ts#fab683ca77d0286b9d51aba6375deaceb41b22f5",
-    "github-electron": "github:DefinitelyTyped/DefinitelyTyped/github-electron/github-electron.d.ts#04be44e2b5380acbc39439a8ac61bd7938fc77e0",
-    "mkdirp": "github:DefinitelyTyped/DefinitelyTyped/mkdirp/mkdirp.d.ts#fab683ca77d0286b9d51aba6375deaceb41b22f5",
-    "node": "github:DefinitelyTyped/DefinitelyTyped/node/node.d.ts#fab683ca77d0286b9d51aba6375deaceb41b22f5",
-    "polymer": "github:DefinitelyTyped/DefinitelyTyped/polymer/polymer.d.ts#fab683ca77d0286b9d51aba6375deaceb41b22f5",
-    "react": "github:DefinitelyTyped/DefinitelyTyped/react/react.d.ts#fab683ca77d0286b9d51aba6375deaceb41b22f5",
-    "webcomponents.js": "github:DefinitelyTyped/DefinitelyTyped/webcomponents.js/webcomponents.js.d.ts#fab683ca77d0286b9d51aba6375deaceb41b22f5"
+  "globalDependencies": {
+    "bluebird": "registry:dt/bluebird#2.0.0+20160701023356",
+    "fbemitter": "registry:dt/fbemitter#2.0.0+20160618175531",
+    "flux": "registry:dt/flux#0.0.0+20160618175531",
+    "github-electron": "registry:dt/github-electron#1.2.5+20160624085047",
+    "immutable": "registry:dt/immutable#3.8.1+20160608070634",
+    "mkdirp": "registry:dt/mkdirp#0.3.0+20160317120654",
+    "node": "registry:dt/node#6.0.0+20160709114037",
+    "polymer": "registry:dt/polymer#1.1.6+20160317120654",
+    "react": "registry:dt/react#0.14.0+20160630100702",
+    "webcomponents.js": "registry:dt/webcomponents.js#0.6.0+20160317120654"
   }
 }

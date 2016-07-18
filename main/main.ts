@@ -121,7 +121,7 @@ function startMainWindow() {
 
     win.loadURL(index_html);
     if (process.env.NODE_ENV !== 'production') {
-        win.webContents.openDevTools({detach: true});
+        win.webContents.openDevTools({mode: 'detach'});
     }
 }
 
