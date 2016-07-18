@@ -1,6 +1,8 @@
 {
   "globalDependencies": {
     "bluebird": "registry:dt/bluebird#2.0.0+20160701023356",
+    "deep-extend": "registry:dt/deep-extend#0.4.1+20160212164839",
+    "electron-window-state": "registry:dt/electron-window-state#2.0.0+20160212171354",
     "fbemitter": "registry:dt/fbemitter#2.0.0+20160618175531",
     "flux": "registry:dt/flux#0.0.0+20160618175531",
     "github-electron": "registry:dt/github-electron#1.2.5+20160624085047",

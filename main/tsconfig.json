@@ -5,6 +5,11 @@
     "preserveConstEnums": true,
     "outDir": ".",
     "noImplicitAny": true,
+    "noImplicitReturns": true,
+    "noImplicitThis": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noEmitOnError": true,
     "target": "es5",
     "sourceMap": true
   },

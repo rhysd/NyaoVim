@@ -80,6 +80,9 @@ function isRunFromNpmPackageOnDarwin() {
 const ensure_nyaovimrc = exists(global.nyaovimrc_path).then((e: boolean) => {
     if (!e) {
         return prepareDefaultNyaovimrc();
+    } else {
+        // Note: This line needs because of TS7030 error
+        return undefined;
     }
 }).catch(err => console.error(err));
 
@@ -99,7 +102,7 @@ function startMainWindow() {
         useContentSize: true,
         autoHideMenuBar: true,
         webPreferences: {
-            blinkFeatures: 'KeyboardEventKey'
+            blinkFeatures: 'KeyboardEventKey',
         },
     } as Electron.BrowserWindowOptions;
 

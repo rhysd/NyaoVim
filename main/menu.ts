@@ -27,7 +27,7 @@ export default function setMenu() {
                     role: 'redo',
                 },
                 {
-                    type: 'separator'
+                    type: 'separator',
                 },
                 {
                     label: 'Cut',
@@ -58,23 +58,20 @@ export default function setMenu() {
                 {
                     label: 'Reload',
                     accelerator: 'CmdOrCtrl+R',
-                    click: (_: any, focusedWindow: Electron.BrowserWindow) => {
-                        focusedWindow && focusedWindow.reload();
-                    },
+                    click: (_: any, focusedWindow: Electron.BrowserWindow) =>
+                        focusedWindow && focusedWindow.reload(),
                 },
                 {
                     label: 'Toggle Full Screen',
                     accelerator: process.platform === 'darwin' ? 'Ctrl+Command+F' : 'F11',
-                    click: (_: any, focusedWindow: Electron.BrowserWindow) => {
-                        focusedWindow && focusedWindow.setFullScreen(!focusedWindow.isFullScreen());
-                    },
+                    click: (_: any, focusedWindow: Electron.BrowserWindow) =>
+                        focusedWindow && focusedWindow.setFullScreen(!focusedWindow.isFullScreen()),
                 },
                 {
                     label: 'Open Developer Tools',
                     accelerator: process.platform === 'darwin' ? 'Alt+Command+I' : 'Ctrl+Shift+I',
-                    click: (_: any, focusedWindow: Electron.BrowserWindow) => {
-                        focusedWindow && focusedWindow.webContents.openDevTools({mode: 'detach'});
-                    },
+                    click: (_: any, focusedWindow: Electron.BrowserWindow) =>
+                        focusedWindow && focusedWindow.webContents.openDevTools({mode: 'detach'}),
                 },
             ],
         },
@@ -117,14 +114,14 @@ export default function setMenu() {
                     click: () => startAboutWindow(),
                 },
                 {
-                    type: 'separator'
+                    type: 'separator',
                 },
                 {
                     label: 'Services',
                     role: 'services',
                 },
                 {
-                    type: 'separator'
+                    type: 'separator',
                 },
                 {
                     label: 'Hide NyaoVim',
@@ -141,7 +138,7 @@ export default function setMenu() {
                     role: 'unhide',
                 },
                 {
-                    type: 'separator'
+                    type: 'separator',
                 },
                 {
                     label: 'Quit',
@@ -153,7 +150,7 @@ export default function setMenu() {
 
         (template[3].submenu as Electron.MenuItemOptions[]).push(
             {
-                type: 'separator'
+                type: 'separator',
             },
             {
                 label: 'Bring All to Front',

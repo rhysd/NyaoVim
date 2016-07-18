@@ -49,6 +49,7 @@
   },
   "devDependencies": {
     "bower": "^1.7.1",
+    "tslint": "^3.13.0",
     "typescript": "^2.0.0",
     "typings": "^1.3.1"
   }
