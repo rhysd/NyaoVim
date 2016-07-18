@@ -69,6 +69,10 @@ export default class BrowserConfig {
         if (this.window_state === null) {
             return null;
         }
+        // Note:
+        // Using 'resize' event instead of 'close' event because of
+        // 'Object has been destroyed' error.
+        // See https://github.com/rhysd/NyaoVim/pull/63
         win.on('resize', () => {
             this.window_state.saveState(win);
         });
