@@ -69,9 +69,10 @@ export default class BrowserConfig {
         if (this.window_state === null) {
             return null;
         }
-        win.once('closed', () => {
+        win.on('resize', () => {
             this.window_state.saveState(win);
         });
+
         if (this.window_state.isMaximized) {
             win.maximize();
         }
