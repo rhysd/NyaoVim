@@ -1,21 +1,21 @@
 {
   "name": "nyaovim",
   "productName": "NyaoVim",
-  "version": "0.0.19",
+  "version": "0.0.20",
   "description": "Web-enhanced Extensible Neovim Frontend",
   "main": "main/main.js",
   "bin": "./bin/cli.js",
   "scripts": {
     "dep": "npm install && bower install && typings install",
-    "build-main": "tsc --pretty -p $(npm prefix)/main",
-    "build-renderer": "tsc --pretty -p $(npm prefix)/renderer",
+    "build-main": "tsc --pretty -p main",
+    "build-renderer": "tsc --pretty -p renderer",
     "build": "npm run build-main && npm run build-renderer",
     "lint": "tslint $(git ls-files | grep -E \".ts$\")",
     "app": "electron $(npm prefix)",
     "debug": "NODE_ENV=debug electron $(npm prefix)",
     "start": "npm run dep && npm run build && npm run app",
-    "watch": "cd $(npm prefix) && guard --watchdir main renderer typings",
-    "clean": "cd $(npm prefix) && rm -rf build typings bower_components node_modules"
+    "watch": "guard --watchdir main renderer typings",
+    "clean": "rm -rf build typings bower_components node_modules"
   },
   "repository": {
     "type": "git",
