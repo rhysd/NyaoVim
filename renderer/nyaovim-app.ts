@@ -164,6 +164,65 @@ Polymer({
                     client.command(c);
                 }
             });
+
+            ipc.on('nyaovim:copy', (_: Electron.IpcRendererEvent) => {
+                // get current vim mode
+                var m = client.commandOutput('echo mode()');
+                m.then(value => {
+                    //  mode() returns a strange '\n' at the beginning, why?
+                    value = value.trim();
+                    if (value.length > 0) {
+                        const ch = value[0];
+                        if (ch == 'v'  // visual mode
+                            || ch == 'V' // visual line mode
+                            || (ch == '^' && value[1] == 'V') // visual block mode
+                           ) {
+                            const command = '"+y';
+                            client.input(command);
+                        } else {
+                            // execute the default copy command
+                            const webContents = ThisBrowserWindow.webContents;
+                            webContents.copy();
+                        }
+                    }
+                });
+            });
+
+            ipc.on('nyaovim:paste', (_: Electron.IpcRendererEvent) => {
+                // get current vim mode
+                var m = client.commandOutput('echo mode()');
+                m.then(value => {
+                    //  mode() returns a strange '\n' at the beginning, why?
+                    value = value.trim();
+                    if (value.length > 0) {
+                        const ch = value[0];
+
+                        if (ch == 'v') {
+                            // visual mode
+                            // deleting the highlighted area
+                            // to prevent vim from copying the area to the pasteboard
+                            const command = '"_d"+P';
+                            client.input(command);
+                        } else if (ch == 'V') {
+                            // visual line mode
+                            const command = '"_d"+p';
+                            client.input(command);
+                        } else {
+                            if (ch == 'n') {
+                                // normal mode
+                                const command = '"+p';
+                                client.input(command);
+                            } else {
+                                // other modes
+                                const webContents = ThisBrowserWindow.webContents;
+
+                                // execute the default paste command
+                                webContents.paste();
+                            }
+                        }
+                    }
+                });
+            });
         });
 
         element.addEventListener('dragover', e => e.preventDefault());

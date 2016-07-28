@@ -37,12 +37,16 @@ export default function setMenu() {
                 {
                     label: 'Copy',
                     accelerator: 'CmdOrCtrl+C',
-                    role: 'copy',
+                    click: (_: any, win: Electron.BrowserWindow) => {
+                        win.webContents.send('nyaovim:copy');
+                    },
                 },
                 {
                     label: 'Paste',
                     accelerator: 'CmdOrCtrl+V',
-                    role: 'paste',
+                    click: (_: any, win: Electron.BrowserWindow) => {
+                        win.webContents.send('nyaovim:paste');
+                    },
                 },
                 {
                     label: 'Select All',
