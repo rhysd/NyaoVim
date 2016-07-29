@@ -164,6 +164,101 @@ Polymer({
                     client.command(c);
                 }
             });
+
+            ipc.on('nyaovim:copy', (_: Electron.IpcRendererEvent) => {
+                // get current vim mode
+                let m = client.eval('mode()');
+                m.then(obj => {
+                    const value = obj.toString();
+                    if (value.length === 0) {
+                        return;
+                    }
+                    const ch = value[0];
+                    const num = value.charCodeAt(0);
+                    if (ch === 'v'  // visual mode
+                        || ch === 'V' // visual line mode
+                        || num === 22 // visual block mode. 22 is returned by ':echo char2nr("\<C-v>")'
+                       ) {
+                        const command = '"+y';
+                        client.input(command);
+                    }
+                });
+            });
+
+            ipc.on('nyaovim:select-all', (_: Electron.IpcRendererEvent) => {
+                // get current vim mode.
+                let m = client.eval('mode()');
+                m.then(obj => {
+                    const value = obj.toString();
+                    if (value.length === 0) {
+                        return;
+                    }
+
+                    const command = value[0] === 'n' ? 'ggVG' : '<Esc>ggVG';
+                    client.input(command);
+                });
+            });
+
+            ipc.on('nyaovim:cut', (_: Electron.IpcRendererEvent) => {
+                // get current vim mode
+                let m = client.eval('mode()');
+                m.then(obj => {
+                    const value = obj.toString();
+                    if (value.length === 0) {
+                        return;
+                    }
+
+                    const ch = value[0];
+                    const num = value.charCodeAt(0);
+                    if (ch === 'v'  // visual mode
+                        || ch === 'V' // visual line mode
+                        || num === 22 // visual block mode
+                       ) {
+                        const command = '"+x';
+                        client.input(command);
+                    }
+                });
+            });
+
+            ipc.on('nyaovim:paste', (_: Electron.IpcRendererEvent) => {
+                // get current vim mode
+                let m = client.eval('mode()');
+                m.then(obj => {
+                    const value = obj.toString();
+                    if (value.length === 0) {
+                        return;
+                    }
+
+                    let command : string;
+
+                    const ch = value[0];
+                    const num = value.charCodeAt(0);
+                    if (ch === 'v') {
+                        // visual mode
+                        // deleting the highlighted area
+                        // to prevent vim from copying the area to the pasteboard
+                        command = '"_d"+P';
+                    } else if (ch === 'V') {
+                        // visual line mode
+                        command = '"_d"+p';
+                    } else if (num === 22) {
+                        // visual block mode
+                        // the "_d trick doesn't work here
+                        // because the visual selection will disappear after "_d command
+                        command = '"+p';
+                    } else if (ch === 'n') {
+                        // normal mode
+                        command = '"+p';
+                    } else if (ch === 'i') {
+                        // insert mode
+                        // gp will move cursor to the last of pasted content
+                        command = '<esc>"+gpi';
+                    }
+                    if (command) {
+                        client.input(command);
+                    }
+                });
+            });
         });
 
         element.addEventListener('dragover', e => e.preventDefault());

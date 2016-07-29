@@ -19,12 +19,21 @@ export default function setMenu() {
                 {
                     label: 'Undo',
                     accelerator: 'CmdOrCtrl+Z',
-                    role: 'undo',
+                    click: (_: any, win: Electron.BrowserWindow) => {
+                        win.webContents.send('nyaovim:exec-commands', [
+                            'undo'
+                        ]);
+
+                    },
                 },
                 {
                     label: 'Redo',
                     accelerator: 'Shift+CmdOrCtrl+Z',
-                    role: 'redo',
+                    click: (_: any, win: Electron.BrowserWindow) => {
+                        win.webContents.send('nyaovim:exec-commands', [
+                            'redo'
+                        ]);
+                    },
                 },
                 {
                     type: 'separator',
@@ -32,22 +41,30 @@ export default function setMenu() {
                 {
                     label: 'Cut',
                     accelerator: 'CmdOrCtrl+X',
-                    role: 'cut',
+                    click: (_: any, win: Electron.BrowserWindow) => {
+                        win.webContents.send('nyaovim:cut');
+                    },
                 },
                 {
                     label: 'Copy',
                     accelerator: 'CmdOrCtrl+C',
-                    role: 'copy',
+                    click: (_: any, win: Electron.BrowserWindow) => {
+                        win.webContents.send('nyaovim:copy');
+                    },
                 },
                 {
                     label: 'Paste',
                     accelerator: 'CmdOrCtrl+V',
-                    role: 'paste',
+                    click: (_: any, win: Electron.BrowserWindow) => {
+                        win.webContents.send('nyaovim:paste');
+                    },
                 },
                 {
                     label: 'Select All',
                     accelerator: 'CmdOrCtrl+A',
-                    role: 'selectall',
+                    click: (_: any, win: Electron.BrowserWindow) => {
+                        win.webContents.send('nyaovim:select-all');
+                    },
                 },
             ],
         },
