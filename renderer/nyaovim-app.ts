@@ -212,6 +212,11 @@ Polymer({
                                 // normal mode
                                 const command = '"+p';
                                 client.input(command);
+                            } else if (ch == 'i') {
+                                // insert mode
+                                // gp will move cursor to the last of pasted content
+                                const command = '<esc>"+gpi';
+                                client.input(command);
                             } else {
                                 // other modes
                                 const webContents = ThisBrowserWindow.webContents;
