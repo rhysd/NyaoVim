@@ -167,111 +167,91 @@ Polymer({
 
             ipc.on('nyaovim:copy', (_: Electron.IpcRendererEvent) => {
                 // get current vim mode
-                var m = client.commandOutput('echo mode()');
+                let m = client.commandOutput('echo mode()');
                 m.then(value => {
                     //  mode() returns a strange '\n' at the beginning, why?
                     value = value.trim();
-                    if (value.length > 0) {
-                        const ch = value[0];
-                        if (ch == 'v'  // visual mode
-                            || ch == 'V' // visual line mode
-                            || (ch == '^' && value[1] == 'V') // visual block mode
-                           ) {
-                            const command = '"+y';
-                            client.input(command);
-                        } else {
-                            // execute the default copy command
-                            const webContents = ThisBrowserWindow.webContents;
-                            webContents.copy();
-                        }
+                    if (value.length === 0) {
+                        return;
+                    }
+                    const ch = value[0];
+                    if (ch === 'v'  // visual mode
+                        || ch === 'V' // visual line mode
+                        || (ch === '^' && value[1] === 'V') // visual block mode
+                       ) {
+                        const command = '"+y';
+                        client.input(command);
                     }
                 });
             });
 
             ipc.on('nyaovim:select-all', (_: Electron.IpcRendererEvent) => {
-                // get current vim mode
-                var m = client.commandOutput('echo mode()');
-                m.then(value => {
-                    //  mode() returns a strange '\n' at the beginning, why?
-                    value = value.trim();
-                    if (value.length > 0) {
-                        const ch = value[0];
-
-                        if (ch == 'n') {
-                            const command = 'ggVG';
-                            client.input(command);
-                        } else {
-                            // switch to normal mode first
-                            const command = '<esc>ggVG';
-                            client.input(command);
-                        }
+                // get current vim mode.
+                // Note: eval('mode()') doesn't report visual block mode correctly
+                let m = client.eval('mode()');
+                m.then(obj=> {
+                    const value = obj.toString();
+                    if (value.length === 0) {
+                        return;
                     }
+
+                    const command = value[0] === 'n' ? 'ggVG' : '<Esc>ggVG';
+                    client.input(command);
                 });
             });
 
             ipc.on('nyaovim:cut', (_: Electron.IpcRendererEvent) => {
                 // get current vim mode
-                var m = client.commandOutput('echo mode()');
+                let m = client.commandOutput('echo mode()');
                 m.then(value => {
                     //  mode() returns a strange '\n' at the beginning, why?
                     value = value.trim();
-                    if (value.length > 0) {
-                        const ch = value[0];
+                    if (value.length === 0) {
+                        return;
+                    }
 
-                        if (ch == 'v'  // visual mode
-                            || ch == 'V' // visual line mode
-                            || (ch == '^' && value[1] == 'V') // visual block mode
-                           ) {
-                            const command = '"+x';
-                            client.input(command);
-                        } else {
-                            // other modes
-                            const webContents = ThisBrowserWindow.webContents;
-
-                            // execute the default cut command
-                            webContents.cut();
-                        }
+                    const ch = value[0];
+                    if (ch === 'v'  // visual mode
+                        || ch === 'V' // visual line mode
+                        || (ch === '^' && value[1] === 'V') // visual block mode
+                       ) {
+                        const command = '"+x';
+                        client.input(command);
                     }
                 });
             });
 
             ipc.on('nyaovim:paste', (_: Electron.IpcRendererEvent) => {
                 // get current vim mode
-                var m = client.commandOutput('echo mode()');
+                let m = client.commandOutput('echo mode()');
                 m.then(value => {
                     //  mode() returns a strange '\n' at the beginning, why?
                     value = value.trim();
-                    if (value.length > 0) {
-                        const ch = value[0];
+                    if (value.length === 0) {
+                        return;
+                    }
 
-                        if (ch == 'v') {
-                            // visual mode
-                            // deleting the highlighted area
-                            // to prevent vim from copying the area to the pasteboard
-                            const command = '"_d"+P';
-                            client.input(command);
-                        } else if (ch == 'V') {
-                            // visual line mode
-                            const command = '"_d"+p';
-                            client.input(command);
-                        } else {
-                            if (ch == 'n') {
-                                // normal mode
-                                const command = '"+p';
-                                client.input(command);
-                            } else if (ch == 'i') {
-                                // insert mode
-                                // gp will move cursor to the last of pasted content
-                                const command = '<esc>"+gpi';
-                                client.input(command);
-                            } else {
-                                // other modes
-                                const webContents = ThisBrowserWindow.webContents;
+                    let command : string;
 
-                                // execute the default paste command
-                                webContents.paste();
-                            }
-                        }
+                    const ch = value[0];
+                    if (ch === 'v') {
+                        // visual mode
+                        // deleting the highlighted area
+                        // to prevent vim from copying the area to the pasteboard
+                        command = '"_d"+P';
+                    } else if (ch === 'V') {
+                        // visual line mode
+                        command = '"_d"+p';
+                    } else if (ch === 'n') {
+                        // normal mode
+                        command = '"+p';
+                    } else if (ch === 'i') {
+                        // insert mode
+                        // gp will move cursor to the last of pasted content
+                        command = '<esc>"+gpi';
+                    }
+                    if (command) {
+                        client.input(command);
                     }
                 });
             });
