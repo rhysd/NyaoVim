@@ -30,7 +30,7 @@ If you don't want to add `nvim`'s directory path to `$PATH`, please specify the 
 ```html
 <neovim-editor
     id="nyaovim-editor"
-    argv$="[[argv]]"
+    argv="[[argv]]"
     nvim-cmd="/custom/path/to/nvim"
 ></neovim-editor>
 ```

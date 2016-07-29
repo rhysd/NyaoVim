@@ -74,7 +74,7 @@ For example, below configures font face and font size by `font` and `font-size` 
 ```html
 <neovim-editor
     id="nyaovim-editor"
-    argv$="[[argv]]"
+    argv="[[argv]]"
     font-size="14"
     font="Ricty,monospace"
     line-height="1.5"
