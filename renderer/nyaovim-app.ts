@@ -167,17 +167,17 @@ Polymer({
 
             ipc.on('nyaovim:copy', (_: Electron.IpcRendererEvent) => {
                 // get current vim mode
-                let m = client.commandOutput('echo mode()');
-                m.then(value => {
-                    //  mode() returns a strange '\n' at the beginning, why?
-                    value = value.trim();
+                let m = client.eval('mode()');
+                m.then(obj => {
+                    const value = obj.toString();
                     if (value.length === 0) {
                         return;
                     }
                     const ch = value[0];
+                    const num = value.charCodeAt(0);
                     if (ch === 'v'  // visual mode
                         || ch === 'V' // visual line mode
-                        || (ch === '^' && value[1] === 'V') // visual block mode
+                        || num === 22 // visual block mode. 22 is returned by ':echo char2nr("\<C-v>")'
                        ) {
                         const command = '"+y';
                         client.input(command);
@@ -187,9 +187,8 @@ Polymer({
 
             ipc.on('nyaovim:select-all', (_: Electron.IpcRendererEvent) => {
                 // get current vim mode.
-                // Note: eval('mode()') doesn't report visual block mode correctly
                 let m = client.eval('mode()');
-                m.then(obj=> {
+                m.then(obj => {
                     const value = obj.toString();
                     if (value.length === 0) {
                         return;
@@ -202,18 +201,18 @@ Polymer({
 
             ipc.on('nyaovim:cut', (_: Electron.IpcRendererEvent) => {
                 // get current vim mode
-                let m = client.commandOutput('echo mode()');
-                m.then(value => {
-                    //  mode() returns a strange '\n' at the beginning, why?
-                    value = value.trim();
+                let m = client.eval('mode()');
+                m.then(obj => {
+                    const value = obj.toString();
                     if (value.length === 0) {
                         return;
                     }
 
                     const ch = value[0];
+                    const num = value.charCodeAt(0);
                     if (ch === 'v'  // visual mode
                         || ch === 'V' // visual line mode
-                        || (ch === '^' && value[1] === 'V') // visual block mode
+                        || num === 22 // visual block mode
                        ) {
                         const command = '"+x';
                         client.input(command);
@@ -223,10 +222,9 @@ Polymer({
 
             ipc.on('nyaovim:paste', (_: Electron.IpcRendererEvent) => {
                 // get current vim mode
-                let m = client.commandOutput('echo mode()');
-                m.then(value => {
-                    //  mode() returns a strange '\n' at the beginning, why?
-                    value = value.trim();
+                let m = client.eval('mode()');
+                m.then(obj => {
+                    const value = obj.toString();
                     if (value.length === 0) {
                         return;
                     }
@@ -234,6 +232,7 @@ Polymer({
                     let command : string;
 
                     const ch = value[0];
+                    const num = value.charCodeAt(0);
                     if (ch === 'v') {
                         // visual mode
                         // deleting the highlighted area
@@ -242,6 +241,11 @@ Polymer({
                     } else if (ch === 'V') {
                         // visual line mode
                         command = '"_d"+p';
+                    } else if (num === 22) {
+                        // visual block mode
+                        // the "_d trick doesn't work here
+                        // because the visual selection will disappear after "_d command
+                        command = '"+p';
                     } else if (ch === 'n') {
                         // normal mode
                         command = '"+p';
