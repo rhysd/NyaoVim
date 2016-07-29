@@ -188,6 +188,27 @@ Polymer({
                 });
             });
 
+            ipc.on('nyaovim:select-all', (_: Electron.IpcRendererEvent) => {
+                // get current vim mode
+                var m = client.commandOutput('echo mode()');
+                m.then(value => {
+                    //  mode() returns a strange '\n' at the beginning, why?
+                    value = value.trim();
+                    if (value.length > 0) {
+                        const ch = value[0];
+
+                        if (ch == 'n') {
+                            const command = 'ggVG';
+                            client.input(command);
+                        } else {
+                            // switch to normal mode first
+                            const command = '<esc>ggVG';
+                            client.input(command);
+                        }
+                    }
+                });
+            });
+
             ipc.on('nyaovim:paste', (_: Electron.IpcRendererEvent) => {
                 // get current vim mode
                 var m = client.commandOutput('echo mode()');

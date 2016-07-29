@@ -51,7 +51,9 @@ export default function setMenu() {
                 {
                     label: 'Select All',
                     accelerator: 'CmdOrCtrl+A',
-                    role: 'selectall',
+                    click: (_: any, win: Electron.BrowserWindow) => {
+                        win.webContents.send('nyaovim:select-all');
+                    },
                 },
             ],
         },
