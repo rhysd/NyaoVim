@@ -32,7 +32,9 @@ export default function setMenu() {
                 {
                     label: 'Cut',
                     accelerator: 'CmdOrCtrl+X',
-                    role: 'cut',
+                    click: (_: any, win: Electron.BrowserWindow) => {
+                        win.webContents.send('nyaovim:cut');
+                    },
                 },
                 {
                     label: 'Copy',

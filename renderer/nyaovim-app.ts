@@ -209,6 +209,32 @@ Polymer({
                 });
             });
 
+            ipc.on('nyaovim:cut', (_: Electron.IpcRendererEvent) => {
+                // get current vim mode
+                var m = client.commandOutput('echo mode()');
+                m.then(value => {
+                    //  mode() returns a strange '\n' at the beginning, why?
+                    value = value.trim();
+                    if (value.length > 0) {
+                        const ch = value[0];
+
+                        if (ch == 'v'  // visual mode
+                            || ch == 'V' // visual line mode
+                            || (ch == '^' && value[1] == 'V') // visual block mode
+                           ) {
+                            const command = '"+x';
+                            client.input(command);
+                        } else {
+                            // other modes
+                            const webContents = ThisBrowserWindow.webContents;
+
+                            // execute the default cut command
+                            webContents.cut();
+                        }
+                    }
+                });
+            });
+
             ipc.on('nyaovim:paste', (_: Electron.IpcRendererEvent) => {
                 // get current vim mode
                 var m = client.commandOutput('echo mode()');
