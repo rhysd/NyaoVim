@@ -253,6 +253,12 @@ Polymer({
                         // insert mode
                         // gp will move cursor to the last of pasted content
                         command = '<esc>"+gpi';
+                    } else {
+                         // other modes (e.g. command line mode)
+                         const webContents = ThisBrowserWindow.webContents;
+
+                         // execute the default paste command
+                         webContents.paste();
                     }
                     if (command) {
                         client.input(command);
