@@ -253,6 +253,9 @@ Polymer({
                         // insert mode
                         // gp will move cursor to the last of pasted content
                         command = '<esc>"+gpi';
+                    } else if (ch === 'c') {
+                         // command line mode
+                        command = '<c-r>+';
                     }
                     if (command) {
                         client.input(command);
