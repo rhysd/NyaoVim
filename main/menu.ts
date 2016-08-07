@@ -19,17 +19,16 @@ export default function setMenu() {
                 {
                     label: 'Undo',
                     accelerator: 'CmdOrCtrl+Z',
-                    click: (_: any, win: Electron.BrowserWindow) => {
+                    click: (_, win) => {
                         win.webContents.send('nyaovim:exec-commands', [
                             'undo'
                         ]);
-
                     },
                 },
                 {
                     label: 'Redo',
                     accelerator: 'Shift+CmdOrCtrl+Z',
-                    click: (_: any, win: Electron.BrowserWindow) => {
+                    click: (_, win) => {
                         win.webContents.send('nyaovim:exec-commands', [
                             'redo'
                         ]);
@@ -41,28 +40,28 @@ export default function setMenu() {
                 {
                     label: 'Cut',
                     accelerator: 'CmdOrCtrl+X',
-                    click: (_: any, win: Electron.BrowserWindow) => {
+                    click: (_, win) => {
                         win.webContents.send('nyaovim:cut');
                     },
                 },
                 {
                     label: 'Copy',
                     accelerator: 'CmdOrCtrl+C',
-                    click: (_: any, win: Electron.BrowserWindow) => {
+                    click: (_, win) => {
                         win.webContents.send('nyaovim:copy');
                     },
                 },
                 {
                     label: 'Paste',
                     accelerator: 'CmdOrCtrl+V',
-                    click: (_: any, win: Electron.BrowserWindow) => {
+                    click: (_, win) => {
                         win.webContents.send('nyaovim:paste');
                     },
                 },
                 {
                     label: 'Select All',
                     accelerator: 'CmdOrCtrl+A',
-                    click: (_: any, win: Electron.BrowserWindow) => {
+                    click: (_, win) => {
                         win.webContents.send('nyaovim:select-all');
                     },
                 },
@@ -75,20 +74,29 @@ export default function setMenu() {
                 {
                     label: 'Reload',
                     accelerator: 'CmdOrCtrl+R',
-                    click: (_: any, focusedWindow: Electron.BrowserWindow) =>
-                        focusedWindow && focusedWindow.reload(),
+                    click: (_, focusedWindow) => {
+                        if (focusedWindow) {
+                            focusedWindow.reload();
+                        }
+                    },
                 },
                 {
                     label: 'Toggle Full Screen',
                     accelerator: process.platform === 'darwin' ? 'Ctrl+Command+F' : 'F11',
-                    click: (_: any, focusedWindow: Electron.BrowserWindow) =>
-                        focusedWindow && focusedWindow.setFullScreen(!focusedWindow.isFullScreen()),
+                    click: (_, focusedWindow) => {
+                        if (focusedWindow) {
+                            focusedWindow.setFullScreen(!focusedWindow.isFullScreen());
+                        }
+                    },
                 },
                 {
                     label: 'Open Developer Tools',
                     accelerator: process.platform === 'darwin' ? 'Alt+Command+I' : 'Ctrl+Shift+I',
-                    click: (_: any, focusedWindow: Electron.BrowserWindow) =>
-                        focusedWindow && focusedWindow.webContents.openDevTools({mode: 'detach'}),
+                    click: (_, focusedWindow) => {
+                        if (focusedWindow) {
+                            focusedWindow.webContents.openDevTools({mode: 'detach'});
+                        }
+                    },
                 },
             ],
         },

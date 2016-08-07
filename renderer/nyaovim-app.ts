@@ -79,20 +79,20 @@ class RuntimeApi {
 const component_loader = new ComponentLoader();
 const ThisBrowserWindow = remote.getCurrentWindow();
 const runtime_api = new RuntimeApi({
-    'nyaovim:load-path': function(html_path: string) {
+    'nyaovim:load-path': (html_path: string) => {
         component_loader.loadComponent(html_path);
     },
-    'nyaovim:load-plugin-dir': function(dir_path: string) {
+    'nyaovim:load-plugin-dir': (dir_path: string) => {
         component_loader.loadPluginDir(dir_path);
     },
-    'nyaovim:edit-start': function(file_path: string) {
+    'nyaovim:edit-start': (file_path: string) => {
         ThisBrowserWindow.setRepresentedFilename(file_path);
         remote.app.addRecentDocument(file_path);
     },
-    'nyaovim:require-script-file': function(script_path: string) {
+    'nyaovim:require-script-file': (script_path: string) => {
         require(script_path);
     },
-    'nyaovim:call-global-function': function(func_name: string, args: RPCValue[]) {
+    'nyaovim:call-global-function': (func_name: string, args: RPCValue[]) => {
         const func = (window as any)[func_name];
         if (func /*&& func is Function*/) {
             func.apply(window, args);
@@ -165,7 +165,7 @@ Polymer({
                 }
             });
 
-            ipc.on('nyaovim:copy', (_: Electron.IpcRendererEvent) => {
+            ipc.on('nyaovim:copy', () => {
                 // get current vim mode
                 let m = client.eval('mode()');
                 m.then(obj => {
@@ -185,7 +185,7 @@ Polymer({
                 });
             });
 
-            ipc.on('nyaovim:select-all', (_: Electron.IpcRendererEvent) => {
+            ipc.on('nyaovim:select-all', () => {
                 // get current vim mode.
                 let m = client.eval('mode()');
                 m.then(obj => {
@@ -199,7 +199,7 @@ Polymer({
                 });
             });
 
-            ipc.on('nyaovim:cut', (_: Electron.IpcRendererEvent) => {
+            ipc.on('nyaovim:cut', () => {
                 // get current vim mode
                 let m = client.eval('mode()');
                 m.then(obj => {
@@ -220,7 +220,7 @@ Polymer({
                 });
             });
 
-            ipc.on('nyaovim:paste', (_: Electron.IpcRendererEvent) => {
+            ipc.on('nyaovim:paste', () => {
                 // get current vim mode
                 let m = client.eval('mode()');
                 m.then(obj => {
@@ -274,5 +274,5 @@ Polymer({
         });
     },
 
-    // TODO: Remove all listeners on detached
+    // TODO: Remove all listeners when detached
 });
