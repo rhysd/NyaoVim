@@ -229,7 +229,7 @@ Polymer({
                         return;
                     }
 
-                    let command : string;
+                    let command: string;
 
                     const ch = value[0];
                     const num = value.charCodeAt(0);

@@ -20,18 +20,14 @@ export default function setMenu() {
                     label: 'Undo',
                     accelerator: 'CmdOrCtrl+Z',
                     click: (_, win) => {
-                        win.webContents.send('nyaovim:exec-commands', [
-                            'undo'
-                        ]);
+                        win.webContents.send('nyaovim:exec-commands', ['undo']);
                     },
                 },
                 {
                     label: 'Redo',
                     accelerator: 'Shift+CmdOrCtrl+Z',
                     click: (_, win) => {
-                        win.webContents.send('nyaovim:exec-commands', [
-                            'redo'
-                        ]);
+                        win.webContents.send('nyaovim:exec-commands', ['redo']);
                     },
                 },
                 {
