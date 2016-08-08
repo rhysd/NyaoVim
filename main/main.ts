@@ -123,7 +123,7 @@ function startMainWindow() {
     });
 
     win.loadURL(index_html);
-    if (process.env.NODE_ENV !== 'production') {
+    if (process.env.NODE_ENV === 'debug') {
         win.webContents.openDevTools({mode: 'detach'});
     }
 }
