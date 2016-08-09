@@ -66,8 +66,8 @@
     "deep-extend": "^0.4.1",
     "electron-window-state": "^3.0.3",
     "mkdirp": "^0.5.1",
-    "neovim-component": "^0.7.1",
-    "promised-neovim-client": "^1.0.2"
+    "neovim-component": "^0.7.2",
+    "promised-neovim-client": "^1.1.1"
   },
   "devDependencies": {
     "bower": "^1.7.1",
