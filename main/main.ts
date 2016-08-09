@@ -113,7 +113,7 @@ function startMainWindow() {
     const already_exists = browser_config.configSingletonWindow(win);
     if (already_exists) {
         app.quit();
-        return;
+        return null;
     }
 
     browser_config.setupWindowState(win);
@@ -126,6 +126,8 @@ function startMainWindow() {
     if (process.env.NODE_ENV !== 'production') {
         win.webContents.openDevTools({mode: 'detach'});
     }
+
+    return win;
 }
 
 app.once('window-all-closed', () => app.quit());
@@ -143,10 +145,14 @@ app.once(
             (app.dock as any).setIcon(join(__dirname, '..', 'resources', 'icon', 'nyaovim-logo.png'));
         }
 
-        Promise.all([ensure_nyaovimrc, prepare_browser_config]).then(
-            () => startMainWindow()
-        );
-
-        setMenu();
+        Promise.all([
+            ensure_nyaovimrc,
+            prepare_browser_config,
+        ]).then(() => {
+            const w = startMainWindow();
+            if (w !== null) {
+                setMenu(w);
+            }
+        });
     }
 );
