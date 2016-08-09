@@ -112,8 +112,7 @@ function prepareIpc(client: Nvim) {
 
     ipc.on('nyaovim:copy', () => {
         // get current vim mode
-        client.eval('mode()').then(obj => {
-            const value = obj.toString(); // XXX
+        client.eval('mode()').then((value: string) => {
             if (value.length === 0) {
                 return;
             }
@@ -130,8 +129,7 @@ function prepareIpc(client: Nvim) {
 
     ipc.on('nyaovim:select-all', () => {
         // get current vim mode.
-        client.eval('mode()').then(obj => {
-            const value = obj.toString(); // XXX
+        client.eval('mode()').then((value: string) => {
             if (value.length === 0) {
                 return;
             }
@@ -143,8 +141,7 @@ function prepareIpc(client: Nvim) {
 
     ipc.on('nyaovim:cut', () => {
         // get current vim mode
-        client.eval('mode()').then(obj => {
-            const value = obj.toString(); // XXX
+        client.eval('mode()').then((value: string) => {
             if (value.length === 0) {
                 return;
             }
@@ -162,8 +159,7 @@ function prepareIpc(client: Nvim) {
 
     ipc.on('nyaovim:paste', () => {
         // get current vim mode
-        client.eval('mode()').then(obj => {
-            const value = obj.toString(); // XXX
+        client.eval('mode()').then((value: string) => {
             if (value.length === 0) {
                 return;
             }
