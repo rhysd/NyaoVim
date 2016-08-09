@@ -100,6 +100,108 @@ const runtime_api = new RuntimeApi({
     },
 });
 
+function prepareIpc(client: Nvim) {
+    'use strict';
+
+    ipc.on('nyaovim:exec-commands', (_: Electron.IpcRendererEvent, cmds: string[]) => {
+        console.log('ipc: nyaovim:exec-commands', cmds);
+        for (const c of cmds) {
+            client.command(c);
+        }
+    });
+
+    ipc.on('nyaovim:copy', () => {
+        // get current vim mode
+        client.eval('mode()').then(obj => {
+            const value = obj.toString(); // XXX
+            if (value.length === 0) {
+                return;
+            }
+            const ch = value[0];
+            const code = value.charCodeAt(0);
+            if (ch === 'v'       // visual mode
+                || ch === 'V'    // visual line mode
+                || code === 22   // visual block mode. 22 is returned by ':echo char2nr("\<C-v>")'
+                ) {
+                client.input('"+y');
+            }
+        });
+    });
+
+    ipc.on('nyaovim:select-all', () => {
+        // get current vim mode.
+        client.eval('mode()').then(obj => {
+            const value = obj.toString(); // XXX
+            if (value.length === 0) {
+                return;
+            }
+
+            const command = value[0] === 'n' ? 'ggVG' : '<Esc>ggVG';
+            client.input(command);
+        });
+    });
+
+    ipc.on('nyaovim:cut', () => {
+        // get current vim mode
+        client.eval('mode()').then(obj => {
+            const value = obj.toString(); // XXX
+            if (value.length === 0) {
+                return;
+            }
+
+            const ch = value[0];
+            const num = value.charCodeAt(0);
+            if (ch === 'v'  // visual mode
+                || ch === 'V' // visual line mode
+                || num === 22 // visual block mode
+                ) {
+                client.input('"+x');
+            }
+        });
+    });
+
+    ipc.on('nyaovim:paste', () => {
+        // get current vim mode
+        client.eval('mode()').then(obj => {
+            const value = obj.toString(); // XXX
+            if (value.length === 0) {
+                return;
+            }
+
+            let command: string;
+
+            const ch = value[0];
+            const code = value.charCodeAt(0);
+            if (ch === 'v') {
+                // visual mode
+                // deleting the highlighted area
+                // to prevent vim from copying the area to the pasteboard
+                command = '"_d"+P';
+            } else if (ch === 'V') {
+                // visual line mode
+                command = '"_d"+p';
+            } else if (code === 22 || ch === 'n') {
+                // visual block mode
+                // the "_d trick doesn't work here
+                // because the visual selection will disappear after "_d command
+                // or normal mode
+                command = '"+p';
+            } else if (ch === 'i') {
+                // insert mode
+                // gp will move cursor to the last of pasted content
+                command = '<C-o>"+gp';
+            } else if (ch === 'c') {
+                    // command line mode
+                command = '<C-r>+';
+            }
+
+            if (command) {
+                client.input(command);
+            }
+        });
+    });
+}
+
 Polymer({
     is: 'nyaovim-app',
 
@@ -158,110 +260,7 @@ Polymer({
                 client.command('edit! ' + p);
             });
 
-            ipc.on('nyaovim:exec-commands', (_: Electron.IpcRendererEvent, cmds: string[]) => {
-                console.log('ipc: nyaovim:exec-commands', cmds);
-                for (const c of cmds) {
-                    client.command(c);
-                }
-            });
-
-            ipc.on('nyaovim:copy', () => {
-                // get current vim mode
-                let m = client.eval('mode()');
-                m.then(obj => {
-                    const value = obj.toString();
-                    if (value.length === 0) {
-                        return;
-                    }
-                    const ch = value[0];
-                    const num = value.charCodeAt(0);
-                    if (ch === 'v'  // visual mode
-                        || ch === 'V' // visual line mode
-                        || num === 22 // visual block mode. 22 is returned by ':echo char2nr("\<C-v>")'
-                       ) {
-                        const command = '"+y';
-                        client.input(command);
-                    }
-                });
-            });
-
-            ipc.on('nyaovim:select-all', () => {
-                // get current vim mode.
-                let m = client.eval('mode()');
-                m.then(obj => {
-                    const value = obj.toString();
-                    if (value.length === 0) {
-                        return;
-                    }
-
-                    const command = value[0] === 'n' ? 'ggVG' : '<Esc>ggVG';
-                    client.input(command);
-                });
-            });
-
-            ipc.on('nyaovim:cut', () => {
-                // get current vim mode
-                let m = client.eval('mode()');
-                m.then(obj => {
-                    const value = obj.toString();
-                    if (value.length === 0) {
-                        return;
-                    }
-
-                    const ch = value[0];
-                    const num = value.charCodeAt(0);
-                    if (ch === 'v'  // visual mode
-                        || ch === 'V' // visual line mode
-                        || num === 22 // visual block mode
-                       ) {
-                        const command = '"+x';
-                        client.input(command);
-                    }
-                });
-            });
-
-            ipc.on('nyaovim:paste', () => {
-                // get current vim mode
-                let m = client.eval('mode()');
-                m.then(obj => {
-                    const value = obj.toString();
-                    if (value.length === 0) {
-                        return;
-                    }
-
-                    let command: string;
-
-                    const ch = value[0];
-                    const num = value.charCodeAt(0);
-                    if (ch === 'v') {
-                        // visual mode
-                        // deleting the highlighted area
-                        // to prevent vim from copying the area to the pasteboard
-                        command = '"_d"+P';
-                    } else if (ch === 'V') {
-                        // visual line mode
-                        command = '"_d"+p';
-                    } else if (num === 22) {
-                        // visual block mode
-                        // the "_d trick doesn't work here
-                        // because the visual selection will disappear after "_d command
-                        command = '"+p';
-                    } else if (ch === 'n') {
-                        // normal mode
-                        command = '"+p';
-                    } else if (ch === 'i') {
-                        // insert mode
-                        // gp will move cursor to the last of pasted content
-                        command = '<esc>"+gpi';
-                    } else if (ch === 'c') {
-                         // command line mode
-                        command = '<c-r>+';
-                    }
-                    if (command) {
-                        client.input(command);
-                    }
-                });
-            });
+            prepareIpc(client);
         });
 
         element.addEventListener('dragover', e => e.preventDefault());
