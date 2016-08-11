@@ -205,7 +205,7 @@ Polymer({
         argv: {
             type: Array,
             value: function() {
-                var electron_argc =  1; // the first argument of standalone distribution is the application path
+                let electron_argc =  1; // the first argument of standalone distribution is the application path
                 if (remote.process.argv.length > 1
                     && 'electron' === basename(remote.process.argv[0]).toLowerCase()) {
                     // Note: First and second arguments are related to Electron
