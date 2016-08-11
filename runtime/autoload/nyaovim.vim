@@ -19,3 +19,11 @@ endfunction
 function! nyaovim#call_javascript_function(func_name, args) abort
     call rpcnotify(0, 'nyaovim:call-global-function', a:func_name, a:args)
 endfunction
+
+function! nyaovim#open_devtools(...) abort
+    let mode = a:0 > 0 ? a:1 : 'detach'
+    if index(['right', 'bottom', 'undocked', 'detach'], mode) == -1
+        throw "nyaovim: Invalid mode '" . mode . "' for DevTools.  Mode must be one of 'right', 'bottom', 'undocked' or 'detach'"
+    endif
+    call rpcnotify(0, 'nyaovim:open-devtools', mode)
+endfunction

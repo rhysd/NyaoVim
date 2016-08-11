@@ -27,6 +27,10 @@ Load `script_path` JavaScript file with Node.js's `require()` function.
 
 Call JavaScript `func_name` global function with `args`.  `args` values in Vim script will be converted to JavaScript values.
 
+### `nyaovim#open_devtools(mode)`
+
+[Open DevTools](https://github.com/electron/electron/blob/master/docs/api/web-contents.md#contentsopendevtoolsoptions) for NyaoVim.  `mode` determines how to open DevTools window and should be one of `'right'`, `'bottom'`, `'undocked'` or `'detach'`.  If omitted, `'detach'` will be set.
+
 ## Subscriable events
 
 With Neovim msgpack API, you can receive rpc nortifications.

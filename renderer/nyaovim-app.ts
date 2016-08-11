@@ -98,6 +98,10 @@ const runtime_api = new RuntimeApi({
             func.apply(window, args);
         }
     },
+    'nyaovim:open-devtools': (mode: 'right' | 'bottom' | 'undocked' | 'detach') => {
+        const contents = remote.getCurrentWebContents();
+        contents.openDevTools({mode});
+    },
 });
 
 function prepareIpc(client: Nvim) {
@@ -209,7 +213,7 @@ Polymer({
                 const a = remote.process.argv.slice(2);
                 a.push(
                     '--cmd', `let\ g:nyaovim_version="${remote.app.getVersion()}"`,
-                    '--cmd', `set\ rtp+=${join(__dirname, '..', 'runtime').replace(' ', '\ ')}`
+                    '--cmd', `set\ rtp+=${join(__dirname, '..', 'runtime').replace(' ', '\ ')}`,
                 );
                 // XXX:
                 // Swap files are disabled because it shows message window on start up but frontend can't detect it.
