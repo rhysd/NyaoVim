@@ -100,13 +100,12 @@ function startMainWindow() {
         width: 800,
         height: 600,
         useContentSize: true,
-        autoHideMenuBar: true,
         webPreferences: {
             blinkFeatures: 'KeyboardEventKey',
         },
     } as Electron.BrowserWindowOptions;
 
-    const user_config = browser_config.apply(default_config);
+    const user_config = browser_config.applyToOptions(default_config);
 
     let win = new BrowserWindow(user_config);
 
@@ -117,6 +116,9 @@ function startMainWindow() {
     }
 
     browser_config.setupWindowState(win);
+    if (browser_config.loaded_config.show_menubar === false) {
+        win.setMenuBarVisibility(false);
+    }
 
     win.once('closed', function() {
         win = null;

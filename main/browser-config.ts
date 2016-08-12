@@ -8,6 +8,7 @@ export interface BrowserConfigJson {
     remember_window_state: boolean;
     window_options: Electron.BrowserWindowOptions;
     single_instance: boolean;
+    show_menubar: boolean;
 }
 
 export default class BrowserConfig {
@@ -32,7 +33,7 @@ export default class BrowserConfig {
         });
     }
 
-    apply(opt: Electron.BrowserWindowOptions): Electron.BrowserWindowOptions {
+    applyToOptions(opt: Electron.BrowserWindowOptions): Electron.BrowserWindowOptions {
         if (typeof this.loaded_config !== 'object' || this.loaded_config === null) {
             return opt;
         }
