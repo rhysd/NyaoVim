@@ -17,7 +17,7 @@ export default class NyaoVim extends Application {
 
     getRendererProcessLogs() {
         return this.client.getRenderProcessLogs().then(
-            logs => logs.map(l => `[${l.level}]: ${l.message}`)
+            logs => logs.map(l => `[${l.level}] ${l.message}`)
         );
     }
 

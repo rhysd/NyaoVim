@@ -5,7 +5,6 @@
     "preserveConstEnums": true,
     "noImplicitAny": true,
     "noImplicitReturns": true,
-    "noImplicitThis": true,
     "noUnusedLocals": true,
     "noEmitOnError": true,
     "strictNullChecks": true,

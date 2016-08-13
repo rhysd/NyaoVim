@@ -13,14 +13,37 @@ describe('Startup', () => {
         });
     });
 
-    after(done => {
+    after(function(done) {
         if (!nyaovim || !nyaovim.isRunning()) {
             return done();
         }
-        nyaovim.stop().then(done).catch(e => {
-            console.error('after(): ', e);
-            done();
-        });
+
+        const cleanup = () => {
+            nyaovim.stop().then(done).catch(e => {
+                console.error('after(): ', e);
+                done();
+            });
+        };
+
+        if (this.currentTest.state === 'failed') {
+            client.getRenderProcessLogs().then(logs => {
+                console.log('Renderer process logs');
+                console.log('=====================\n');
+                for (const l of logs) {
+                    console.log(`[${l.level}] ${l.message}`);
+                }
+            }).then(() =>
+                client.getMainProcessLogs()
+            ).then(logs => {
+                console.log('Main process logs');
+                console.log('=================\n');
+                for (const l of logs) {
+                    console.log(l);
+                }
+            }).then(cleanup);
+        } else {
+            cleanup();
+        }
     });
 
     it('opens a window', () => {
