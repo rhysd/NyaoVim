@@ -5,12 +5,12 @@ describe('Startup', () => {
     let nyaovim: NyaoVim;
     let client: WebdriverIO.Client<void>;
 
-    before(done => {
+    before(() => {
         nyaovim = new NyaoVim();
-        nyaovim.start().then(() => {
+        return nyaovim.start().then(() => {
             client = nyaovim.client;
-            return client.pause(3000);  // Wait starting nvim process
-        }).then(done).catch(done);
+            return client.pause(3000);  // Wait for starting nvim process
+        });
     });
 
     after(done => {
@@ -23,33 +23,33 @@ describe('Startup', () => {
         });
     });
 
-    it('opens a window', done => {
-        client.getWindowCount().then((count: number) => {
+    it('opens a window', () => {
+        return client.getWindowCount().then((count: number) => {
             assert.equal(count, 1);
-            done();
+        }).then(() =>
+            nyaovim.browserWindow.isVisible()
+        ).then((visible: boolean) => {
+            assert.isTrue(visible);
         });
     });
 
-    it('does not occur any error', done => {
-        client.getRenderProcessLogs().then(logs => {
+    it('does not occur any error', () => {
+        return client.getRenderProcessLogs().then(logs => {
             for (const l of logs) {
                 assert.notEqual(l.level, 'error');
                 assert.notEqual(l.level, 'warning');
             }
         });
-        done();
     });
 
-    it('renders <neovim-editor> in HTML', done => {
-        client.element('neovim-editor').then(e => {
+    it('renders <neovim-editor> in HTML', () => {
+        return client.element('neovim-editor').then(e => {
             assert.isNotNull(e.value);
-            done();
         });
     });
 
-    it('spawns nvim process without error', done => {
-        client.execute(() => (document as any).getElementById('nyaovim-editor').editor.process.started)
-            .then(result => assert.isTrue(result.value))
-            .then(done);
+    it('spawns nvim process without error', () => {
+        return client.execute(() => (document as any).getElementById('nyaovim-editor').editor.process.started)
+            .then(result => assert.isTrue(result.value));
     });
 });
