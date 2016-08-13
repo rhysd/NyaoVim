@@ -1,18 +1,11 @@
 language: node_js
 node_js: "6"
-os: linux
+os:
+    - osx
+    # - linux
 sudo: required
 before_install:
-    - sudo add-apt-repository ppa:neovim-ppa/unstable -y
-    - sudo apt-get -qq update
-    - sudo apt-get install -y software-properties-common python-software-properties
-    - sudo apt-get install -y neovim
-    - export DISPLAY=:99.0
-    - sh -e /etc/init.d/xvfb start
-    - sleep 3
-    # - brew tap neovim/neovim
-    # - brew update
-    # - brew install --HEAD --with-release neovim/neovim/neovim
+    - ./scripts/travis-before-install.sh
 install:
     - npm run dep
 script:
