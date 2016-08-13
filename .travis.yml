@@ -1,0 +1,24 @@
+language: node_js
+node_js: "6"
+os: osx
+before_install:
+    - brew tap neovim/neovim
+    - brew install --HEAD neovim
+    - nvim --version
+install:
+    - npm run dep
+script:
+    - npm run build
+    - npm run lint
+    - npm run test
+cache:
+    directories:
+        - node_modules
+notifications:
+    email:
+        on_success: never
+        on_failure: change
+
+# branches:
+#     only:
+#         - master
