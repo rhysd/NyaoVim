@@ -209,8 +209,12 @@ Polymer({
         argv: {
             type: Array,
             value: function() {
-                // Note: First and second arguments are related to Electron
-                const a = remote.process.argv.slice(2);
+                // Note:
+                // First and second arguments are related to Electron
+                // XXX:
+                // Spectron additionally passes many specific arguments to process and 'nvim' process
+                // will fail because of them.  As a workaround, we stupidly ignore arguments on E2E tests.
+                const a = process.env.NYAOVIM_E2E_TEST_RUNNING ? [] : remote.process.argv.slice(2);
                 a.push(
                     '--cmd', `let\ g:nyaovim_version="${remote.app.getVersion()}"`,
                     '--cmd', `set\ rtp+=${join(__dirname, '..', 'runtime').replace(' ', '\ ')}`,

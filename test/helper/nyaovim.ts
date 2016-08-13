@@ -4,12 +4,13 @@ import {Application} from 'spectron';
 import * as electron from 'electron-prebuilt';
 
 export default class NyaoVim extends Application {
-    constructor() {
+    constructor(debug: boolean = false) {
         super({
             path: electron,
             args: [join(__dirname, '..', '..')],
             env: Object.assign({}, process.env, {
-                NODE_ENV: 'production',
+                NODE_ENV: debug ? 'debug' : 'production',
+                NYAOVIM_E2E_TEST_RUNNING: 'true',
             }),
         });
     }

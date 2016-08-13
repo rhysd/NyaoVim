@@ -9,14 +9,18 @@ describe('Startup', () => {
         nyaovim = new NyaoVim();
         nyaovim.start().then(() => {
             client = nyaovim.client;
-            return client.waitUntilWindowLoaded();
-        }).then(done);
+            return client.pause(3000);  // Wait starting nvim process
+        }).then(done).catch(done);
     });
 
     after(done => {
-        if (nyaovim && nyaovim.isRunning()) {
-            nyaovim.stop().then(done);
+        if (!nyaovim || !nyaovim.isRunning()) {
+            return done();
         }
+        nyaovim.stop().then(done).catch(e => {
+            console.error('after(): ', e);
+            done();
+        });
     });
 
     it('opens a window', done => {
