@@ -7,3 +7,4 @@
 /main/**/*.js.map
 /renderer/**/*.js
 /renderer/**/*.js.map
+/test/**/*.js

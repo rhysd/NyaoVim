@@ -14,7 +14,9 @@
     "app": "electron $(npm prefix)",
     "debug": "NODE_ENV=debug electron $(npm prefix)",
     "start": "npm run dep && npm run build && npm run app",
-    "watch": "guard --watchdir main renderer typings",
+    "build-test": "tsc --pretty -p test/",
+    "test": "npm run build-test && mocha test/smoke",
+    "watch": "guard --watchdir main renderer test",
     "clean": "rm -rf build typings bower_components node_modules"
   },
   "repository": {
@@ -49,6 +51,9 @@
   },
   "devDependencies": {
     "bower": "^1.7.1",
+    "chai": "^3.5.0",
+    "mocha": "^3.0.2",
+    "spectron": "^3.3.0",
     "tslint": "^3.14.0",
     "typescript": "^2.0.0",
     "typings": "^1.3.2"
