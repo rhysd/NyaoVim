@@ -3,7 +3,7 @@ node_js: "6"
 os: osx
 before_install:
     - brew tap neovim/neovim
-    - brew install --HEAD neovim
+    - brew install --HEAD --with-release neovim/neovim/neovim
     - nvim --version
 install:
     - npm run dep
