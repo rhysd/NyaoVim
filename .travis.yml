@@ -1,14 +1,22 @@
 language: node_js
 node_js: "6"
-os: osx
+os: linux
+sudo: required
 before_install:
-    - brew tap neovim/neovim
-    - brew update
-    - brew install --HEAD --with-release neovim/neovim/neovim
-    - nvim --version
+    - sudo apt-get install software-properties-common python-software-properties
+    - sudo add-apt-repository ppa:neovim-ppa/unstable
+    - sudo apt-get update
+    - sudo apt-get install neovim
+    - export DISPLAY=:99.0
+    - sh -e /etc/init.d/xvfb start
+    - sleep 3
+    # - brew tap neovim/neovim
+    # - brew update
+    # - brew install --HEAD --with-release neovim/neovim/neovim
 install:
     - npm run dep
 script:
+    - nvim --version
     - npm run build
     - npm run lint
     - npm run test
