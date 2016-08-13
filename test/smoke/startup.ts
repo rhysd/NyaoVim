@@ -29,4 +29,27 @@ describe('Startup', () => {
             done();
         });
     });
+
+    it('does not occur any error', done => {
+        client.getRenderProcessLogs().then(logs => {
+            for (const l of logs) {
+                assert.notEqual(l.level, 'error');
+                assert.notEqual(l.level, 'warning');
+            }
+        });
+        done();
+    });
+
+    it('renders <neovim-editor> in HTML', done => {
+        client.element('neovim-editor').then(e => {
+            assert.isNotNull(e.value);
+            done();
+        });
+    });
+
+    it('spawns nvim process without error', done => {
+        client.execute(() => (document as any).getElementById('nyaovim-editor').editor.process.started)
+            .then(result => assert.isTrue(result.value))
+            .then(done);
+    });
 });
