@@ -25,8 +25,7 @@ guard :shell do
     build(:renderer, m[0])
   end
 
-  watch %r[^typings] do |m|
-    build('', m[0])
-    sleep 1 # Avoid bulk file updates
+  watch %r[^test/.+\.ts$] do |m|
+    build(:test, m[0])
   end
 end
