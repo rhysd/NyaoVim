@@ -12,10 +12,10 @@
     "build": "npm run build-main && npm run build-renderer",
     "lint": "tslint $(git ls-files | grep -E \"\\\\.ts$\")",
     "app": "electron $(npm prefix)",
-    "debug": "NODE_ENV=debug electron $(npm prefix)",
+    "debug": "ELECTRON_ENABLE_LOGGING=true ELECTRON_ENABLE_STACK_DUMPING=true NODE_ENV=debug electron $(npm prefix)",
     "start": "npm run dep && npm run build && npm run app",
     "build-test": "tsc --pretty -p test/",
-    "test": "npm run build-test && mocha test/smoke",
+    "smoke-test": "npm run build-test && mocha test/smoke",
     "watch": "guard --watchdir main renderer test",
     "clean": "rm -rf build typings bower_components node_modules"
   },
