@@ -12,7 +12,7 @@
     "build": "npm run build-main && npm run build-renderer",
     "lint": "tslint $(git ls-files | grep -E \"\\\\.ts$\")",
     "app": "electron $(npm prefix)",
-    "debug": "ELECTRON_ENABLE_LOGGING=true ELECTRON_ENABLE_STACK_DUMPING=true NODE_ENV=debug electron $(npm prefix)",
+    "debug": "ELECTRON_ENABLE_STACK_DUMPING=true NODE_ENV=debug electron $(npm prefix)",
     "start": "npm run dep && npm run build && npm run app",
     "build-test": "tsc --pretty -p test/",
     "smoke-test": "npm run build-test && mocha test/smoke",
@@ -43,19 +43,19 @@
   "dependencies": {
     "about-window": "^1.3.1",
     "deep-extend": "^0.4.1",
-    "electron-prebuilt": "^1.3.2",
-    "electron-window-state": "^3.0.3",
+    "electron-prebuilt": "^1.3.5",
+    "electron-window-state": "^3.0.4",
     "mkdirp": "^0.5.1",
-    "neovim-component": "^0.7.2",
-    "promised-neovim-client": "^1.1.1"
+    "neovim-component": "^0.8.0",
+    "promised-neovim-client": "^2.0.2"
   },
   "devDependencies": {
     "bower": "^1.7.1",
     "chai": "^3.5.0",
     "mocha": "^3.0.2",
     "spectron": "github:rhysd/spectron#fix-stdin-broken-pipe",
-    "tslint": "^3.14.0",
+    "tslint": "^3.15.1",
     "typescript": "^2.0.0",
-    "typings": "^1.3.2"
+    "typings": "^1.3.3"
   }
 }
