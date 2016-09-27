@@ -1,6 +1,6 @@
 import {join} from 'path';
 import {stat, writeFileSync} from 'fs';
-import {app, BrowserWindow, shell} from 'electron';
+import {app, BrowserWindow, shell, nativeImage} from 'electron';
 import {sync as mkdirpSync} from 'mkdirp';
 import setMenu from './menu';
 import BrowserConfig from './browser-config';
@@ -103,6 +103,7 @@ function startMainWindow() {
         webPreferences: {
             blinkFeatures: 'KeyboardEventKey',
         },
+        icon: nativeImage.createFromPath(join(__dirname, '..', 'resources', 'icon', 'nyaovim-logo.png')),
     } as Electron.BrowserWindowOptions;
 
     const user_config = browser_config.applyToOptions(default_config);
