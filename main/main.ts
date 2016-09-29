@@ -27,6 +27,10 @@ ${versions}
     app.quit();
 }
 
+process.on('unhandledRejection', (reason: string, p: Promise<any>) => {
+    console.error('Fatal: Unhandled rejection at: Promise', p, 'Reason:', reason);
+});
+
 const config_dir_name =
         process.platform !== 'darwin' ?
             app.getPath('appData') :
