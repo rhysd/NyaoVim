@@ -121,7 +121,7 @@ function startMainWindow() {
     }
 
     browser_config.setupWindowState(win);
-    if (browser_config.loaded_config.show_menubar === false) {
+    if (browser_config.loaded_config !== null && browser_config.loaded_config.show_menubar === false) {
         win.setMenuBarVisibility(false);
     }
 
