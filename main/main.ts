@@ -31,6 +31,9 @@ process.on('unhandledRejection', (reason: string, p: Promise<any>) => {
     console.error('Fatal: Unhandled rejection at: Promise', p, 'Reason:', reason);
 });
 
+const is_run_from_npm_package_on_darwin =
+    app.getAppPath().indexOf('/NyaoVim.app/') === -1;
+
 const config_dir_name =
         process.platform !== 'darwin' ?
             app.getPath('appData') :
@@ -74,11 +77,6 @@ function prepareDefaultNyaovimrc() {
 `;
         writeFileSync(global.nyaovimrc_path, contents, 'utf8');
     });
-}
-
-function isRunFromNpmPackageOnDarwin() {
-    'use strict';
-    return app.getAppPath().indexOf('/NyaoVim.app/') === -1;
 }
 
 const ensure_nyaovimrc = exists(global.nyaovimrc_path).then((e: boolean) => {
@@ -130,7 +128,7 @@ function startMainWindow() {
     });
 
     win.loadURL(index_html);
-    if (process.env.NODE_ENV !== 'production') {
+    if (process.env.NODE_ENV !== 'production' && is_run_from_npm_package_on_darwin) {
         win.webContents.openDevTools({mode: 'detach'});
     }
 
@@ -146,7 +144,7 @@ app.on('open-url', (e: Event, u: string) => {
 app.once(
     'ready',
     () => {
-        if (process.platform === 'darwin' && isRunFromNpmPackageOnDarwin()) {
+        if (process.platform === 'darwin' && is_run_from_npm_package_on_darwin) {
             // XXX:
             // app.dock.setIcon() is not defined in github-electron.d.ts yet.
             (app.dock as any).setIcon(join(__dirname, '..', 'resources', 'icon', 'nyaovim-logo.png'));
