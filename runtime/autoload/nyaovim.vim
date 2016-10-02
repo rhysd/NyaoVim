@@ -27,3 +27,10 @@ function! nyaovim#open_devtools(...) abort
     endif
     call rpcnotify(0, 'nyaovim:open-devtools', mode)
 endfunction
+
+" TODO:
+" This function should return the result of JavaScript code using request
+" instead of notification.
+function! nyaovim#execute_javascript(code) abort
+    call rpcnotify(0, 'nyaovim:execute-javascript', a:code)
+endfunction

@@ -102,6 +102,19 @@ const runtime_api = new RuntimeApi({
         const contents = remote.getCurrentWebContents();
         contents.openDevTools({mode});
     },
+    'nyaovim:execute-javascript': (code: string) => {
+        if (typeof code !== 'string') {
+            console.error('nyaovim:execute-javascript: Not a string', code);
+            return;
+        }
+        try {
+            /* tslint:disable */
+            eval(code);
+            /* tslint:enable */
+        } catch (e) {
+            console.error('While executing javascript:', e);
+        }
+    },
 });
 
 function prepareIpc(client: Nvim) {

@@ -31,6 +31,19 @@ Call JavaScript `func_name` global function with `args`.  `args` values in Vim s
 
 [Open DevTools](https://github.com/electron/electron/blob/master/docs/api/web-contents.md#contentsopendevtoolsoptions) for NyaoVim.  `mode` determines how to open DevTools window and should be one of `'right'`, `'bottom'`, `'undocked'` or `'detach'`.  If omitted, `'detach'` will be set.
 
+### `nyaovim#execute_javascript(code)`
+
+Execute JavaScript code from Vim script with `code` string.  With this function, you can run various APIs directly from Vim script.  Below is a code to toggle window fullscreen.
+
+```vim
+call nyaovim#execute_javascript('(function(){
+          \   const win = require("electron").remote.getCurrentWindow();
+          \   win.setFullScreen(!win.isFullScreen());
+          \ })()')
+```
+
+TODO: This function currently doesn't return the result of evaluating JavaScript.
+
 ## Subscriable events
 
 With Neovim msgpack API, you can receive rpc nortifications.
