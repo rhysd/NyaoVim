@@ -141,6 +141,16 @@ app.on('open-url', (e: Event, u: string) => {
     shell.openExternal(u);
 });
 
+app.once('will-finish-launching', function() {
+// we use once here because only the first open-file event might be missed by nyaovim-app
+    app.once('open-file', (e: Event, p: string) => {
+        // open-file event might be sent before ready event is emitted
+        // put it in argv to let nyaovim-app to pick it up later
+        process.argv.push(p);
+        e.preventDefault();
+    });
+});
+
 app.once(
     'ready',
     () => {
