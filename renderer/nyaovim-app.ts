@@ -222,12 +222,20 @@ Polymer({
         argv: {
             type: Array,
             value: function() {
+                let electron_argc =  1; // the first argument of standalone distribution is the application path
+                if (remote.process.argv.length > 1
+                    && 'electron' === basename(remote.process.argv[0]).toLowerCase()) {
+                    // Note: First and second arguments are related to Electron
+                    // the second argument of Electron is the script name (main.js)
+                    electron_argc = 2;
+                }
+
                 // Note:
                 // First and second arguments are related to Electron
                 // XXX:
                 // Spectron additionally passes many specific arguments to process and 'nvim' process
                 // will fail because of them.  As a workaround, we stupidly ignore arguments on E2E tests.
-                const a = process.env.NYAOVIM_E2E_TEST_RUNNING ? [] : remote.process.argv.slice(2);
+                const a = process.env.NYAOVIM_E2E_TEST_RUNNING ? [] : remote.process.argv.slice(electron_argc);
                 a.push(
                     '--cmd', `let\ g:nyaovim_version="${remote.app.getVersion()}"`,
                     '--cmd', `set\ rtp+=${join(__dirname, '..', 'runtime').replace(' ', '\ ')}`,
