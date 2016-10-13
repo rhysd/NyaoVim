@@ -54,7 +54,7 @@ You can install NyaoVim as an [npm package](https://www.npmjs.com/package/nyaovi
 $ npm install -g nyaovim
 ```
 
-If you haven't installed Neovim yet, please install it following [Neovim's instructions](https://github.com/neovim/neovim/wiki/Installing-Neovim) because NyaoVim internally uses the `nvim` command.
+If you haven't installed Neovim yet, please install it following [Neovim's instructions](https://github.com/neovim/neovim/wiki/Installing-Neovim) because NyaoVim internally uses the `nvim` command.  **Note that `nvim` v0.1.6 or later is needed.**
 
 You can start NyaoVim with the `nyaovim` command if you install this app with npm.
 

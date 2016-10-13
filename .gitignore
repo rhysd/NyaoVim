@@ -7,4 +7,4 @@
 /main/**/*.js.map
 /renderer/**/*.js
 /renderer/**/*.js.map
-/dist
+/test/**/*.js

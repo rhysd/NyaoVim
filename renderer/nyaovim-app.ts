@@ -1,6 +1,6 @@
 import {NeovimElement} from 'neovim-component';
 import {remote, shell, ipcRenderer as ipc} from 'electron';
-import {join, basename} from 'path';
+import {join} from 'path';
 import {readdirSync} from 'fs';
 import {Nvim, RPCValue} from 'promised-neovim-client';
 
@@ -96,6 +96,23 @@ const runtime_api = new RuntimeApi({
         const func = (window as any)[func_name];
         if (func /*&& func is Function*/) {
             func.apply(window, args);
+        }
+    },
+    'nyaovim:open-devtools': (mode: 'right' | 'bottom' | 'undocked' | 'detach') => {
+        const contents = remote.getCurrentWebContents();
+        contents.openDevTools({mode});
+    },
+    'nyaovim:execute-javascript': (code: string) => {
+        if (typeof code !== 'string') {
+            console.error('nyaovim:execute-javascript: Not a string', code);
+            return;
+        }
+        try {
+            /* tslint:disable */
+            eval(code);
+            /* tslint:enable */
+        } catch (e) {
+            console.error('While executing javascript:', e);
         }
     },
 });
@@ -205,17 +222,15 @@ Polymer({
         argv: {
             type: Array,
             value: function() {
-                var electron_argc =  1; // the first argument of standalone distribution is the application path
-                if (remote.process.argv.length > 1
-                    && 'electron' === basename(remote.process.argv[0]).toLowerCase()) {
-                    // Note: First and second arguments are related to Electron
-                    // the second argument of Electron is the script name (main.js)
-                    electron_argc = 2;
-                }
-                const a = remote.process.argv.slice(electron_argc);
+                // Note:
+                // First and second arguments are related to Electron
+                // XXX:
+                // Spectron additionally passes many specific arguments to process and 'nvim' process
+                // will fail because of them.  As a workaround, we stupidly ignore arguments on E2E tests.
+                const a = process.env.NYAOVIM_E2E_TEST_RUNNING ? [] : remote.process.argv.slice(2);
                 a.push(
                     '--cmd', `let\ g:nyaovim_version="${remote.app.getVersion()}"`,
-                    '--cmd', `set\ rtp+=${join(__dirname, '..', 'runtime').replace(' ', '\ ')}`
+                    '--cmd', `set\ rtp+=${join(__dirname, '..', 'runtime').replace(' ', '\ ')}`,
                 );
                 // XXX:
                 // Swap files are disabled because it shows message window on start up but frontend can't detect it.

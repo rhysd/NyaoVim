@@ -1,6 +1,6 @@
 import {join} from 'path';
 import {stat, writeFileSync} from 'fs';
-import {app, BrowserWindow, shell} from 'electron';
+import {app, BrowserWindow, shell, nativeImage} from 'electron';
 import {sync as mkdirpSync} from 'mkdirp';
 import setMenu from './menu';
 import BrowserConfig from './browser-config';
@@ -26,6 +26,13 @@ ${versions}
 `);
     app.quit();
 }
+
+process.on('unhandledRejection', (reason: string, p: Promise<any>) => {
+    console.error('Fatal: Unhandled rejection at: Promise', p, 'Reason:', reason);
+});
+
+const is_run_from_npm_package_on_darwin =
+    app.getAppPath().indexOf('/NyaoVim.app/') === -1;
 
 const config_dir_name =
         process.platform !== 'darwin' ?
@@ -72,11 +79,6 @@ function prepareDefaultNyaovimrc() {
     });
 }
 
-function isRunFromNpmPackageOnDarwin() {
-    'use strict';
-    return app.getAppPath().indexOf('/NyaoVim.app/') === -1;
-}
-
 const ensure_nyaovimrc = exists(global.nyaovimrc_path).then((e: boolean) => {
     if (!e) {
         return prepareDefaultNyaovimrc();
@@ -100,13 +102,13 @@ function startMainWindow() {
         width: 800,
         height: 600,
         useContentSize: true,
-        autoHideMenuBar: true,
         webPreferences: {
             blinkFeatures: 'KeyboardEventKey',
         },
+        icon: nativeImage.createFromPath(join(__dirname, '..', 'resources', 'icon', 'nyaovim-logo.png')),
     } as Electron.BrowserWindowOptions;
 
-    const user_config = browser_config.apply(default_config);
+    const user_config = browser_config.applyToOptions(default_config);
 
     let win = new BrowserWindow(user_config);
 
@@ -117,13 +119,16 @@ function startMainWindow() {
     }
 
     browser_config.setupWindowState(win);
+    if (browser_config.loaded_config !== null && browser_config.loaded_config.show_menubar === false) {
+        win.setMenuBarVisibility(false);
+    }
 
     win.once('closed', function() {
         win = null;
     });
 
     win.loadURL(index_html);
-    if (process.env.NODE_ENV === 'debug') {
+    if (process.env.NODE_ENV !== 'production' && is_run_from_npm_package_on_darwin) {
         win.webContents.openDevTools({mode: 'detach'});
     }
 
@@ -139,7 +144,7 @@ app.on('open-url', (e: Event, u: string) => {
 app.once(
     'ready',
     () => {
-        if (process.platform === 'darwin' && isRunFromNpmPackageOnDarwin()) {
+        if (process.platform === 'darwin' && is_run_from_npm_package_on_darwin) {
             // XXX:
             // app.dock.setIcon() is not defined in github-electron.d.ts yet.
             (app.dock as any).setIcon(join(__dirname, '..', 'resources', 'icon', 'nyaovim-logo.png'));

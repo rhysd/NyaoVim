@@ -2,3 +2,4 @@
 /app.asar
 /typings
 /.git
+/test/**/*.js

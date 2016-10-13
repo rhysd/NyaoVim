@@ -7,7 +7,6 @@
   ],
   "license": "MIT",
   "dependencies": {
-    "polymer": "^1.6.1",
-    "webcomponentsjs": "webcomponents.js#^0.7.22"
+    "polymer": "^1.6.1"
   }
 }

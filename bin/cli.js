@@ -16,8 +16,8 @@ if (no_detach_idx !== -1) {
 }
 argv.unshift(join(__dirname, '..'));
 
-if (!process.env['NODE_ENV']) {
-    process.env['NODE_ENV'] = 'production';
+if (!process.env.NODE_ENV) {
+    process.env.NODE_ENV = 'production';
 }
 
 if (detached) {

@@ -1,0 +1,25 @@
+language: node_js
+node_js: "6"
+os:
+    # - osx
+    - linux
+sudo: required
+before_install:
+    - source ./scripts/travis-before-install.sh
+install:
+    - npm run dep
+script:
+    - nvim --version
+    - npm run build
+    - npm run lint
+    # - npm run smoke-test
+cache:
+    directories:
+        - node_modules
+notifications:
+    email:
+        on_success: never
+        on_failure: change
+branches:
+    only:
+        - master
