@@ -1,6 +1,6 @@
 import {NeovimElement} from 'neovim-component';
 import {remote, shell, ipcRenderer as ipc} from 'electron';
-import {join} from 'path';
+import {join, basename} from 'path';
 import {readdirSync} from 'fs';
 import {Nvim, RPCValue} from 'promised-neovim-client';
 
