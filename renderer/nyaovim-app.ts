@@ -1,6 +1,6 @@
 import {NeovimElement} from 'neovim-component';
 import {remote, shell, ipcRenderer as ipc} from 'electron';
-import {join} from 'path';
+import {join, basename} from 'path';
 import {readdirSync} from 'fs';
 import {Nvim, RPCValue} from 'promised-neovim-client';
 
@@ -222,12 +222,23 @@ Polymer({
         argv: {
             type: Array,
             value: function() {
+
+                // handle the arguments of the standalone Nyaovim.app
+                let electron_argc =  1; // the first argument of standalone distribution is the application path
+                if (remote.process.platform !== 'darwin' // if not OSX, we assume it is not standalone
+                    || (remote.process.argv.length > 1
+                    && 'electron' === basename(remote.process.argv[0]).toLowerCase())) {
+                    // Note: First and second arguments are related to Electron
+                    // the second argument of Electron is the script name (main.js)
+                    electron_argc = 2;
+                }
+
                 // Note:
                 // First and second arguments are related to Electron
                 // XXX:
                 // Spectron additionally passes many specific arguments to process and 'nvim' process
                 // will fail because of them.  As a workaround, we stupidly ignore arguments on E2E tests.
-                const a = process.env.NYAOVIM_E2E_TEST_RUNNING ? [] : remote.process.argv.slice(2);
+                const a = process.env.NYAOVIM_E2E_TEST_RUNNING ? [] : remote.process.argv.slice(electron_argc);
                 a.push(
                     '--cmd', `let\ g:nyaovim_version="${remote.app.getVersion()}"`,
                     '--cmd', `set\ rtp+=${join(__dirname, '..', 'runtime').replace(' ', '\ ')}`,
