@@ -226,7 +226,7 @@ Polymer({
                 // handle the arguments of the standalone Nyaovim.app
                 let electron_argc =  1; // the first argument of standalone distribution is the application path
                 if (remote.process.platform !== 'darwin' // if not OSX, we assume it is not standalone
-                    || (remote.process.argv.length > 1
+                    && (remote.process.argv.length > 1
                     && 'electron' === basename(remote.process.argv[0]).toLowerCase())) {
                     // Note: First and second arguments are related to Electron
                     // the second argument of Electron is the script name (main.js)
