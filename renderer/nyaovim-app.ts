@@ -223,13 +223,15 @@ Polymer({
             type: Array,
             value: function() {
 
-                // handle the arguments of the standalone Nyaovim.app
-                let electron_argc =  1; // the first argument of standalone distribution is the application path
-                if (remote.process.platform !== 'darwin' // if not OSX, we assume it is not standalone
-                    || (remote.process.argv.length > 1
-                    && 'electron' === basename(remote.process.argv[0]).toLowerCase())) {
-                    // Note: First and second arguments are related to Electron
-                    // the second argument of Electron is the script name (main.js)
+                // Handle the arguments of the standalone Nyaovim.app
+                // The first argument of standalone distribution is the binary path
+                let electron_argc =  1;
+
+                // When application is executed via 'electron' ('Electron' on darwin) executable.
+                if ('electron' === basename(remote.process.argv[0]).toLowerCase()) {
+                    // Note:
+                    // The first argument is a path to Electron executable.
+                    // The second argument is the path to main.js
                     electron_argc = 2;
                 }
 
@@ -239,13 +241,16 @@ Polymer({
                 // Spectron additionally passes many specific arguments to process and 'nvim' process
                 // will fail because of them.  As a workaround, we stupidly ignore arguments on E2E tests.
                 const a = process.env.NYAOVIM_E2E_TEST_RUNNING ? [] : remote.process.argv.slice(electron_argc);
+
                 a.push(
                     '--cmd', `let\ g:nyaovim_version="${remote.app.getVersion()}"`,
                     '--cmd', `set\ rtp+=${join(__dirname, '..', 'runtime').replace(' ', '\ ')}`,
                 );
+
                 // XXX:
                 // Swap files are disabled because it shows message window on start up but frontend can't detect it.
                 a.push('-n');
+
                 return a;
             },
         },
