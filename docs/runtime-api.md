@@ -44,6 +44,16 @@ call nyaovim#execute_javascript('(function(){
 
 TODO: This function currently doesn't return the result of evaluating JavaScript.
 
+### `nyaovim#browser_window(method, args)`
+
+Call [`BrowserWindow` API in Electron](https://github.com/electron/electron/blob/master/docs/api/browser-window.md) for the main window.  This function is currently using notification.  So Vim script side can't receive the return value.
+
+```vim
+" Calls `window.setFullScreen(true);` in the main window
+call nyaovim#browser_window('setFullScreen', [v:true])
+```
+
+
 ## Subscriable events
 
 With Neovim msgpack API, you can receive rpc nortifications.

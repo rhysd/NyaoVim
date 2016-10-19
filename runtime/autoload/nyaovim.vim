@@ -34,3 +34,8 @@ endfunction
 function! nyaovim#execute_javascript(code) abort
     call rpcnotify(0, 'nyaovim:execute-javascript', a:code)
 endfunction
+
+" TODO: Send request and get the return value
+function! nyaovim#browser_window(method, args) abort
+    call rpcnotify(0, 'nyaovim:browser-window', a:method, a:args)
+endfunction

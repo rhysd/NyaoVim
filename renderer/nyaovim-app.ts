@@ -112,7 +112,14 @@ const runtime_api = new RuntimeApi({
             eval(code);
             /* tslint:enable */
         } catch (e) {
-            console.error('While executing javascript:', e);
+            console.error('While executing javascript:', e, ' Code:', code);
+        }
+    },
+    'nyaovim:browser-window': (method: string, args: RPCValue[]) => {
+        try {
+            (ThisBrowserWindow as any)[method].apply(ThisBrowserWindow, args);
+        } catch (e) {
+            console.error("Error while executing 'nyaovim:browser-window':", e, ' Method:', method, ' Args:', args);
         }
     },
 });
