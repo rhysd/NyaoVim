@@ -9,7 +9,7 @@ function! nyaovim#load_nyaovim_plugin_direct(html_path) abort
     call rpcnotify(0, 'nyaovim:load-path', a:html_path)
 endfunction
 
-function nyaovim#require_javascript_file(script_path) abort
+function! nyaovim#require_javascript_file(script_path) abort
     if !filereadable(a:script_path)
         throw 'nyaovim: Specified JavaScript code doesn''t exist: ' . a:script_path
     endif
