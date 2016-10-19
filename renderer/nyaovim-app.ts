@@ -242,14 +242,14 @@ Polymer({
                 // will fail because of them.  As a workaround, we stupidly ignore arguments on E2E tests.
                 const a = process.env.NYAOVIM_E2E_TEST_RUNNING ? [] : remote.process.argv.slice(electron_argc);
 
-                a.push(
+                a.unshift(
                     '--cmd', `let\ g:nyaovim_version="${remote.app.getVersion()}"`,
                     '--cmd', `set\ rtp+=${join(__dirname, '..', 'runtime').replace(' ', '\ ')}`,
                 );
 
                 // XXX:
                 // Swap files are disabled because it shows message window on start up but frontend can't detect it.
-                a.push('-n');
+                a.unshift('-n');
 
                 return a;
             },
