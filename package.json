@@ -47,7 +47,7 @@
     "electron-prebuilt": "^1.4.3",
     "electron-window-state": "^3.1.0",
     "mkdirp": "^0.5.1",
-    "neovim-component": "^0.8.1",
+    "neovim-component": "^0.8.2",
     "promised-neovim-client": "^2.0.2"
   },
   "devDependencies": {

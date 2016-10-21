@@ -216,7 +216,7 @@ function prepareIpc(client: Nvim) {
             }
 
             if (command) {
-                client.input(command);
+                client.command(`normal! '${command}'`);
             }
         });
     });
