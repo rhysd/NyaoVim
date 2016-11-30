@@ -1,4 +1,4 @@
-import {Menu, app} from 'electron';
+import {Menu, app, webContents} from 'electron';
 import {join} from 'path';
 import openAboutWindow from 'about-window';
 
@@ -20,14 +20,26 @@ export default function setMenu(win: Electron.BrowserWindow) {
                     label: 'Undo',
                     accelerator: 'CmdOrCtrl+Z',
                     click: () => {
-                        win.webContents.send('nyaovim:exec-commands', ['undo']);
+                        if ((win.webContents as any).isFocused()) {
+                            // send the command to the nyaovim-app
+                            win.webContents.send('nyaovim:exec-commands', ['undo']);
+                        } else {
+                            // execute the default command
+                            webContents.getFocusedWebContents().undo();
+                        }
                     },
                 },
                 {
                     label: 'Redo',
                     accelerator: 'Shift+CmdOrCtrl+Z',
                     click: () => {
-                        win.webContents.send('nyaovim:exec-commands', ['redo']);
+                        if ((win.webContents as any).isFocused()) {
+                            // send the command to the nyaovim-app
+                            win.webContents.send('nyaovim:exec-commands', ['redo']);
+                        } else {
+                            // execute the default command
+                            webContents.getFocusedWebContents().redo();
+                        }
                     },
                 },
                 {
@@ -37,28 +49,52 @@ export default function setMenu(win: Electron.BrowserWindow) {
                     label: 'Cut',
                     accelerator: 'CmdOrCtrl+X',
                     click: () => {
-                        win.webContents.send('nyaovim:cut');
+                        if ((win.webContents as any).isFocused()) {
+                            // send the command to the nyaovim-app
+                            win.webContents.send('nyaovim:cut');
+                        } else {
+                            // execute the default command
+                            webContents.getFocusedWebContents().cut();
+                        }
                     },
                 },
                 {
                     label: 'Copy',
                     accelerator: 'CmdOrCtrl+C',
                     click: () => {
-                        win.webContents.send('nyaovim:copy');
+                        if ((win.webContents as any).isFocused()) {
+                            // send the command to the nyaovim-app
+                            win.webContents.send('nyaovim:copy');
+                        } else {
+                            // execute the default command
+                            webContents.getFocusedWebContents().copy();
+                        }
                     },
                 },
                 {
                     label: 'Paste',
                     accelerator: 'CmdOrCtrl+V',
                     click: () => {
-                        win.webContents.send('nyaovim:paste');
+                        if ((win.webContents as any).isFocused()) {
+                            // send the command to the nyaovim-app
+                            win.webContents.send('nyaovim:paste');
+                        } else {
+                            // execute the default command
+                            webContents.getFocusedWebContents().paste();
+                        }
                     },
                 },
                 {
                     label: 'Select All',
                     accelerator: 'CmdOrCtrl+A',
                     click: () => {
-                        win.webContents.send('nyaovim:select-all');
+                        if ((win.webContents as any).isFocused()) {
+                            // send the command to the nyaovim-app
+                            win.webContents.send('nyaovim:select-all');
+                        } else {
+                            // execute the default command
+                            webContents.getFocusedWebContents().selectAll();
+                        }
                     },
                 },
             ],
