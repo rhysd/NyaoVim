@@ -2,7 +2,7 @@
 'use strict';
 
 var spawn = require('child_process').spawn;
-var electron = require('electron-prebuilt');
+var electron = require('electron');
 var join = require('path').join;
 
 var argv = process.argv.slice(2);

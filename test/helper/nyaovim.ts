@@ -1,7 +1,10 @@
 import {join} from 'path';
 import {writeFileSync} from 'fs';
 import {Application} from 'spectron';
-import * as electron from 'electron-prebuilt';
+
+// XXX:
+// Workaround for 'electron' npm package.
+const electron = (require as any)('electron') as string;
 
 export default class NyaoVim extends Application {
     constructor(debug: boolean = false) {

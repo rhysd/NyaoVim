@@ -1,11 +1,11 @@
 import {assert} from 'chai';
 import NyaoVim from '../helper/nyaovim';
 
-describe('Startup', () => {
+describe('Startup', function () {
     let nyaovim: NyaoVim;
     let client: WebdriverIO.Client<void>;
 
-    before(() => {
+    before(function () {
         nyaovim = new NyaoVim();
         return nyaovim.start().then(() => {
             client = nyaovim.client;
@@ -13,40 +13,40 @@ describe('Startup', () => {
         });
     });
 
-    after(function(done) {
+    after(function (done) {
         if (!nyaovim || !nyaovim.isRunning()) {
             return done();
         }
 
-        const cleanup = () => {
-            nyaovim.stop().then(done).catch(e => {
-                console.error('after(): ', e);
-                done();
-            });
-        };
-
-        if (this.currentTest.state === 'failed') {
-            client.getRenderProcessLogs().then(logs => {
-                console.log('Renderer process logs');
-                console.log('=====================\n');
-                for (const l of logs) {
-                    console.log(`[${l.level}] ${l.message}`);
-                }
-            }).then(() =>
-                client.getMainProcessLogs()
-            ).then(logs => {
-                console.log('Main process logs');
-                console.log('=================\n');
-                for (const l of logs) {
-                    console.log(l);
-                }
-            }).then(cleanup);
-        } else {
-            cleanup();
-        }
+        nyaovim.stop().then(() => done()).catch(e => {
+            console.error('after(): ', e);
+            done();
+        });
     });
 
-    it('opens a window', () => {
+    afterEach(function (done) {
+        if (this.currentTest.state !== 'failed') {
+            return done();
+        }
+
+        client.getRenderProcessLogs().then(logs => {
+            console.log('Renderer process logs');
+            console.log('=====================\n');
+            for (const l of logs) {
+                console.log(`[${l.level}] ${l.message}`);
+            }
+        }).then(() =>
+            client.getMainProcessLogs()
+        ).then(logs => {
+            console.log('Main process logs');
+            console.log('=================\n');
+            for (const l of logs) {
+                console.log(l);
+            }
+        }).then(done).catch(done);
+    });
+
+    it('opens a window', function () {
         return client.getWindowCount().then((count: number) => {
             assert.equal(count, 1);
         }).then(() =>
@@ -56,7 +56,7 @@ describe('Startup', () => {
         });
     });
 
-    it('does not occur any error', () => {
+    it('does not occur any error', function () {
         return client.getRenderProcessLogs().then(logs => {
             for (const l of logs) {
                 assert.notEqual(l.level, 'error');
@@ -65,13 +65,13 @@ describe('Startup', () => {
         });
     });
 
-    it('renders <neovim-editor> in HTML', () => {
+    it('renders <neovim-editor> in HTML', function () {
         return client.element('neovim-editor').then(e => {
             assert.isNotNull(e.value);
         });
     });
 
-    it('spawns nvim process without error', () => {
+    it('spawns nvim process without error', function () {
         return client.execute(() => (document as any).getElementById('nyaovim-editor').editor.process.started)
             .then(result => assert.isTrue(result.value));
     });
