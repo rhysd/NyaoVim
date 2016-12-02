@@ -1,16 +1,16 @@
 #! /usr/bin/env node
-'use strict';
 
-var spawn = require('child_process').spawn;
-var electron = require('electron');
-var join = require('path').join;
+const spawn = require('child_process').spawn;
+const electron = require('electron');
+const join = require('path').join;
 
-var argv = process.argv.slice(2);
-var no_detach_idx = argv.indexOf('--no-detach');
-var detached
-    = no_detach_idx === -1 &&
-        argv.indexOf('--help') === -1 &&
-        argv.indexOf('--version') === -1;
+const argv = process.argv.slice(2);
+const no_detach_idx = argv.indexOf('--no-detach');
+const detached =
+    no_detach_idx === -1 &&
+    argv.indexOf('--help') === -1 &&
+    argv.indexOf('--version') === -1;
+
 if (no_detach_idx !== -1) {
     argv.splice(no_detach_idx, 1);
 }
