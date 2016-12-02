@@ -209,7 +209,7 @@ function prepareIpc(client: Nvim) {
             } else if (ch === 'i') {
                 // insert mode
                 // gp will move cursor to the last of pasted content
-                command = '<C-o>"+gp';
+                command = '"+gp';
             } else if (ch === 'c') {
                     // command line mode
                 command = '<C-r>+';
