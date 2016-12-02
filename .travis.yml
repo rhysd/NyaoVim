@@ -1,7 +1,7 @@
 language: node_js
 node_js: "6"
 os:
-    # - osx
+    - osx
     - linux
 sudo: required
 before_install:
@@ -12,7 +12,7 @@ script:
     - nvim --version
     - npm run build
     - npm run lint
-    # - npm run smoke-test
+    - npm run smoke-test
 cache:
     directories:
         - node_modules
@@ -20,6 +20,3 @@ notifications:
     email:
         on_success: never
         on_failure: change
-branches:
-    only:
-        - master
