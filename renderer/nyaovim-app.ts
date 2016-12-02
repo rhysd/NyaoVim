@@ -228,7 +228,7 @@ Polymer({
     properties: {
         argv: {
             type: Array,
-            value: function() {
+            value() {
 
                 // Handle the arguments of the standalone Nyaovim.app
                 // The first argument of standalone distribution is the binary path
@@ -264,7 +264,7 @@ Polymer({
         editor: Object,
     },
 
-    ready: function() {
+    ready() {
         const element = document.getElementById('nyaovim-editor') as NeovimElement;
         const editor = element.editor;
         editor.on('error', (err: Error) => alert(err.message));

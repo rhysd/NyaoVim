@@ -1,6 +1,6 @@
 /// <reference path="../typings/index.d.ts" />
 
-declare module NodeJS {
+declare namespace NodeJS {
     interface Global {
         config_dir_path: string;
         nyaovimrc_path: string;
