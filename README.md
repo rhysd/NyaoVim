@@ -98,7 +98,7 @@ Then you need to put the popup tooltip UI on your NyaoVim interface.  Please ope
 Please add `<popup-tooltip>` tag under `<neovim-editor>` tag as below
 
 ```html
-<neovim-editor id="nyaovim-editor" argv$="[[argv]]"></neovim-editor>
+<neovim-editor id="nyaovim-editor" argv="[[argv]]"></neovim-editor>
 <popup-tooltip editor="[[editor]]"></popup-tooltip>
 ```
 
