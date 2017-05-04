@@ -6,7 +6,7 @@
   "main": "main/main.js",
   "bin": "./bin/cli.js",
   "scripts": {
-    "dep": "npm install && bower install && typings install",
+    "dep": "npm install && bower install",
     "build-main": "tsc --pretty -p main",
     "build-renderer": "tsc --pretty -p renderer",
     "build": "npm run build-main && npm run build-renderer",
@@ -17,7 +17,7 @@
     "build-test": "tsc --pretty -p test/",
     "smoke-test": "npm run build-test && mocha test/smoke",
     "watch": "guard --watchdir main renderer test",
-    "clean": "rm -rf build typings bower_components node_modules",
+    "clean": "rm -rf build bower_components node_modules",
     "pack:osx": "npm run build && npm prune --production && electron-packager ./ --platform=darwin --arch=x64 --icon=./resources/icon/nyaovim-logo.icns --app-bundle-id=io.github.rhysd.nyaovim --version=1.4.1 && cp README.md LICENSE.txt NyaoVim-darwin-x64/ && zip --symlinks -r NyaoVim-darwin-x64.zip NyaoVim-darwin-x64/"
   },
   "repository": {
@@ -44,19 +44,34 @@
   "dependencies": {
     "about-window": "^1.6.1",
     "deep-extend": "^0.4.1",
-    "electron": "^1.4.10",
-    "electron-window-state": "^4.0.0",
+    "electron": "^1.6.6",
+    "electron-window-state": "^4.1.1",
     "mkdirp": "^0.5.1",
     "neovim-component": "^0.8.2",
     "promised-neovim-client": "^2.0.2"
   },
   "devDependencies": {
+    "@types/bluebird": "^3.5.3",
+    "@types/chai": "^3.5.2",
+    "@types/deep-extend": "^0.4.30",
+    "@types/electron": "^1.4.37",
+    "@types/electron-window-state": "^2.0.28",
+    "@types/es6-promise": "0.0.32",
+    "@types/fbemitter": "^2.0.32",
+    "@types/flux": "^3.0.1",
+    "@types/mkdirp": "^0.3.29",
+    "@types/mocha": "^2.2.41",
+    "@types/node": "^7.0.16",
+    "@types/polymer": "^1.1.31",
+    "@types/q": "^1.0.0",
+    "@types/react": "^15.0.23",
+    "@types/webcomponents.js": "^0.6.32",
+    "@types/webdriverio": "^4.7.0",
     "bower": "^1.8.0",
     "chai": "^3.5.0",
-    "mocha": "^3.2.0",
-    "spectron": "^3.4.0",
-    "tslint": "^4.0.2",
-    "typescript": "^2.1.1",
-    "typings": "^2.0.0"
+    "mocha": "^3.3.0",
+    "spectron": "^3.6.2",
+    "tslint": "^5.2.0",
+    "typescript": "^2.3.2"
   }
 }

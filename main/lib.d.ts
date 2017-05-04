@@ -1,5 +1,3 @@
-/// <reference path="../typings/index.d.ts" />
-
 declare namespace NodeJS {
     interface Global {
         config_dir_path: string;
@@ -7,7 +5,16 @@ declare namespace NodeJS {
     }
 }
 
-interface NodeModule {
-    paths: string[];
+declare namespace ElectronWindowState {
+    interface WindowState {
+        x: number;
+        y: number;
+        width: number;
+        height: number;
+        isMaximized: boolean;
+        isFullScreen: boolean;
+        manage(win: Electron.BrowserWindow): void;
+        saveState(win: Electron.BrowserWindow): void;
+    }
 }
 
