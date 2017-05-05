@@ -12,7 +12,6 @@
   },
   "include": [
     "**/*.ts",
-    "typings/*.d.ts",
-    "../typings/index.d.ts"
+    "typings/*.d.ts"
   ]
 }

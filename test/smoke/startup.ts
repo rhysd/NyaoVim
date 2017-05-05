@@ -1,11 +1,11 @@
 import {assert} from 'chai';
 import NyaoVim from '../helper/nyaovim';
 
-describe('Startup', function () {
+describe('Startup', function() {
     let nyaovim: NyaoVim;
     let client: WebdriverIO.Client<void>;
 
-    before(function () {
+    before(function() {
         nyaovim = new NyaoVim();
         return nyaovim.start().then(() => {
             client = nyaovim.client;
@@ -13,7 +13,7 @@ describe('Startup', function () {
         });
     });
 
-    after(function (done) {
+    after(function(done) {
         if (!nyaovim || !nyaovim.isRunning()) {
             return done();
         }
@@ -24,7 +24,7 @@ describe('Startup', function () {
         });
     });
 
-    afterEach(function (done) {
+    afterEach(function(done) {
         if (this.currentTest.state !== 'failed') {
             return done();
         }
@@ -46,7 +46,7 @@ describe('Startup', function () {
         }).then(done).catch(done);
     });
 
-    it('opens a window', function () {
+    it('opens a window', function() {
         return client.getWindowCount().then((count: number) => {
             assert.equal(count, 1);
         }).then(() =>
@@ -56,7 +56,7 @@ describe('Startup', function () {
         });
     });
 
-    it('does not occur any error', function () {
+    it('does not occur any error', function() {
         return client.getRenderProcessLogs().then(logs => {
             for (const l of logs) {
                 assert.notEqual(l.level, 'error');
@@ -65,13 +65,13 @@ describe('Startup', function () {
         });
     });
 
-    it('renders <neovim-editor> in HTML', function () {
+    it('renders <neovim-editor> in HTML', function() {
         return client.element('neovim-editor').then(e => {
             assert.isNotNull(e.value);
         });
     });
 
-    it('spawns nvim process without error', function () {
+    it('spawns nvim process without error', function() {
         return client.execute(() => (document as any).getElementById('nyaovim-editor').editor.process.started)
             .then(result => assert.isTrue(result.value));
     });
