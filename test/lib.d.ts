@@ -1,4 +1,4 @@
 interface ObjectConstructor {
-    assign(x: Object, ...xs: Object[]): Object;
+    assign(x: object, ...xs: object[]): object;
 }
 

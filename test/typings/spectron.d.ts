@@ -35,7 +35,7 @@ declare module 'spectron' {
         path: string;
         args?: string[];
         cwd?: string;
-        env?: Object;
+        env?: object;
         host?: string;
         port?: number;
         nodePath?: string;
