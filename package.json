@@ -44,7 +44,7 @@
   "dependencies": {
     "about-window": "^1.6.1",
     "deep-extend": "^0.4.1",
-    "electron": "^1.6.6",
+    "electron": "1.6.9",
     "electron-window-state": "^4.1.1",
     "mkdirp": "^0.5.1",
     "neovim-component": "^0.8.2",
