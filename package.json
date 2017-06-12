@@ -18,7 +18,7 @@
     "smoke-test": "npm run build-test && mocha test/smoke",
     "watch": "guard --watchdir main renderer test",
     "clean": "rm -rf build bower_components node_modules",
-    "pack:osx": "npm run build && npm prune --production && electron-packager ./ --platform=darwin --arch=x64 --icon=./resources/icon/nyaovim-logo.icns --app-bundle-id=io.github.rhysd.nyaovim --version=1.4.1 && cp README.md LICENSE.txt NyaoVim-darwin-x64/ && zip --symlinks -r NyaoVim-darwin-x64.zip NyaoVim-darwin-x64/"
+    "pack:osx": "npm run build && npm prune --production && electron-packager ./ --platform=darwin --arch=x64 --icon=./resources/icon/nyaovim-logo.icns --app-bundle-id=io.github.rhysd.nyaovim && cp README.md LICENSE.txt NyaoVim-darwin-x64/ && zip --symlinks -r NyaoVim-darwin-x64.zip NyaoVim-darwin-x64/"
   },
   "repository": {
     "type": "git",
