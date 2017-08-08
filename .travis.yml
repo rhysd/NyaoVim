@@ -3,6 +3,7 @@ node_js: "6"
 os:
     - osx
     - linux
+osx_image: xcode9
 sudo: required
 before_install:
     - source ./scripts/travis-before-install.sh
