@@ -1,7 +1,7 @@
 language: node_js
 node_js: "6"
 os:
-    - osx
+    # - osx
     - linux
 osx_image: xcode9
 sudo: required
