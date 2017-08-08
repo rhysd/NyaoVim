@@ -1,15 +1,22 @@
 import {assert} from 'chai';
+import {SpectronClient} from 'spectron';
 import NyaoVim from '../helper/nyaovim';
 
 describe('Startup', function() {
     let nyaovim: NyaoVim;
-    let client: WebdriverIO.Client<void>;
+    let client: SpectronClient;
 
     before(function() {
         nyaovim = new NyaoVim();
         return nyaovim.start().then(() => {
             client = nyaovim.client;
-            return client.pause(3000);  // Wait for starting nvim process
+
+            // Note: client.pause() is not available because of a type error between
+            // Promise and WebdriverIO.Client.
+            return new Promise(resolve => {
+                // Wait for starting nvim process
+                setTimeout(resolve, 3000);
+            });
         });
     });
 
@@ -37,7 +44,7 @@ describe('Startup', function() {
             }
         }).then(() =>
             client.getMainProcessLogs()
-        ).then(logs => {
+        ).then((logs: string[]) => {
             console.log('Main process logs');
             console.log('=================\n');
             for (const l of logs) {
