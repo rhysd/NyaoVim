@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -e
+
 if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then
     sudo add-apt-repository ppa:neovim-ppa/unstable -y
     sudo apt-get -qq update
