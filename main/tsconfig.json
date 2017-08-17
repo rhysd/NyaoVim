@@ -10,7 +10,7 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noEmitOnError": true,
-    "target": "es5",
+    "target": "es2015",
     "sourceMap": true
   },
   "files": [

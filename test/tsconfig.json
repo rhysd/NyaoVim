@@ -8,10 +8,9 @@
     "noUnusedLocals": true,
     "noEmitOnError": true,
     "strictNullChecks": true,
-    "target": "es5"
+    "target": "es2015"
   },
   "include": [
-    "**/*.ts",
-    "typings/*.d.ts"
+    "**/*.ts"
   ]
 }

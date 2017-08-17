@@ -43,7 +43,6 @@ global.config_dir_path = join(config_dir_name, 'nyaovim');
 global.nyaovimrc_path = join(global.config_dir_path, 'nyaovimrc.html');
 
 function exists(path: string) {
-    'use strict';
     return new Promise<boolean>(resolve => {
         stat(path, (err, stats) => {
             if (err) {
@@ -55,7 +54,6 @@ function exists(path: string) {
 }
 
 function prepareDefaultNyaovimrc() {
-    'use strict';
     console.log('Generate default nyaovimrc at ' + global.nyaovimrc_path);
 
     return exists(global.config_dir_path).then(e => {
@@ -94,8 +92,6 @@ const prepare_browser_config
         .catch(err => console.error(err));
 
 function startMainWindow() {
-    'use strict';
-
     const index_html = 'file://' + join(__dirname, '..', 'renderer', 'main.html');
 
     const default_config = {
@@ -103,10 +99,10 @@ function startMainWindow() {
         height: 600,
         useContentSize: true,
         webPreferences: {
-            blinkFeatures: 'KeyboardEventKey',
+            blinkFeatures: 'KeyboardEventKey,Accelerated2dCanvas,Canvas2dFixedRenderingMode',
         },
         icon: nativeImage.createFromPath(join(__dirname, '..', 'resources', 'icon', 'nyaovim-logo.png')),
-    } as Electron.BrowserWindowOptions;
+    } as Electron.BrowserWindowConstructorOptions;
 
     const user_config = browser_config.applyToOptions(default_config);
 

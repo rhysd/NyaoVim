@@ -3,7 +3,6 @@ import {join} from 'path';
 import openAboutWindow from 'about-window';
 
 function startAboutWindow() {
-    'use strict';
     openAboutWindow({
         icon_path: join(__dirname, '..', 'resources', 'icon', 'nyaovim-logo.png'),
         copyright: 'Copyright (c) 2015 rhysd',
@@ -11,7 +10,6 @@ function startAboutWindow() {
 }
 
 export default function setMenu(win: Electron.BrowserWindow) {
-    'use strict';
     const template = [
         {
             label: 'Edit',
@@ -148,7 +146,7 @@ export default function setMenu(win: Electron.BrowserWindow) {
                 },
             ],
         },
-    ] as Electron.MenuItemOptions[];
+    ] as Electron.MenuItemConstructorOptions[];
 
     if (process.platform === 'darwin') {
         template.unshift({
@@ -191,9 +189,9 @@ export default function setMenu(win: Electron.BrowserWindow) {
                     click: () => { app.quit(); },
                 },
             ],
-        } as Electron.MenuItemOptions);
+        } as Electron.MenuItemConstructorOptions);
 
-        (template[3].submenu as Electron.MenuItemOptions[]).push(
+        (template[3].submenu as Electron.MenuItemConstructorOptions[]).push(
             {
                 type: 'separator',
             },
