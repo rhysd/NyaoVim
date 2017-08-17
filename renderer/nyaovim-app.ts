@@ -125,9 +125,7 @@ const runtime_api = new RuntimeApi({
 });
 
 function prepareIpc(client: Nvim) {
-    'use strict';
-
-    ipc.on('nyaovim:exec-commands', (_: Electron.IpcRendererEvent, cmds: string[]) => {
+    ipc.on('nyaovim:exec-commands', (_: any, cmds: string[]) => {
         console.log('ipc: nyaovim:exec-commands', cmds);
         for (const c of cmds) {
             client.command(c);

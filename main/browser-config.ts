@@ -6,7 +6,7 @@ import windowStateKeeper = require('electron-window-state');
 
 export interface BrowserConfigJson {
     remember_window_state: boolean;
-    window_options: Electron.BrowserWindowOptions;
+    window_options: Electron.BrowserWindowConstructorOptions;
     single_instance: boolean;
     show_menubar: boolean;
 }
@@ -33,7 +33,7 @@ export default class BrowserConfig {
         });
     }
 
-    applyToOptions(opt: Electron.BrowserWindowOptions): Electron.BrowserWindowOptions {
+    applyToOptions(opt: Electron.BrowserWindowConstructorOptions): Electron.BrowserWindowConstructorOptions {
         if (typeof this.loaded_config !== 'object' || this.loaded_config === null) {
             return opt;
         }

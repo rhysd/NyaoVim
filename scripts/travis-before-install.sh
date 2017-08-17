@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -e
+
 if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then
     sudo add-apt-repository ppa:neovim-ppa/unstable -y
     sudo apt-get -qq update
@@ -9,9 +11,8 @@ if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then
     sh -e /etc/init.d/xvfb start
     sleep 3
 elif [[ "$TRAVIS_OS_NAME" == "osx" ]]; then
-    brew tap neovim/neovim
     brew update
-    brew install --HEAD --with-release neovim/neovim/neovim
+    brew install neovim
 else
     echo "Unknown platform: ${TRAVIS_OS_NAME}"
     exit 1
