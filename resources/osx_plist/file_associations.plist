@@ -300,12 +300,6 @@
 			<key>CFBundleTypeExtensions</key>
 			<array>
 				<string>json</string>
-				<string>sublime-settings</string>
-				<string>sublime-menu</string>
-				<string>sublime-keymap</string>
-				<string>sublime-theme</string>
-				<string>sublime-build</string>
-				<string>sublime-project</string>
 			</array>
 			<key>CFBundleTypeIconFile</key>
 			<string>JSON</string>
@@ -759,7 +753,6 @@
 				<string>xslt</string>
 				<string>svg</string>
 				<string>rss</string>
-				<string>sublime-snippet</string>
 				<string>vcproj</string>
 				<string>tmLanguage</string>
 				<string>tmTheme</string>
