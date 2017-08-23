@@ -5,678 +5,1125 @@
 	<key>CFBundleDocumentTypes</key>
 	<array>
 		<dict>
-			<key>CFBundleTypeName</key>
-			<string>Document</string>
-			<key>CFBundleTypeRole</key>
-			<string>Editor</string>
-			<key>CFBundleTypeOSTypes</key>
-			<array>
-				<string>****</string>
-			</array>
-			<key>CFBundleTypeIconFile</key>
-			<string>Document</string>
-		</dict>
-		<dict>
-			<key>CFBundleTypeRole</key>
-			<string>Editor</string>
-			<key>CFBundleTypeName</key>
-			<string>ASP</string>
 			<key>CFBundleTypeExtensions</key>
 			<array>
-				<string>asa</string>
+				<string>adb</string>
+				<string>ads</string>
 			</array>
 			<key>CFBundleTypeIconFile</key>
-			<string>ASP</string>
-		</dict>
-		<dict>
+			<string>file.icns</string>
+			<key>CFBundleTypeName</key>
+			<string>ADA source</string>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
-			<key>CFBundleTypeName</key>
-			<string>HTML (ASP)</string>
+			<key>LSHandlerRank</key>
+			<string>Alternate</string>
+		</dict>
+		<dict>
 			<key>CFBundleTypeExtensions</key>
 			<array>
-				<string>asp</string>
+				<string>scpt</string>
 			</array>
 			<key>CFBundleTypeIconFile</key>
-			<string>ASP</string>
-		</dict>
-		<dict>
+			<string>file.icns</string>
+			<key>CFBundleTypeName</key>
+			<string>Compiled AppleScript</string>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
+			<key>LSHandlerRank</key>
+			<string>Alternate</string>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>applescript</string>
+			</array>
+			<key>CFBundleTypeIconFile</key>
+			<string>file.icns</string>
 			<key>CFBundleTypeName</key>
-			<string>ActionScript</string>
+			<string>AppleScript source</string>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>LSHandlerRank</key>
+			<string>Alternate</string>
+		</dict>
+		<dict>
 			<key>CFBundleTypeExtensions</key>
 			<array>
 				<string>as</string>
 			</array>
 			<key>CFBundleTypeIconFile</key>
-			<string>ASP</string>
-		</dict>
-		<dict>
+			<string>file.icns</string>
+			<key>CFBundleTypeName</key>
+			<string>ActionScript source</string>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
-			<key>CFBundleTypeName</key>
-			<string>Batch File</string>
+			<key>LSHandlerRank</key>
+			<string>Alternate</string>
+		</dict>
+		<dict>
 			<key>CFBundleTypeExtensions</key>
 			<array>
-				<string>bat</string>
+				<string>asp</string>
+				<string>asa</string>
 			</array>
 			<key>CFBundleTypeIconFile</key>
-			<string>BATCH</string>
-		</dict>
-		<dict>
+			<string>file.icns</string>
+			<key>CFBundleTypeName</key>
+			<string>ASP document</string>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
-			<key>CFBundleTypeName</key>
-			<string>NAnt Build File</string>
+			<key>LSHandlerRank</key>
+			<string>Alternate</string>
+		</dict>
+		<dict>
 			<key>CFBundleTypeExtensions</key>
 			<array>
-				<string>build</string>
+				<string>aspx</string>
+				<string>ascx</string>
+				<string>asmx</string>
+				<string>ashx</string>
 			</array>
 			<key>CFBundleTypeIconFile</key>
-			<string>NANT</string>
-		</dict>
-		<dict>
+			<string>file.icns</string>
+			<key>CFBundleTypeName</key>
+			<string>ASP.NET document</string>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
-			<key>CFBundleTypeName</key>
-			<string>C#</string>
-			<key>CFBundleTypeExtensions</key>
-			<array>
-				<string>cs</string>
-			</array>
-			<key>CFBundleTypeIconFile</key>
-			<string>C#</string>
+			<key>LSHandlerRank</key>
+			<string>Alternate</string>
 		</dict>
 		<dict>
-			<key>CFBundleTypeRole</key>
-			<string>Editor</string>
-			<key>CFBundleTypeName</key>
-			<string>C++</string>
-			<key>CFBundleTypeExtensions</key>
-			<array>
-				<string>c++</string>
-				<string>cc</string>
-				<string>cpp</string>
-				<string>cxx</string>
-				<string>h</string>
-				<string>h++</string>
-				<string>hpp</string>
-				<string>hxx</string>
-				<string>inl</string>
-				<string>ipp</string>
-				<string>cc</string>
-				<string>cpp</string>
-				<string>cp</string>
-				<string>cxx</string>
-				<string>c++</string>
-				<string>C</string>
-				<string>h</string>
-				<string>hh</string>
-				<string>hpp</string>
-				<string>h++</string>
-			</array>
-			<key>CFBundleTypeIconFile</key>
-			<string>C++</string>
-		</dict>
-		<dict>
-			<key>CFBundleTypeRole</key>
-			<string>Editor</string>
-			<key>CFBundleTypeName</key>
-			<string>C</string>
-			<key>CFBundleTypeExtensions</key>
-			<array>
-				<string>c</string>
-				<string>h</string>
-			</array>
-			<key>CFBundleTypeIconFile</key>
-			<string>C</string>
-		</dict>
-		<dict>
-			<key>CFBundleTypeRole</key>
-			<string>Editor</string>
-			<key>CFBundleTypeName</key>
-			<string>CSS</string>
-			<key>CFBundleTypeExtensions</key>
-			<array>
-				<string>css</string>
-				<string>css.erb</string>
-			</array>
-			<key>CFBundleTypeIconFile</key>
-			<string>CSS</string>
-		</dict>
-		<dict>
-			<key>CFBundleTypeRole</key>
-			<string>Editor</string>
-			<key>CFBundleTypeName</key>
-			<string>D</string>
-			<key>CFBundleTypeExtensions</key>
-			<array>
-				<string>d</string>
-				<string>di</string>
-			</array>
-			<key>CFBundleTypeIconFile</key>
-			<string>D</string>
-		</dict>
-		<dict>
-			<key>CFBundleTypeRole</key>
-			<string>Editor</string>
-			<key>CFBundleTypeName</key>
-			<string>Erlang</string>
-			<key>CFBundleTypeExtensions</key>
-			<array>
-				<string>erl</string>
-				<string>hrl</string>
-				<string>Emakefile</string>
-				<string>emakefile</string>
-			</array>
-			<key>CFBundleTypeIconFile</key>
-			<string>ERLNG</string>
-		</dict>
-		<dict>
-			<key>CFBundleTypeRole</key>
-			<string>Editor</string>
-			<key>CFBundleTypeName</key>
-			<string>HTML (Erlang)</string>
-			<key>CFBundleTypeExtensions</key>
-			<array>
-				<string>yaws</string>
-			</array>
-			<key>CFBundleTypeIconFile</key>
-			<string>YAWS</string>
-		</dict>
-		<dict>
-			<key>CFBundleTypeRole</key>
-			<string>Editor</string>
-			<key>CFBundleTypeName</key>
-			<string>Graphviz (DOT)</string>
-			<key>CFBundleTypeExtensions</key>
-			<array>
-				<string>dot</string>
-				<string>DOT</string>
-			</array>
-			<key>CFBundleTypeIconFile</key>
-			<string>DOT</string>
-		</dict>
-		<dict>
-			<key>CFBundleTypeRole</key>
-			<string>Editor</string>
-			<key>CFBundleTypeName</key>
-			<string>Groovy</string>
-			<key>CFBundleTypeExtensions</key>
-			<array>
-				<string>groovy</string>
-				<string>gvy</string>
-			</array>
-			<key>CFBundleTypeIconFile</key>
-			<string>GROOVY</string>
-		</dict>
-		<dict>
-			<key>CFBundleTypeRole</key>
-			<string>Editor</string>
-			<key>CFBundleTypeName</key>
-			<string>HTML</string>
-			<key>CFBundleTypeExtensions</key>
-			<array>
-				<string>html</string>
-				<string>htm</string>
-				<string>shtml</string>
-				<string>xhtml</string>
-				<string>phtml</string>
-				<string>inc</string>
-				<string>tmpl</string>
-				<string>tpl</string>
-				<string>ctp</string>
-			</array>
-			<key>CFBundleTypeIconFile</key>
-			<string>HTML</string>
-		</dict>
-		<dict>
-			<key>CFBundleTypeRole</key>
-			<string>Editor</string>
-			<key>CFBundleTypeName</key>
-			<string>Haskell</string>
-			<key>CFBundleTypeExtensions</key>
-			<array>
-				<string>hs</string>
-			</array>
-			<key>CFBundleTypeIconFile</key>
-			<string>HASKELL</string>
-		</dict>
-		<dict>
-			<key>CFBundleTypeRole</key>
-			<string>Editor</string>
-			<key>CFBundleTypeName</key>
-			<string>Literate Haskell</string>
-			<key>CFBundleTypeExtensions</key>
-			<array>
-				<string>lhs</string>
-			</array>
-			<key>CFBundleTypeIconFile</key>
-			<string>HASKELL</string>
-		</dict>
-		<dict>
-			<key>CFBundleTypeRole</key>
-			<string>Editor</string>
-			<key>CFBundleTypeName</key>
-			<string>Java Server Page (JSP)</string>
-			<key>CFBundleTypeExtensions</key>
-			<array>
-				<string>jsp</string>
-			</array>
-			<key>CFBundleTypeIconFile</key>
-			<string>JSP</string>
-		</dict>
-		<dict>
-			<key>CFBundleTypeRole</key>
-			<string>Editor</string>
-			<key>CFBundleTypeName</key>
-			<string>Java</string>
-			<key>CFBundleTypeExtensions</key>
-			<array>
-				<string>java</string>
-				<string>bsh</string>
-			</array>
-			<key>CFBundleTypeIconFile</key>
-			<string>JAVA</string>
-		</dict>
-		<dict>
-			<key>CFBundleTypeRole</key>
-			<string>Editor</string>
-			<key>CFBundleTypeName</key>
-			<string>Java Properties</string>
-			<key>CFBundleTypeExtensions</key>
-			<array>
-				<string>properties</string>
-			</array>
-			<key>CFBundleTypeIconFile</key>
-			<string>JAVA</string>
-		</dict>
-		<dict>
-			<key>CFBundleTypeRole</key>
-			<string>Editor</string>
-			<key>CFBundleTypeName</key>
-			<string>JSON</string>
-			<key>CFBundleTypeExtensions</key>
-			<array>
-				<string>json</string>
-			</array>
-			<key>CFBundleTypeIconFile</key>
-			<string>JSON</string>
-		</dict>
-		<dict>
-			<key>CFBundleTypeRole</key>
-			<string>Editor</string>
-			<key>CFBundleTypeName</key>
-			<string>JavaScript</string>
-			<key>CFBundleTypeExtensions</key>
-			<array>
-				<string>js</string>
-				<string>htc</string>
-				<string>jsx</string>
-			</array>
-			<key>CFBundleTypeIconFile</key>
-			<string>JS</string>
-		</dict>
-		<dict>
-			<key>CFBundleTypeRole</key>
-			<string>Editor</string>
-			<key>CFBundleTypeName</key>
-			<string>BibTeX</string>
 			<key>CFBundleTypeExtensions</key>
 			<array>
 				<string>bib</string>
 			</array>
 			<key>CFBundleTypeIconFile</key>
-			<string>BibTeX</string>
-		</dict>
-		<dict>
+			<string>file.icns</string>
+			<key>CFBundleTypeName</key>
+			<string>BibTeX bibliography</string>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
-			<key>CFBundleTypeName</key>
-			<string>LaTeX</string>
+			<key>LSHandlerRank</key>
+			<string>Alternate</string>
+		</dict>
+		<dict>
 			<key>CFBundleTypeExtensions</key>
 			<array>
-				<string>tex</string>
+				<string>c</string>
 			</array>
 			<key>CFBundleTypeIconFile</key>
-			<string>TeX</string>
-		</dict>
-		<dict>
+			<string>file.icns</string>
+			<key>CFBundleTypeName</key>
+			<string>C source</string>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
-			<key>CFBundleTypeName</key>
-			<string>TeX</string>
+			<key>LSHandlerRank</key>
+			<string>Alternate</string>
+		</dict>
+		<dict>
 			<key>CFBundleTypeExtensions</key>
 			<array>
-				<string>sty</string>
-				<string>cls</string>
+				<string>cc</string>
+				<string>cp</string>
+				<string>cpp</string>
+				<string>cxx</string>
+				<string>c++</string>
 			</array>
-		</dict>
-		<dict>
+			<key>CFBundleTypeIconFile</key>
+			<string>file.icns</string>
+			<key>CFBundleTypeName</key>
+			<string>C++ source</string>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
-			<key>CFBundleTypeName</key>
-			<string>Lisp</string>
+			<key>LSHandlerRank</key>
+			<string>Alternate</string>
+		</dict>
+		<dict>
 			<key>CFBundleTypeExtensions</key>
 			<array>
-				<string>lisp</string>
-				<string>scm</string>
-				<string>ss</string>
+				<string>cs</string>
+			</array>
+			<key>CFBundleTypeIconFile</key>
+			<string>file.icns</string>
+			<key>CFBundleTypeName</key>
+			<string>C# source</string>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>LSHandlerRank</key>
+			<string>Alternate</string>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>coffee</string>
+			</array>
+			<key>CFBundleTypeIconFile</key>
+			<string>file.icns</string>
+			<key>CFBundleTypeName</key>
+			<string>CoffeeScript source</string>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>LSHandlerRank</key>
+			<string>Alternate</string>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>COMMIT_EDITMSG</string>
+			</array>
+			<key>CFBundleTypeIconFile</key>
+			<string>file.icns</string>
+			<key>CFBundleTypeName</key>
+			<string>Commit message</string>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>LSHandlerRank</key>
+			<string>Alternate</string>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>cfdg</string>
+			</array>
+			<key>CFBundleTypeIconFile</key>
+			<string>file.icns</string>
+			<key>CFBundleTypeName</key>
+			<string>Context Free Design Grammar</string>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>LSHandlerRank</key>
+			<string>Alternate</string>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>clj</string>
+				<string>cljs</string>
+			</array>
+			<key>CFBundleTypeIconFile</key>
+			<string>file.icns</string>
+			<key>CFBundleTypeName</key>
+			<string>Clojure source</string>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>LSHandlerRank</key>
+			<string>Alternate</string>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>csv</string>
+			</array>
+			<key>CFBundleTypeIconFile</key>
+			<string>file.icns</string>
+			<key>CFBundleTypeName</key>
+			<string>Comma separated values</string>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>LSHandlerRank</key>
+			<string>Alternate</string>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>tsv</string>
+			</array>
+			<key>CFBundleTypeIconFile</key>
+			<string>file.icns</string>
+			<key>CFBundleTypeName</key>
+			<string>Tab separated values</string>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>LSHandlerRank</key>
+			<string>Alternate</string>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>cgi</string>
+				<string>fcgi</string>
+			</array>
+			<key>CFBundleTypeIconFile</key>
+			<string>file.icns</string>
+			<key>CFBundleTypeName</key>
+			<string>CGI script</string>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>cfg</string>
+				<string>conf</string>
+				<string>config</string>
+				<string>htaccess</string>
+			</array>
+			<key>CFBundleTypeIconFile</key>
+			<string>file.icns</string>
+			<key>CFBundleTypeName</key>
+			<string>Configuration file</string>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>LSHandlerRank</key>
+			<string>Alternate</string>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>css</string>
+			</array>
+			<key>CFBundleTypeIconFile</key>
+			<string>file.icns</string>
+			<key>CFBundleTypeName</key>
+			<string>Cascading style sheet</string>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>LSHandlerRank</key>
+			<string>Alternate</string>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>diff</string>
+			</array>
+			<key>CFBundleTypeIconFile</key>
+			<string>file.icns</string>
+			<key>CFBundleTypeName</key>
+			<string>Differences file</string>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>LSHandlerRank</key>
+			<string>Alternate</string>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>dtd</string>
+			</array>
+			<key>CFBundleTypeIconFile</key>
+			<string>file.icns</string>
+			<key>CFBundleTypeName</key>
+			<string>Document Type Definition</string>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>LSHandlerRank</key>
+			<string>Alternate</string>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>dylan</string>
+			</array>
+			<key>CFBundleTypeIconFile</key>
+			<string>file.icns</string>
+			<key>CFBundleTypeName</key>
+			<string>Dylan source</string>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>LSHandlerRank</key>
+			<string>Alternate</string>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>erl</string>
+				<string>hrl</string>
+			</array>
+			<key>CFBundleTypeIconFile</key>
+			<string>file.icns</string>
+			<key>CFBundleTypeName</key>
+			<string>Erlang source</string>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>LSHandlerRank</key>
+			<string>Alternate</string>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>fscript</string>
+			</array>
+			<key>CFBundleTypeIconFile</key>
+			<string>file.icns</string>
+			<key>CFBundleTypeName</key>
+			<string>F-Script source</string>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>LSHandlerRank</key>
+			<string>Alternate</string>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>f</string>
+				<string>for</string>
+				<string>fpp</string>
+				<string>f77</string>
+				<string>f90</string>
+				<string>f95</string>
+			</array>
+			<key>CFBundleTypeIconFile</key>
+			<string>file.icns</string>
+			<key>CFBundleTypeName</key>
+			<string>Fortran source</string>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>LSHandlerRank</key>
+			<string>Alternate</string>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>h</string>
+				<string>pch</string>
+			</array>
+			<key>CFBundleTypeIconFile</key>
+			<string>file.icns</string>
+			<key>CFBundleTypeName</key>
+			<string>Header</string>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>LSHandlerRank</key>
+			<string>Alternate</string>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>hh</string>
+				<string>hpp</string>
+				<string>hxx</string>
+				<string>h++</string>
+			</array>
+			<key>CFBundleTypeIconFile</key>
+			<string>file.icns</string>
+			<key>CFBundleTypeName</key>
+			<string>C++ header</string>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>LSHandlerRank</key>
+			<string>Alternate</string>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>go</string>
+			</array>
+			<key>CFBundleTypeIconFile</key>
+			<string>file.icns</string>
+			<key>CFBundleTypeName</key>
+			<string>Go source</string>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>LSHandlerRank</key>
+			<string>Alternate</string>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>gtd</string>
+				<string>gtdlog</string>
+			</array>
+			<key>CFBundleTypeIconFile</key>
+			<string>file.icns</string>
+			<key>CFBundleTypeName</key>
+			<string>GTD document</string>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>LSHandlerRank</key>
+			<string>Alternate</string>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>hs</string>
+				<string>lhs</string>
+			</array>
+			<key>CFBundleTypeIconFile</key>
+			<string>file.icns</string>
+			<key>CFBundleTypeName</key>
+			<string>Haskell source</string>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>LSHandlerRank</key>
+			<string>Alternate</string>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>htm</string>
+				<string>html</string>
+				<string>phtml</string>
+				<string>shtml</string>
+			</array>
+			<key>CFBundleTypeIconFile</key>
+			<string>file.icns</string>
+			<key>CFBundleTypeName</key>
+			<string>HTML document</string>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>LSHandlerRank</key>
+			<string>Alternate</string>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>inc</string>
+			</array>
+			<key>CFBundleTypeIconFile</key>
+			<string>file.icns</string>
+			<key>CFBundleTypeName</key>
+			<string>Include file</string>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>LSHandlerRank</key>
+			<string>Alternate</string>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>ics</string>
+			</array>
+			<key>CFBundleTypeIconFile</key>
+			<string>file.icns</string>
+			<key>CFBundleTypeName</key>
+			<string>iCalendar schedule</string>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>LSHandlerRank</key>
+			<string>Alternate</string>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>ini</string>
+			</array>
+			<key>CFBundleTypeIconFile</key>
+			<string>file.icns</string>
+			<key>CFBundleTypeName</key>
+			<string>MS Windows initialization file</string>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>LSHandlerRank</key>
+			<string>Alternate</string>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>io</string>
+			</array>
+			<key>CFBundleTypeIconFile</key>
+			<string>file.icns</string>
+			<key>CFBundleTypeName</key>
+			<string>Io source</string>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>LSHandlerRank</key>
+			<string>Alternate</string>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>java</string>
+			</array>
+			<key>CFBundleTypeIconFile</key>
+			<string>file.icns</string>
+			<key>CFBundleTypeName</key>
+			<string>Java source</string>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>LSHandlerRank</key>
+			<string>Alternate</string>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>bsh</string>
+			</array>
+			<key>CFBundleTypeIconFile</key>
+			<string>file.icns</string>
+			<key>CFBundleTypeName</key>
+			<string>BeanShell script</string>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>LSHandlerRank</key>
+			<string>Alternate</string>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>properties</string>
+			</array>
+			<key>CFBundleTypeIconFile</key>
+			<string>file.icns</string>
+			<key>CFBundleTypeName</key>
+			<string>Java properties file</string>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>LSHandlerRank</key>
+			<string>Alternate</string>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>js</string>
+				<string>htc</string>
+			</array>
+			<key>CFBundleTypeIconFile</key>
+			<string>file.icns</string>
+			<key>CFBundleTypeName</key>
+			<string>JavaScript source</string>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>LSHandlerRank</key>
+			<string>Alternate</string>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>jsp</string>
+			</array>
+			<key>CFBundleTypeIconFile</key>
+			<string>file.icns</string>
+			<key>CFBundleTypeName</key>
+			<string>Java Server Page</string>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>LSHandlerRank</key>
+			<string>Alternate</string>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>json</string>
+			</array>
+			<key>CFBundleTypeIconFile</key>
+			<string>file.icns</string>
+			<key>CFBundleTypeName</key>
+			<string>JSON file</string>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>LSHandlerRank</key>
+			<string>Alternate</string>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>ldif</string>
+			</array>
+			<key>CFBundleTypeIconFile</key>
+			<string>file.icns</string>
+			<key>CFBundleTypeName</key>
+			<string>LDAP Data Interchange Format</string>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>LSHandlerRank</key>
+			<string>Alternate</string>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>less</string>
+			</array>
+			<key>CFBundleTypeIconFile</key>
+			<string>file.icns</string>
+			<key>CFBundleTypeName</key>
+			<string>Less source</string>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>LSHandlerRank</key>
+			<string>Alternate</string>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
 				<string>lisp</string>
 				<string>cl</string>
 				<string>l</string>
+				<string>lsp</string>
 				<string>mud</string>
 				<string>el</string>
 			</array>
 			<key>CFBundleTypeIconFile</key>
-			<string>LISP</string>
-		</dict>
-		<dict>
+			<string>file.icns</string>
+			<key>CFBundleTypeName</key>
+			<string>Lisp source</string>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
+			<key>LSHandlerRank</key>
+			<string>Alternate</string>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>log</string>
+			</array>
+			<key>CFBundleTypeIconFile</key>
+			<string>file.icns</string>
 			<key>CFBundleTypeName</key>
-			<string>Lua</string>
+			<string>Log file</string>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>LSHandlerRank</key>
+			<string>Alternate</string>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>logo</string>
+			</array>
+			<key>CFBundleTypeIconFile</key>
+			<string>file.icns</string>
+			<key>CFBundleTypeName</key>
+			<string>Logo source</string>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>LSHandlerRank</key>
+			<string>Alternate</string>
+		</dict>
+		<dict>
 			<key>CFBundleTypeExtensions</key>
 			<array>
 				<string>lua</string>
 			</array>
 			<key>CFBundleTypeIconFile</key>
-			<string>LUA</string>
-		</dict>
-		<dict>
+			<string>file.icns</string>
+			<key>CFBundleTypeName</key>
+			<string>Lua source</string>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
-			<key>CFBundleTypeName</key>
-			<string>Makefile</string>
-			<key>CFBundleTypeExtensions</key>
-			<array>
-				<string>GNUmakefile</string>
-				<string>makefile</string>
-				<string>Makefile</string>
-				<string>OCamlMakefile</string>
-			</array>
-			<key>CFBundleTypeIconFile</key>
-			<string>MAKEFILE</string>
+			<key>LSHandlerRank</key>
+			<string>Alternate</string>
 		</dict>
 		<dict>
-			<key>CFBundleTypeRole</key>
-			<string>Editor</string>
-			<key>CFBundleTypeName</key>
-			<string>Markdown</string>
 			<key>CFBundleTypeExtensions</key>
 			<array>
-				<string>mdown</string>
 				<string>markdown</string>
+				<string>mdown</string>
 				<string>markdn</string>
 				<string>md</string>
 			</array>
 			<key>CFBundleTypeIconFile</key>
-			<string>MARKDOWN</string>
-		</dict>
-		<dict>
+			<string>file.icns</string>
+			<key>CFBundleTypeName</key>
+			<string>Markdown document</string>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
-			<key>CFBundleTypeName</key>
-			<string>MATLAB</string>
+			<key>LSHandlerRank</key>
+			<string>Alternate</string>
+		</dict>
+		<dict>
 			<key>CFBundleTypeExtensions</key>
 			<array>
-				<string>matlab</string>
+				<string>mk</string>
 			</array>
 			<key>CFBundleTypeIconFile</key>
-			<string>MATLAB</string>
-		</dict>
-		<dict>
+			<string>file.icns</string>
+			<key>CFBundleTypeName</key>
+			<string>Makefile source</string>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
+			<key>LSHandlerRank</key>
+			<string>Alternate</string>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>wiki</string>
+				<string>wikipedia</string>
+				<string>mediawiki</string>
+			</array>
+			<key>CFBundleTypeIconFile</key>
+			<string>file.icns</string>
 			<key>CFBundleTypeName</key>
-			<string>OCaml</string>
+			<string>Mediawiki document</string>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>LSHandlerRank</key>
+			<string>Alternate</string>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>s</string>
+				<string>mips</string>
+				<string>spim</string>
+				<string>asm</string>
+			</array>
+			<key>CFBundleTypeIconFile</key>
+			<string>file.icns</string>
+			<key>CFBundleTypeName</key>
+			<string>MIPS assembler source</string>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>LSHandlerRank</key>
+			<string>Alternate</string>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>m3</string>
+				<string>cm3</string>
+			</array>
+			<key>CFBundleTypeIconFile</key>
+			<string>file.icns</string>
+			<key>CFBundleTypeName</key>
+			<string>Modula-3 source</string>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>LSHandlerRank</key>
+			<string>Alternate</string>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>moinmoin</string>
+			</array>
+			<key>CFBundleTypeIconFile</key>
+			<string>file.icns</string>
+			<key>CFBundleTypeName</key>
+			<string>MoinMoin document</string>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>LSHandlerRank</key>
+			<string>Alternate</string>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>m</string>
+			</array>
+			<key>CFBundleTypeIconFile</key>
+			<string>file.icns</string>
+			<key>CFBundleTypeName</key>
+			<string>Objective-C source</string>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>LSHandlerRank</key>
+			<string>Alternate</string>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>mm</string>
+			</array>
+			<key>CFBundleTypeIconFile</key>
+			<string>file.icns</string>
+			<key>CFBundleTypeName</key>
+			<string>Objective-C++ source</string>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>LSHandlerRank</key>
+			<string>Alternate</string>
+		</dict>
+		<dict>
 			<key>CFBundleTypeExtensions</key>
 			<array>
 				<string>ml</string>
 				<string>mli</string>
-			</array>
-			<key>CFBundleTypeIconFile</key>
-			<string>OCAML</string>
-		</dict>
-		<dict>
-			<key>CFBundleTypeRole</key>
-			<string>Editor</string>
-			<key>CFBundleTypeName</key>
-			<string>OCamllex</string>
-			<key>CFBundleTypeExtensions</key>
-			<array>
 				<string>mll</string>
-			</array>
-			<key>CFBundleTypeIconFile</key>
-			<string>OCAML</string>
-		</dict>
-		<dict>
-			<key>CFBundleTypeRole</key>
-			<string>Editor</string>
-			<key>CFBundleTypeName</key>
-			<string>OCamlyacc</string>
-			<key>CFBundleTypeExtensions</key>
-			<array>
 				<string>mly</string>
 			</array>
 			<key>CFBundleTypeIconFile</key>
-			<string>OCAML</string>
-		</dict>
-		<dict>
+			<string>file.icns</string>
+			<key>CFBundleTypeName</key>
+			<string>OCaml source</string>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
-			<key>CFBundleTypeName</key>
-			<string>Objective-C++</string>
+			<key>LSHandlerRank</key>
+			<string>Alternate</string>
+		</dict>
+		<dict>
 			<key>CFBundleTypeExtensions</key>
 			<array>
-				<string>mm</string>
-				<string>M</string>
-				<string>h</string>
+				<string>mustache</string>
+				<string>hbs</string>
 			</array>
 			<key>CFBundleTypeIconFile</key>
-			<string>OBJ-C++</string>
-		</dict>
-		<dict>
+			<string>file.icns</string>
+			<key>CFBundleTypeName</key>
+			<string>Mustache document</string>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
-			<key>CFBundleTypeName</key>
-			<string>Objective-C</string>
+			<key>LSHandlerRank</key>
+			<string>Alternate</string>
+		</dict>
+		<dict>
 			<key>CFBundleTypeExtensions</key>
 			<array>
-				<string>m</string>
-				<string>h</string>
+				<string>pas</string>
+				<string>p</string>
 			</array>
 			<key>CFBundleTypeIconFile</key>
-			<string>OBJ-C</string>
-		</dict>
-		<dict>
+			<string>file.icns</string>
+			<key>CFBundleTypeName</key>
+			<string>Pascal source</string>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
-			<key>CFBundleTypeName</key>
-			<string>PHP</string>
+			<key>LSHandlerRank</key>
+			<string>Alternate</string>
+		</dict>
+		<dict>
 			<key>CFBundleTypeExtensions</key>
 			<array>
-				<string>php</string>
+				<string>patch</string>
 			</array>
 			<key>CFBundleTypeIconFile</key>
-			<string>PHP</string>
-		</dict>
-		<dict>
+			<string>file.icns</string>
+			<key>CFBundleTypeName</key>
+			<string>Patch file</string>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
-			<key>CFBundleTypeName</key>
-			<string>Perl</string>
+			<key>LSHandlerRank</key>
+			<string>Alternate</string>
+		</dict>
+		<dict>
 			<key>CFBundleTypeExtensions</key>
 			<array>
 				<string>pl</string>
-				<string>pm</string>
 				<string>pod</string>
-				<string>t</string>
-				<string>PL</string>
+				<string>perl</string>
 			</array>
 			<key>CFBundleTypeIconFile</key>
-			<string>PERL</string>
-		</dict>
-		<dict>
+			<string>file.icns</string>
+			<key>CFBundleTypeName</key>
+			<string>Perl source</string>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
+			<key>LSHandlerRank</key>
+			<string>Alternate</string>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>pm</string>
+			</array>
+			<key>CFBundleTypeIconFile</key>
+			<string>file.icns</string>
 			<key>CFBundleTypeName</key>
-			<string>Python</string>
+			<string>Perl module</string>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>LSHandlerRank</key>
+			<string>Alternate</string>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>php</string>
+				<string>php3</string>
+				<string>php4</string>
+				<string>php5</string>
+			</array>
+			<key>CFBundleTypeIconFile</key>
+			<string>file.icns</string>
+			<key>CFBundleTypeName</key>
+			<string>PHP source</string>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>LSHandlerRank</key>
+			<string>Alternate</string>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>ps</string>
+				<string>eps</string>
+			</array>
+			<key>CFBundleTypeIconFile</key>
+			<string>file.icns</string>
+			<key>CFBundleTypeName</key>
+			<string>PostScript source</string>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>LSHandlerRank</key>
+			<string>Alternate</string>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>dict</string>
+				<string>plist</string>
+				<string>scriptSuite</string>
+				<string>scriptTerminology</string>
+			</array>
+			<key>CFBundleTypeIconFile</key>
+			<string>file.icns</string>
+			<key>CFBundleTypeName</key>
+			<string>Property list</string>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>LSHandlerRank</key>
+			<string>Alternate</string>
+		</dict>
+		<dict>
 			<key>CFBundleTypeExtensions</key>
 			<array>
 				<string>py</string>
 				<string>rpy</string>
-				<string>pyw</string>
 				<string>cpy</string>
-				<string>SConstruct</string>
-				<string>Sconstruct</string>
-				<string>sconstruct</string>
-				<string>SConscript</string>
+				<string>python</string>
 			</array>
 			<key>CFBundleTypeIconFile</key>
-			<string>PYTHON</string>
-		</dict>
-		<dict>
+			<string>file.icns</string>
+			<key>CFBundleTypeName</key>
+			<string>Python source</string>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
-			<key>CFBundleTypeName</key>
-			<string>Regular Expressions (Python)</string>
-			<key>CFBundleTypeExtensions</key>
-			<array>
-				<string>re</string>
-			</array>
-			<key>CFBundleTypeIconFile</key>
-			<string>REGEXP</string>
+			<key>LSHandlerRank</key>
+			<string>Alternate</string>
 		</dict>
 		<dict>
-			<key>CFBundleTypeRole</key>
-			<string>Editor</string>
-			<key>CFBundleTypeName</key>
-			<string>R</string>
 			<key>CFBundleTypeExtensions</key>
 			<array>
-				<string>R</string>
 				<string>r</string>
 				<string>s</string>
-				<string>S</string>
-				<string>Rprofile</string>
 			</array>
 			<key>CFBundleTypeIconFile</key>
-			<string>R</string>
-		</dict>
-		<dict>
+			<string>file.icns</string>
+			<key>CFBundleTypeName</key>
+			<string>R source</string>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
-			<key>CFBundleTypeName</key>
-			<string>Rd (R Documentation)</string>
+			<key>LSHandlerRank</key>
+			<string>Alternate</string>
+		</dict>
+		<dict>
 			<key>CFBundleTypeExtensions</key>
 			<array>
-				<string>rd</string>
+				<string>rl</string>
+				<string>ragel</string>
 			</array>
 			<key>CFBundleTypeIconFile</key>
-			<string>R</string>
-		</dict>
-		<dict>
+			<string>file.icns</string>
+			<key>CFBundleTypeName</key>
+			<string>Ragel source</string>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
+			<key>LSHandlerRank</key>
+			<string>Alternate</string>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>rem</string>
+				<string>remind</string>
+			</array>
+			<key>CFBundleTypeIconFile</key>
+			<string>file.icns</string>
 			<key>CFBundleTypeName</key>
-			<string>HTML (Rails)</string>
+			<string>Remind document</string>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>LSHandlerRank</key>
+			<string>Alternate</string>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>rst</string>
+				<string>rest</string>
+			</array>
+			<key>CFBundleTypeIconFile</key>
+			<string>file.icns</string>
+			<key>CFBundleTypeName</key>
+			<string>reStructuredText document</string>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>LSHandlerRank</key>
+			<string>Alternate</string>
+		</dict>
+		<dict>
 			<key>CFBundleTypeExtensions</key>
 			<array>
 				<string>rhtml</string>
+				<string>erb</string>
 			</array>
 			<key>CFBundleTypeIconFile</key>
-			<string>RAILS</string>
-		</dict>
-		<dict>
+			<string>file.icns</string>
+			<key>CFBundleTypeName</key>
+			<string>HTML with embedded Ruby</string>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
-			<key>CFBundleTypeName</key>
-			<string>Ruby on Rails</string>
-			<key>CFBundleTypeExtensions</key>
-			<array>
-				<string>rxml</string>
-			</array>
-			<key>CFBundleTypeIconFile</key>
-			<string>RAILS</string>
+			<key>LSHandlerRank</key>
+			<string>Alternate</string>
 		</dict>
 		<dict>
-			<key>CFBundleTypeRole</key>
-			<string>Editor</string>
-			<key>CFBundleTypeName</key>
-			<string>SQL (Rails)</string>
 			<key>CFBundleTypeExtensions</key>
 			<array>
 				<string>erbsql</string>
 			</array>
 			<key>CFBundleTypeIconFile</key>
-			<string>RAILS</string>
-		</dict>
-		<dict>
+			<string>file.icns</string>
+			<key>CFBundleTypeName</key>
+			<string>SQL with embedded Ruby</string>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
-			<key>CFBundleTypeName</key>
-			<string>Regular Expression</string>
-			<key>CFBundleTypeExtensions</key>
-			<array>
-				<string>re</string>
-			</array>
-			<key>CFBundleTypeIconFile</key>
-			<string>REGEXP</string>
+			<key>LSHandlerRank</key>
+			<string>Alternate</string>
 		</dict>
 		<dict>
-			<key>CFBundleTypeRole</key>
-			<string>Editor</string>
-			<key>CFBundleTypeName</key>
-			<string>Ruby</string>
 			<key>CFBundleTypeExtensions</key>
 			<array>
 				<string>rb</string>
 				<string>rbx</string>
 				<string>rjs</string>
-				<string>Rakefile</string>
-				<string>rake</string>
-				<string>cgi</string>
-				<string>fcgi</string>
-				<string>gemspec</string>
-				<string>irbrc</string>
-				<string>capfile</string>
+				<string>rxml</string>
 			</array>
 			<key>CFBundleTypeIconFile</key>
-			<string>RUBY</string>
-		</dict>
-		<dict>
+			<string>file.icns</string>
+			<key>CFBundleTypeName</key>
+			<string>Ruby source</string>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
-			<key>CFBundleTypeName</key>
-			<string>SQL</string>
+			<key>LSHandlerRank</key>
+			<string>Alternate</string>
+		</dict>
+		<dict>
 			<key>CFBundleTypeExtensions</key>
 			<array>
-				<string>sql</string>
-				<string>ddl</string>
-				<string>dml</string>
+				<string>sass</string>
+				<string>scss</string>
 			</array>
 			<key>CFBundleTypeIconFile</key>
-			<string>SQL</string>
-		</dict>
-		<dict>
+			<string>file.icns</string>
+			<key>CFBundleTypeName</key>
+			<string>Sass source</string>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
-			<key>CFBundleTypeName</key>
-			<string>Scala</string>
+			<key>LSHandlerRank</key>
+			<string>Alternate</string>
+		</dict>
+		<dict>
 			<key>CFBundleTypeExtensions</key>
 			<array>
-				<string>scala</string>
+				<string>scm</string>
+				<string>sch</string>
 			</array>
 			<key>CFBundleTypeIconFile</key>
-			<string>SCALA</string>
-		</dict>
-		<dict>
+			<string>file.icns</string>
+			<key>CFBundleTypeName</key>
+			<string>Scheme source</string>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
+			<key>LSHandlerRank</key>
+			<string>Alternate</string>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>ext</string>
+			</array>
+			<key>CFBundleTypeIconFile</key>
+			<string>file.icns</string>
 			<key>CFBundleTypeName</key>
-			<string>Shell Script (Bash)</string>
+			<string>Setext document</string>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>LSHandlerRank</key>
+			<string>Alternate</string>
+		</dict>
+		<dict>
 			<key>CFBundleTypeExtensions</key>
 			<array>
 				<string>sh</string>
@@ -686,116 +1133,386 @@
 				<string>bash_login</string>
 				<string>profile</string>
 				<string>bash_logout</string>
-				<string>.textmate_init</string>
 			</array>
 			<key>CFBundleTypeIconFile</key>
-			<string>SHELL</string>
-		</dict>
-		<dict>
+			<string>file.icns</string>
+			<key>CFBundleTypeName</key>
+			<string>Shell script</string>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
+			<key>LSHandlerRank</key>
+			<string>Alternate</string>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>slate</string>
+			</array>
+			<key>CFBundleTypeIconFile</key>
+			<string>file.icns</string>
 			<key>CFBundleTypeName</key>
-			<string>HTML (Tcl)</string>
+			<string>Slate source</string>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>LSHandlerRank</key>
+			<string>Alternate</string>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>sql</string>
+			</array>
+			<key>CFBundleTypeIconFile</key>
+			<string>file.icns</string>
+			<key>CFBundleTypeName</key>
+			<string>SQL source</string>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>LSHandlerRank</key>
+			<string>Alternate</string>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>sml</string>
+			</array>
+			<key>CFBundleTypeIconFile</key>
+			<string>file.icns</string>
+			<key>CFBundleTypeName</key>
+			<string>Standard ML source</string>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>LSHandlerRank</key>
+			<string>Alternate</string>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>strings</string>
+			</array>
+			<key>CFBundleTypeIconFile</key>
+			<string>file.icns</string>
+			<key>CFBundleTypeName</key>
+			<string>Strings document</string>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>LSHandlerRank</key>
+			<string>Alternate</string>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>svg</string>
+			</array>
+			<key>CFBundleTypeIconFile</key>
+			<string>file.icns</string>
+			<key>CFBundleTypeName</key>
+			<string>Scalable vector graphics</string>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>LSHandlerRank</key>
+			<string>Alternate</string>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>i</string>
+				<string>swg</string>
+			</array>
+			<key>CFBundleTypeIconFile</key>
+			<string>file.icns</string>
+			<key>CFBundleTypeName</key>
+			<string>SWIG source</string>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>LSHandlerRank</key>
+			<string>Alternate</string>
+		</dict>
+		<dict>
 			<key>CFBundleTypeExtensions</key>
 			<array>
 				<string>tcl</string>
-				<string>adp</string>
-				<string>inc</string>
 			</array>
 			<key>CFBundleTypeIconFile</key>
-			<string>TCL</string>
-		</dict>
-		<dict>
+			<string>file.icns</string>
+			<key>CFBundleTypeName</key>
+			<string>Tcl source</string>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
-			<key>CFBundleTypeName</key>
-			<string>Tcl</string>
+			<key>LSHandlerRank</key>
+			<string>Alternate</string>
+		</dict>
+		<dict>
 			<key>CFBundleTypeExtensions</key>
 			<array>
-				<string>tcl</string>
+				<string>tex</string>
+				<string>sty</string>
+				<string>cls</string>
 			</array>
 			<key>CFBundleTypeIconFile</key>
-			<string>TCL</string>
-		</dict>
-		<dict>
+			<string>file.icns</string>
+			<key>CFBundleTypeName</key>
+			<string>TeX document</string>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
-			<key>CFBundleTypeName</key>
-			<string>Plain Text</string>
+			<key>LSHandlerRank</key>
+			<string>Alternate</string>
+		</dict>
+		<dict>
 			<key>CFBundleTypeExtensions</key>
 			<array>
+				<string>text</string>
 				<string>txt</string>
+				<string>utf8</string>
 			</array>
 			<key>CFBundleTypeIconFile</key>
-			<string>TEXT</string>
-		</dict>
-		<dict>
+			<string>file.icns</string>
+			<key>CFBundleTypeMIMETypes</key>
+			<array>
+				<string>text/plain</string>
+			</array>
+			<key>CFBundleTypeName</key>
+			<string>Plain text document</string>
+			<key>CFBundleTypeOSTypes</key>
+			<array>
+				<string>TEXT</string>
+				<string>sEXT</string>
+				<string>ttro</string>
+			</array>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
-			<key>CFBundleTypeName</key>
-			<string>Textile</string>
+			<key>LSHandlerRank</key>
+			<string>Alternate</string>
+		</dict>
+		<dict>
 			<key>CFBundleTypeExtensions</key>
 			<array>
 				<string>textile</string>
 			</array>
 			<key>CFBundleTypeIconFile</key>
-			<string>TEXTILE</string>
-		</dict>
-		<dict>
+			<string>file.icns</string>
+			<key>CFBundleTypeName</key>
+			<string>Textile document</string>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
+			<key>LSHandlerRank</key>
+			<string>Alternate</string>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>toml</string>
+			</array>
+			<key>CFBundleTypeIconFile</key>
+			<string>file.icns</string>
 			<key>CFBundleTypeName</key>
-			<string>XML</string>
+			<string>TOML file</string>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>LSHandlerRank</key>
+			<string>Alternate</string>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>xhtml</string>
+			</array>
+			<key>CFBundleTypeIconFile</key>
+			<string>file.icns</string>
+			<key>CFBundleTypeName</key>
+			<string>XHTML document</string>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>LSHandlerRank</key>
+			<string>Alternate</string>
+		</dict>
+		<dict>
 			<key>CFBundleTypeExtensions</key>
 			<array>
 				<string>xml</string>
 				<string>xsd</string>
-				<string>xslt</string>
-				<string>svg</string>
+				<string>xib</string>
 				<string>rss</string>
-				<string>vcproj</string>
-				<string>tmLanguage</string>
-				<string>tmTheme</string>
-				<string>tmSnippet</string>
-				<string>tmPreferences</string>
-				<string>dae</string>
-				<string>xml</string>
 				<string>tld</string>
-				<string>jsp</string>
 				<string>pt</string>
 				<string>cpt</string>
 				<string>dtml</string>
-				<string>rss</string>
-				<string>opml</string>
 			</array>
 			<key>CFBundleTypeIconFile</key>
-			<string>XML</string>
-		</dict>
-		<dict>
+			<string>file.icns</string>
+			<key>CFBundleTypeName</key>
+			<string>XML document</string>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
-			<key>CFBundleTypeName</key>
-			<string>XSL</string>
+			<key>LSHandlerRank</key>
+			<string>Alternate</string>
+		</dict>
+		<dict>
 			<key>CFBundleTypeExtensions</key>
 			<array>
 				<string>xsl</string>
 				<string>xslt</string>
 			</array>
 			<key>CFBundleTypeIconFile</key>
-			<string>XSL</string>
-		</dict>
-		<dict>
+			<string>file.icns</string>
+			<key>CFBundleTypeName</key>
+			<string>XSL stylesheet</string>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
+			<key>LSHandlerRank</key>
+			<string>Alternate</string>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>vcf</string>
+				<string>vcard</string>
+			</array>
+			<key>CFBundleTypeIconFile</key>
+			<string>file.icns</string>
 			<key>CFBundleTypeName</key>
-			<string>YAML</string>
+			<string>Electronic business card</string>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>LSHandlerRank</key>
+			<string>Alternate</string>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>vb</string>
+			</array>
+			<key>CFBundleTypeIconFile</key>
+			<string>file.icns</string>
+			<key>CFBundleTypeName</key>
+			<string>Visual Basic source</string>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>LSHandlerRank</key>
+			<string>Alternate</string>
+		</dict>
+		<dict>
 			<key>CFBundleTypeExtensions</key>
 			<array>
 				<string>yaml</string>
 				<string>yml</string>
 			</array>
 			<key>CFBundleTypeIconFile</key>
-			<string>YAML</string>
+			<string>file.icns</string>
+			<key>CFBundleTypeName</key>
+			<string>YAML document</string>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>LSHandlerRank</key>
+			<string>Alternate</string>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>nfo</string>
+			</array>
+			<key>CFBundleTypeIconFile</key>
+			<string>file.icns</string>
+			<key>CFBundleTypeName</key>
+			<string>Text document</string>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>LSHandlerRank</key>
+			<string>Alternate</string>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>g</string>
+				<string>vss</string>
+				<string>d</string>
+				<string>e</string>
+				<string>gri</string>
+				<string>inf</string>
+				<string>mel</string>
+				<string>build</string>
+				<string>re</string>
+				<string>textmate</string>
+				<string>fxscript</string>
+				<string>lgt</string>
+			</array>
+			<key>CFBundleTypeIconFile</key>
+			<string>file.icns</string>
+			<key>CFBundleTypeName</key>
+			<string>Source</string>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>LSHandlerRank</key>
+			<string>Alternate</string>
+		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>cfm</string>
+				<string>cfml</string>
+				<string>dbm</string>
+				<string>dbml</string>
+				<string>dist</string>
+				<string>dot</string>
+				<string>ics</string>
+				<string>ifb</string>
+				<string>dwt</string>
+				<string>g</string>
+				<string>in</string>
+				<string>l</string>
+				<string>m4</string>
+				<string>mp</string>
+				<string>mtml</string>
+				<string>orig</string>
+				<string>pde</string>
+				<string>rej</string>
+				<string>servlet</string>
+				<string>s5</string>
+				<string>tmp</string>
+				<string>tpl</string>
+				<string>tt</string>
+				<string>xql</string>
+				<string>yy</string>
+				<string>*</string>
+			</array>
+			<key>CFBundleTypeIconFile</key>
+			<string>file.icns</string>
+			<key>CFBundleTypeName</key>
+			<string>Document</string>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>LSHandlerRank</key>
+			<string>Alternate</string>
+		</dict>
+		<dict>
+			<key>CFBundleTypeIconFile</key>
+			<string>file.icns</string>
+			<key>CFBundleTypeName</key>
+			<string>Document</string>
+			<key>CFBundleTypeOSTypes</key>
+			<array>
+				<string>****</string>
+			</array>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>LSHandlerRank</key>
+			<string>Alternate</string>
+			<key>LSItemContentTypes</key>
+			<array>
+				<string>public.data</string>
+			</array>
+		</dict>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>LSHandlerRank</key>
+			<string>Alternate</string>
+			<key>LSItemContentTypes</key>
+			<array>
+				<string>public.directory</string>
+				<string>com.apple.bundle</string>
+				<string>com.apple.resolvable</string>
+			</array>
 		</dict>
 	</array>
 </dict>
