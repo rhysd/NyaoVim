@@ -4,6 +4,7 @@ os:
     # - osx
     - linux
 osx_image: xcode9
+dist: trusty
 sudo: required
 before_install:
     - source ./scripts/travis-before-install.sh
