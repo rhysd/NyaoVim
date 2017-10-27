@@ -66,7 +66,7 @@ $ nyaovim [files...]
 
 You would see a minimal Neovim GUI editor (like gVim).  This is an Electron app and Neovim is drawn on `<canvas>`.  You can see the DevTools of this app with the 'Developer Tools' menu item.
 
-On first start up of NyaoVim, it creates `~/.config/nyaovim/nyaovimrc.html` for UI configuration (`%AppData%` instead of `.config` in Windows).  Yes, you can extend and configure UI components with HTML and CSS!
+On first start up of NyaoVim, it creates `~/.config/nyaovim/nyaovimrc.html` for UI configuration (`%AppData%` instead of `.config` in Windows; it may differ from Neovim, run `set AppData` from command line to get the path).  Yes, you can extend and configure UI components with HTML and CSS!
 
 ### Configure Editor Options
 
@@ -95,7 +95,7 @@ As described in the Goals section, a UI plugin is a normal Neovim plugin.  You c
 Plug 'rhysd/nyaovim-popup-tooltip'
 ```
 
-Then you need to put the popup tooltip UI on your NyaoVim interface.  Please open `~/.config/nyaovim/nyaovimrc.html` (`%AppData%` instead of `.config` in Windows).  As described in the Goals section, a user can build a UI with HTML and CSS with high customization.
+Then you need to put the popup tooltip UI on your NyaoVim interface.  Please open `~/.config/nyaovim/nyaovimrc.html` (`%AppData%` instead of `.config` in Windows; it may differ from Neovim, run `set AppData` from command line to get the path).  As described in the Goals section, a user can build a UI with HTML and CSS with high customization.
 
 Please add `<popup-tooltip>` tag under `<neovim-editor>` tag as below
 
