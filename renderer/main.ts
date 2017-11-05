@@ -23,8 +23,7 @@ if (!nyaovimrc_path) {
     console.error('nyaovimrc is not found in renderer process');
 }
 
-const link = document.createElement('link') as HTMLLinkElement;
+const link: HTMLLinkElement = document.createElement('link');
 link.rel = 'import';
 link.href = nyaovimrc_path;
 document.head.appendChild(link);
-

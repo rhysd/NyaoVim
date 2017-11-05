@@ -15,7 +15,7 @@ class ComponentLoader {
     }
 
     loadComponent(path: string) {
-        const link = document.createElement('link') as HTMLLinkElement;
+        const link: HTMLLinkElement = document.createElement('link');
         link.rel = 'import';
         link.href = path;
         document.head.appendChild(link);
@@ -53,7 +53,7 @@ class RuntimeApi {
     subscribe(client: Nvim) {
         client.on('notification', this.call.bind(this));
         for (const name in this.definitions) {
-            client.subscribe(name);
+            client.subscribe(name).catch();
         }
         this.client = client;
     }
@@ -71,7 +71,6 @@ class RuntimeApi {
         if (!func) {
             return null;
         }
-        console.log('call(): ', func_name, args);
         return func.apply(func, args);
     }
 }
@@ -126,7 +125,6 @@ const runtime_api = new RuntimeApi({
 
 function prepareIpc(client: Nvim) {
     ipc.on('nyaovim:exec-commands', (_: any, cmds: string[]) => {
-        console.log('ipc: nyaovim:exec-commands', cmds);
         for (const c of cmds) {
             client.command(c);
         }
@@ -136,7 +134,7 @@ function prepareIpc(client: Nvim) {
         // get current vim mode
         client.eval('mode()').then((value: string) => {
             if (value.length === 0) {
-                return;
+                return undefined;
             }
             const ch = value[0];
             const code = value.charCodeAt(0);
@@ -153,7 +151,7 @@ function prepareIpc(client: Nvim) {
         // get current vim mode.
         client.eval('mode()').then((value: string) => {
             if (value.length === 0) {
-                return;
+                return undefined;
             }
 
             const command = value[0] === 'n' ? 'ggVG' : '<Esc>ggVG';
@@ -165,7 +163,7 @@ function prepareIpc(client: Nvim) {
         // get current vim mode
         client.eval('mode()').then((value: string) => {
             if (value.length === 0) {
-                return;
+                return undefined;
             }
 
             const ch = value[0];
@@ -183,7 +181,7 @@ function prepareIpc(client: Nvim) {
         // get current vim mode
         client.eval('mode()').then((value: string) => {
             if (value.length === 0) {
-                return;
+                return undefined;
             }
 
             let command: string;

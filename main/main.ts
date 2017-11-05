@@ -46,9 +46,10 @@ function exists(path: string) {
     return new Promise<boolean>(resolve => {
         stat(path, (err, stats) => {
             if (err) {
-                return resolve(false);
+                resolve(false);
+                return;
             }
-            return resolve(stats.isFile() || stats.isDirectory());
+            resolve(stats.isFile() || stats.isDirectory());
         });
     });
 }
