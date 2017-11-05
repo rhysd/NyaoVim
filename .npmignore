@@ -1,5 +1,7 @@
-/npm-debug.log
+npm-debug.log
 /app.asar
-/typings
 /.git
-/test/**/*.js
+/test
+/Guardfile
+/tslint.json
+/scripts
