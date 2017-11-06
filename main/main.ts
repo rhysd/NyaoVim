@@ -15,7 +15,7 @@ OPTIONS:
   --help      : Show this help
   --version   : Show versions of NyaoVim, Electron, Chrome, Node.js, and V8
 `);
-    app.quit();
+    app.exit();
 }
 
 if (process.argv.indexOf('--version') !== -1) {
@@ -24,7 +24,7 @@ if (process.argv.indexOf('--version') !== -1) {
     console.log(`${app.getName()} version ${app.getVersion()}
 ${versions}
 `);
-    app.quit();
+    app.exit();
 }
 
 process.on('unhandledRejection', (reason: string, p: Promise<any>) => {
