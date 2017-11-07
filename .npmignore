@@ -5,3 +5,5 @@ npm-debug.log
 /Guardfile
 /tslint.json
 /scripts
+/app
+/dist

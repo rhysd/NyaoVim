@@ -1,10 +1,11 @@
 /node_modules
-/npm-debug.log
+npm-debug.log
 /app.asar
-/typings
 /bower_components
 /main/**/*.js
 /main/**/*.js.map
 /renderer/**/*.js
 /renderer/**/*.js.map
 /test/**/*.js
+/app
+/dist

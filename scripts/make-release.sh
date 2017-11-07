@@ -16,15 +16,15 @@ function prepare-app() {
     fi
     mkdir app
 
-    npm run build:release
+    npm run lint
+    npm run build
 
-    cp -R bin main renderer resources runtime package.json bower.json app/
+    cp -R bin main renderer resources runtime package.json bower.json bower_components app/
     cd app/
 
     npm install --production
     npm uninstall electron
     npm prune
-    ../node_modules/.bin/bower install
     cd -
 }
 
