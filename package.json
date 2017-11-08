@@ -1,7 +1,7 @@
 {
   "name": "nyaovim",
   "productName": "NyaoVim",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Web-enhanced Extensible Neovim Frontend",
   "main": "main/main.js",
   "bin": "./bin/cli.js",
@@ -49,7 +49,7 @@
     "electron": "^1.7.9",
     "electron-window-state": "^4.1.1",
     "mkdirp": "^0.5.1",
-    "neovim-component": "^0.9.0",
+    "neovim-component": "^0.9.1",
     "promised-neovim-client": "^2.0.2"
   },
   "devDependencies": {
@@ -61,10 +61,10 @@
     "@types/flux": "^3.1.4",
     "@types/mkdirp": "^0.5.1",
     "@types/mocha": "^2.2.44",
-    "@types/node": "^8.0.47",
+    "@types/node": "^8.0.50",
     "@types/polymer": "^1.2.1",
     "@types/q": "^1.0.6",
-    "@types/react": "^16.0.19",
+    "@types/react": "^16.0.21",
     "@types/webcomponents.js": "^0.6.32",
     "@types/webdriverio": "^4.8.6",
     "bower": "^1.8.2",
