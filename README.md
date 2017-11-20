@@ -1,7 +1,7 @@
 ![NyaoVim](resources/title-bar.png)
 ===================================
 
-This is a [Neovim](https://neovim.io/) frontend built on [Electron](http://electron.atom.io/).
+This is a [Neovim](https://neovim.io/) frontend built on [Electron](https://electronjs.org/).
 The Neovim editor is [composed as a Web Component](https://github.com/rhysd/neovim-component) and users
 can extend the UI with reusable Web Components, HTML, CSS and JavaScript.
 
