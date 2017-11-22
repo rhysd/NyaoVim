@@ -12,7 +12,8 @@
     "build": "npm-run-all -p build:main build:renderer",
     "tslint:renderer": "tslint -p renderer/",
     "tslint:main": "tslint -p main/",
-    "lint": "npm-run-all -p tslint:renderer tslint:main",
+    "nsp": "nsp check",
+    "lint": "npm-run-all -p tslint:renderer tslint:main nsp",
     "app": "electron $(npm prefix)",
     "debug": "ELECTRON_ENABLE_STACK_DUMPING=true NODE_ENV=debug electron $(npm prefix)",
     "start": "npm-run-all dep build app",
@@ -72,6 +73,7 @@
     "electron-packager": "^9.1.0",
     "mocha": "^4.0.1",
     "npm-run-all": "^4.1.1",
+    "nsp": "^3.1.0",
     "spectron": "^3.7.2",
     "tslint": "^5.8.0",
     "typescript": "^2.6.1"
