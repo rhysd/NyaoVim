@@ -39,3 +39,25 @@ If you don't want to add `nvim`'s directory path to `$PATH`, please specify the 
 
 [Here!](https://github.com/rhysd/dogfiles/blob/master/nvimrc) (Sorry for Japanese in comments.)
 
+### Q. Character picker is shown on macOS when holding some key
+
+From OS X 10.8, macOS enables the 'Character Picker' feature. If you see a weird popup when holding any key, please see the output of following command:
+
+```
+$ defaults read -g ApplePressAndHoldEnabled
+```
+
+If it shows `true`, you need to disable the feature.
+
+To disable it globally, please try following command
+
+```
+$ defaults write -g ApplePressAndHoldEnabled -bool true
+```
+
+If you install `NyaoVim.app`, you can disable it only in NyaoVim with following command.
+Please note that this is not available if you install NyaoVim via npm.
+
+```
+$ defaults write -app NyaoVim ApplePressAndHoldEnabled -bool true
+```
