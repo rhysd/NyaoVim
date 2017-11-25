@@ -15,9 +15,6 @@ script:
     - npm run build
     - npm run lint
     - npm run smoke-test
-cache:
-    directories:
-        - node_modules
 notifications:
     email:
         on_success: never

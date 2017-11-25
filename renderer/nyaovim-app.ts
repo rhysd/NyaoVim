@@ -1,4 +1,4 @@
-import {NeovimElement} from 'neovim-component';
+import {NeovimElement, Neovim} from 'neovim-component';
 import {remote, shell, ipcRenderer as ipc} from 'electron';
 import {join, basename} from 'path';
 import {readdirSync} from 'fs';
@@ -218,50 +218,59 @@ function prepareIpc(client: Nvim) {
     });
 }
 
-Polymer({
-    is: 'nyaovim-app',
+class NyaoVimApp extends Polymer.Element {
+    static get is() {
+        return 'nyaovim-app';
+    }
 
-    properties: {
-        argv: {
-            type: Array,
-            value() {
+    static get properties() {
+        return {
+            argv: {
+                type: Array,
+                value() {
 
-                // Handle the arguments of the standalone Nyaovim.app
-                // The first argument of standalone distribution is the binary path
-                let electron_argc =  1;
+                    // Handle the arguments of the standalone Nyaovim.app
+                    // The first argument of standalone distribution is the binary path
+                    let electron_argc =  1;
 
-                // When application is executed via 'electron' ('Electron' on darwin) executable.
-                if ('electron' === basename(remote.process.argv[0]).toLowerCase()) {
+                    // When application is executed via 'electron' ('Electron' on darwin) executable.
+                    if ('electron' === basename(remote.process.argv[0]).toLowerCase()) {
+                        // Note:
+                        // The first argument is a path to Electron executable.
+                        // The second argument is the path to main.js
+                        electron_argc = 2;
+                    }
+
                     // Note:
-                    // The first argument is a path to Electron executable.
-                    // The second argument is the path to main.js
-                    electron_argc = 2;
-                }
+                    // First and second arguments are related to Electron
+                    // XXX:
+                    // Spectron additionally passes many specific arguments to process and 'nvim' process
+                    // will fail because of them.  As a workaround, we stupidly ignore arguments on E2E tests.
+                    const a = process.env.NYAOVIM_E2E_TEST_RUNNING ? [] : remote.process.argv.slice(electron_argc);
 
-                // Note:
-                // First and second arguments are related to Electron
-                // XXX:
-                // Spectron additionally passes many specific arguments to process and 'nvim' process
-                // will fail because of them.  As a workaround, we stupidly ignore arguments on E2E tests.
-                const a = process.env.NYAOVIM_E2E_TEST_RUNNING ? [] : remote.process.argv.slice(electron_argc);
+                    a.unshift(
+                        '--cmd', `let\ g:nyaovim_version="${remote.app.getVersion()}"`,
+                        '--cmd', `set\ rtp+=${join(__dirname, '..', 'runtime').replace(' ', '\ ')}`,
+                    );
 
-                a.unshift(
-                    '--cmd', `let\ g:nyaovim_version="${remote.app.getVersion()}"`,
-                    '--cmd', `set\ rtp+=${join(__dirname, '..', 'runtime').replace(' ', '\ ')}`,
-                );
+                    // XXX:
+                    // Swap files are disabled because it shows message window on start up but frontend can't detect it.
+                    a.unshift('-n');
 
-                // XXX:
-                // Swap files are disabled because it shows message window on start up but frontend can't detect it.
-                a.unshift('-n');
-
-                return a;
+                    return a;
+                },
             },
-        },
-        editor: Object,
-    },
+            editor: Object,
+        };
+    }
+
+    argv: string[];
+    editor: Neovim;
 
     ready() {
-        const element = document.getElementById('nyaovim-editor') as NeovimElement;
+        super.ready();
+        (global as any).hello = this;
+        const element = this.$['nyaovim-editor'] as NeovimElement;
         const editor = element.editor;
         editor.on('error', (err: Error) => alert(err.message));
         editor.on('quit', () => ThisBrowserWindow.close());
@@ -307,7 +316,9 @@ Polymer({
                 editor.focus();
             }
         });
-    },
+    }
 
     // TODO: Remove all listeners when detached
-});
+}
+
+customElements.define(NyaoVimApp.is, NyaoVimApp);

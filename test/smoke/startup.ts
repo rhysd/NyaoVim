@@ -72,14 +72,14 @@ describe('Startup', function() {
         });
     });
 
-    it('renders <neovim-editor> in HTML', function() {
-        return client.element('neovim-editor').then(e => {
+    it('renders <nyaovim-app> in HTML', function() {
+        return client.element('nyaovim-app').then(e => {
             assert.isNotNull(e.value);
         });
     });
 
     it('spawns nvim process without error', function() {
-        return client.execute(() => (document as any).getElementById('nyaovim-editor').editor.process.started)
+        return client.execute(() => (document as any).querySelector('nyaovim-app').editor.process.started)
             .then(result => assert.isTrue(result.value));
     });
 });
