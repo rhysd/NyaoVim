@@ -22,7 +22,9 @@ plugin-root-dir
 
 - `autoload` is the same as normal Neovim plugin's autoload directory.
 - `plugin` is the same as normal Neovim plugin's plugin directory.
-- `nyaovim-plugin` is a place HTML file contains Web Component of UI.  NyaoVim searches this directory and loads Web Components in it automatically.
+- `nyaovim-plugin` is a place for HTML file which contains Web Component of UI.  NyaoVim searches this directory and loads Web Components in it automatically.
+- UI should be created as a custom element of WebComponents v1 in the HTML file. And you can use [Polymer v2](https://www.polymer-project.org/) framework to
+  utilize data binding from `nyaovimrc.html` (mainly for user configuration).
 
 
 ## <a name="tutorial">Getting Started</a>
@@ -45,15 +47,16 @@ Let's make your `nyaovim-plugin/first-component.html`.
 </dom-module>
 ```
 
-And you need to get an editor instance of [`<neovim-editor>`](https://github.com/rhysd/neovim-component).  You can access powerful [`<neovim-editor>`'s APIs](https://github.com/rhysd/neovim-component#neovim-editor-apis) with the instance.
+And you need to get an editor instance from `nayovim-app` element. It is a custom element and it contains [`<neovim-editor>`](https://github.com/rhysd/neovim-component) in it.  You can access powerful [`<neovim-editor>`'s APIs](https://github.com/rhysd/neovim-component#neovim-editor-apis) via `editor` property.
 
 You can write JavaScript for it.
 
 ```html
-<!-- In first-component.html. Appending script after dom-module -->
+<!-- In first-component.html. Append script after dom-module -->
 <script>
 (function() {
-  var editor = document.querySelector('neovim-editor').editor;
+  const editor = document.querySelector('nyaovim-app').editor;
+  console.log(editor);
 })();
 </script>
 ```
@@ -65,11 +68,11 @@ Subscribe notification from Neovim as following.
 <!-- In first-component.html -->
 <script>
 (function() {
-  var editor = document.querySelector('neovim-editor').editor;
-  var client = editor.getClient();
+  const editor = document.querySelector('nyaovim-app').editor;
+  const client = editor.getClient();
   client.on('notification', function(method, args) {
     if (method === 'hello-world:content') {
-      var elem = doument.getElementById('hello-world-elem');
+      const elem = doument.getElementById('hello-world-elem');
       elem.innerText = args[0];
     }
   });
@@ -78,7 +81,7 @@ Subscribe notification from Neovim as following.
 </script>
 ```
 
-If you created your component as [Polymer](https://github.com/Polymer/polymer) element, you can receive editor instance as `editor` property of it.
+If you created your component as [Polymer v2](https://github.com/Polymer/polymer) element, you can receive editor instance as `editor` property of it.
 
 You've finished creating UI.
 Note that you can also use [Electron APIs](https://github.com/atom/electron/tree/master/docs/api) and [Node.js APIs](https://nodejs.org/en/) (e.g. `require()`) here.

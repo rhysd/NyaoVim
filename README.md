@@ -33,7 +33,7 @@ It is also an acronym for 'Not Yet Another Original'.
 
 ## App Structure
 
-NyaoVim consists of Web Components on Electron as seen in the following figure.  At first there is
+NyaoVim consists of Web Components on Electron as shown in the following figure.  At first there is
 only `<neovim-editor>` and you can add/remove additional components.
 
 ![structure](https://raw.githubusercontent.com/rhysd/ss/master/NyaoVim/structure.png)
@@ -129,8 +129,9 @@ Please add `<popup-tooltip>` tag under `<neovim-editor>` tag as below
 <popup-tooltip editor="[[editor]]"></popup-tooltip>
 ```
 
-`<popup-tooltip>` is a [Polymer](https://github.com/Polymer/polymer) component.  `editor="[[editor]]"`
-is a data binding to pass editor instance to `<popup-tooltip>`.
+`<popup-tooltip>` is a [Polymer](https://github.com/Polymer/polymer) component.
+`editor="[[editor]]"` is a data binding in Polymer framework to pass editor instance to `<popup-tooltip>`. It means
+unidirectional data flow from parent to child.
 
 After installing nyaovim-popup-tooltip as a Neovim plugin and adding UI to HTML, you're all done!
 Open NyaoVim, move the cursor to any image path, and enter `gi`.  NyaoVim will load the image and show
