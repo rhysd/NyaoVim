@@ -15,7 +15,6 @@
   "files": [
     "nyaovim-app.ts",
     "main.ts",
-    "lib.d.ts",
-    "polymer.d.ts"
+    "lib.d.ts"
   ]
 }
