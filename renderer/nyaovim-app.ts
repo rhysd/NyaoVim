@@ -46,7 +46,7 @@ class ComponentLoader {
 class RuntimeApi {
     private client: Nvim;
 
-    constructor(private definitions: {[name: string]: (...args: any[]) => void}) {
+    constructor(private readonly definitions: {[name: string]: (...args: any[]) => void}) {
         this.client = null;
     }
 

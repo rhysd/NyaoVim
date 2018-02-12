@@ -152,6 +152,7 @@
     "arrow-parens": false,
     "only-arrow-functions": false,
     "no-reference": false,
-    "max-classes-per-file": false
+    "max-classes-per-file": false,
+    "prefer-readonly": true
   }
 }
