@@ -1,5 +1,7 @@
 {
-  "extends": ["tslint:recommended"],
+  "extends": [
+    "tslint:recommended"
+  ],
   "rules": {
     "align": [
       true,
@@ -126,29 +128,32 @@
       "ignore-arrow-function-shorthand"
     ],
     "return-undefined": true,
-    "use-default-type-parameter": true,
     "deprecation": true,
     "no-unnecessary-qualifier": true,
     "no-return-await": true,
     "no-duplicate-switch-case": true,
-    "no-implicit-dependencies": [true, "dev"],
+    "no-implicit-dependencies": [
+      true,
+      "dev"
+    ],
     "ban-comma-operator": true,
     "no-duplicate-imports": true,
     "no-this-assignment": true,
     "use-default-type-parameter": true,
-    "no-unbound-method": [true, "ignore-static"],
+    "no-unbound-method": [
+      true,
+      "ignore-static"
+    ],
     "prefer-object-spread": true,
     "encoding": true,
     "prefer-switch": true,
     "interface-over-type-literal": true,
     "callable-types": true,
-
     "no-floating-promises": false,
     "number-literal-format": false,
     "no-parameter-reassignment": false,
     "no-namespace": false,
     "ordered-imports": false,
-    "trailing-comma": true,
     "arrow-parens": false,
     "only-arrow-functions": false,
     "no-reference": false,
