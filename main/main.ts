@@ -165,5 +165,5 @@ app.once(
                 setMenu(w);
             }
         });
-    }
+    },
 );
