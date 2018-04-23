@@ -1,5 +1,5 @@
-import {assert} from 'chai';
-import {SpectronClient} from 'spectron';
+import { assert } from 'chai';
+import { SpectronClient } from 'spectron';
 import NyaoVim from '../helper/nyaovim';
 
 describe('Startup', function() {
@@ -25,10 +25,13 @@ describe('Startup', function() {
             return done();
         }
 
-        nyaovim.stop().then(() => done()).catch(e => {
-            console.error('after(): ', e);
-            done();
-        });
+        nyaovim
+            .stop()
+            .then(() => done())
+            .catch(e => {
+                console.error('after(): ', e);
+                done();
+            });
     });
 
     afterEach(function(done) {
@@ -36,31 +39,37 @@ describe('Startup', function() {
             return done();
         }
 
-        client.getRenderProcessLogs().then(logs => {
-            console.log('Renderer process logs');
-            console.log('=====================\n');
-            for (const l of logs) {
-                console.log(`[${l.level}] ${l.message}`);
-            }
-        }).then(() =>
-            client.getMainProcessLogs()
-        ).then((logs: string[]) => {
-            console.log('Main process logs');
-            console.log('=================\n');
-            for (const l of logs) {
-                console.log(l);
-            }
-        }).then(done).catch(done);
+        client
+            .getRenderProcessLogs()
+            .then(logs => {
+                console.log('Renderer process logs');
+                console.log('=====================\n');
+                for (const l of logs) {
+                    console.log(`[${l.level}] ${l.message}`);
+                }
+            })
+            .then(() => client.getMainProcessLogs())
+            .then((logs: string[]) => {
+                console.log('Main process logs');
+                console.log('=================\n');
+                for (const l of logs) {
+                    console.log(l);
+                }
+            })
+            .then(done)
+            .catch(done);
     });
 
     it('opens a window', function() {
-        return client.getWindowCount().then((count: number) => {
-            assert.equal(count, 1);
-        }).then(() =>
-            nyaovim.browserWindow.isVisible()
-        ).then((visible: boolean) => {
-            assert.isTrue(visible);
-        });
+        return client
+            .getWindowCount()
+            .then((count: number) => {
+                assert.equal(count, 1);
+            })
+            .then(() => nyaovim.browserWindow.isVisible())
+            .then((visible: boolean) => {
+                assert.isTrue(visible);
+            });
     });
 
     it('does not occur any error', function() {
@@ -79,7 +88,8 @@ describe('Startup', function() {
     });
 
     it('spawns nvim process without error', function() {
-        return client.execute(() => (document as any).querySelector('nyaovim-app').editor.process.started)
+        return client
+            .execute(() => (document as any).querySelector('nyaovim-app').editor.process.started)
             .then(result => assert.isTrue(result.value));
     });
 });

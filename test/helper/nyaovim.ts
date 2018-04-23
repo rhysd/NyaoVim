@@ -1,6 +1,6 @@
-import {join} from 'path';
-import {writeFileSync} from 'fs';
-import {Application} from 'spectron';
+import { join } from 'path';
+import { writeFileSync } from 'fs';
+import { Application } from 'spectron';
 
 // XXX:
 // Workaround for 'electron' npm package.
@@ -19,9 +19,7 @@ export default class NyaoVim extends Application {
     }
 
     getRendererProcessLogs() {
-        return this.client.getRenderProcessLogs().then(
-            logs => logs.map(l => `[${l.level}] ${l.message}`)
-        );
+        return this.client.getRenderProcessLogs().then(logs => logs.map(l => `[${l.level}] ${l.message}`));
     }
 
     getMainProcessLogs() {
@@ -29,10 +27,7 @@ export default class NyaoVim extends Application {
     }
 
     getLogsJson() {
-        return Promise.all([
-            this.getRendererProcessLogs(),
-            this.getMainProcessLogs(),
-        ]).then(([ml, rl]) => {
+        return Promise.all([this.getRendererProcessLogs(), this.getMainProcessLogs()]).then(([ml, rl]) => {
             const obj = {
                 main: ml,
                 renderer: rl,
@@ -42,8 +37,6 @@ export default class NyaoVim extends Application {
     }
 
     dumpLogsTo(file_name: string, dir?: string) {
-        this.getLogsJson().then(
-            json => writeFileSync(join(dir || '.', file_name), json, 'utf8')
-        );
+        this.getLogsJson().then(json => writeFileSync(join(dir || '.', file_name), json, 'utf8'));
     }
 }
