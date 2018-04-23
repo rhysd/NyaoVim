@@ -81,12 +81,14 @@ describe('Startup', function() {
         });
     });
 
+    // @ts-ignore: XXX: Ignore PromiseLike type error until webdriver.d.ts is fixed
     it('renders <nyaovim-app> in HTML', function() {
         return client.element('nyaovim-app').then(e => {
             assert.isNotNull(e.value);
         });
     });
 
+    // @ts-ignore: XXX: Ignore PromiseLike type error until webdriver.d.ts is fixed
     it('spawns nvim process without error', function() {
         return client
             .execute(() => (document as any).querySelector('nyaovim-app').editor.process.started)
